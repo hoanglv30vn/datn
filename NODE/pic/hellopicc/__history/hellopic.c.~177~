@@ -24,11 +24,11 @@ VOID NGAT()
    DATA = 2;
    //NHAN = GETC ();
    //OUTPUT_TOGGLE (PIN_D0);
-   OUTPUT_TOGGLE (PIN_D1) ;
-   NHAN1 = "hello";
+   NHAN1 = "owe";
    NHAN2 = "owe";
    GETS (NHAN) ;
-   DATA = STRCMP (NHAN, NHAN1);
+   OUTPUT_TOGGLE (PIN_D1) ;
+   DATA = STRCMP (NHAN2, NHAN1);
    IF (DATA == 0)
    {
       OUTPUT_TOGGLE (PIN_D0);
@@ -88,9 +88,16 @@ VOID MAIN()
          ITOA (KQADC, 10, NHIETDO);
          PRINTF (NHIETDO) ;
          DELAY_MS (200) ;
-      }   
+      }
+
+      DELAY_MS (200) ;
+      
+      IF (DATA == 0)
+      {
+         PRINTF(NHAN) ;
+      }
    }
 }
-
+}
 
 

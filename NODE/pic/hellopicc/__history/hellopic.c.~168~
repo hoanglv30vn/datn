@@ -2,6 +2,9 @@
 #DEVICE ADC=10
 #INCLUDE <STRING.H>
 #INCLUDE <STDLIB.H>
+#INCLUDE <STDIO.H>
+#INCLUDE <MATH.H>
+
 /*
 int atoi(const char *s) : sting --> sô nguyên
 long atol(const char *s) : string --> sô nguyên dài
@@ -9,16 +12,33 @@ float atof(const char *s) : string --> sô thuc
 */
 #FUSES NOWDT, PUT, HS
 #USE DELAY(CLOCK=20M)
-#USE RS232(BAUD=9600,XMIT=PIN_E0,RCV=PIN_E1)
+#USE RS232(BAUD=9600,XMIT=PIN_C6,RCV=PIN_C7)
+
+
 
 UNSIGNED INT16 KQADC;
-UNSIGNED INT J,MATRAM;
-INT8 DATA=0;
-CHAR CHUOI[30]="chao moi nguoi";
+INT8 DATA=4;
+CHAR NHIETDO[30]="20";
+CHAR *NHAN1, *NHAN, *NHAN2;
 
+//----------------------------------------------------------------------//
+#INT_RDA
+VOID NGAT(){
+   //NHAN = GETC();
+   //OUTPUT_TOGGLE(PIN_D0);    
+   NHAN1="owe";
+   NHAN2 = "IQUA";
+   GETS(NHAN);
+   DATA = STRCMP(NHAN2,NHAN1);
+   OUTPUT_TOGGLE(PIN_D1);
+   PRINTF(NHAN);
+   PRINTF(DATA);
+   IF (DATA == 0){
+   OUTPUT_TOGGLE(PIN_D0);}
+}
 VOID ADC_READ(){
    KQADC = 0;    
-   FOR (J=0; J<100; J++)
+   FOR (INT I=0; I<100; I++)
    {
       KQADC=KQADC+READ_ADC();
       DELAY_MS(1);
@@ -44,27 +64,26 @@ VOID SS(){
 
 VOID MAIN(){
    SET_TRIS_D(0X00);
-   SET_TRIS_C(0XF0);
+   SET_TRIS_B(0XF0);
    SETUP_ADC(ADC_CLOCK_DIV_8);
    SETUP_ADC_PORTS(sAN0);
    SET_ADC_CHANNEL(0);     
    OUTPUT_LOW(PIN_D0);
    OUTPUT_D(0X00);
+   ENABLE_INTERRUPTS(INT_RDA);
+   ENABLE_INTERRUPTS(GLOBAL);
+   ENABLE_INTERRUPTS(INT_TIMER0);
    
    
    WHILE(TRUE){
-       PRINTF("HELLO");
-       DELAY_MS(200);
+      //OUTPUT_TOGGLE(PIN_D1);
       ADC_READ();
-      DATA = KQADC;
-      ITOA(25, CHUOI, 10 );
-       PRINTF(CHUOI);
-        DELAY_MS(200);
-       PRINTF("HELLO");
-       DELAY_MS(200);
-      //SS();
-      
-     
+      IF(KQADC>26){
+            ITOA(KQADC, 10, NHIETDO );
+            PRINTF(NHIETDO);
+            DELAY_MS(200);
+      }
+      DELAY_MS(200);
    } 
 }
 

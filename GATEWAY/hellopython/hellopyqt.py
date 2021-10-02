@@ -69,7 +69,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def senddata(self):   
-        helloz="a"     
+        helloz="hww3sdllo"     
         data1.write(helloz.encode())
         print("HELLO")
 
