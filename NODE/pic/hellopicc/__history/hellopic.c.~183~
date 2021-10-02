@@ -15,7 +15,7 @@ float atof(CONST char *s) : string --> sô thuc
 #USE RS232(BAUD=9600,XMIT=PIN_C6,RCV=PIN_C7)
 UNSIGNED INT16 KQADC;
 INT8 DATA=4;
-CHAR NHIETDO[30]="220";
+CHAR NHIETDO[30]="20";
 CHAR *NHAN1, *NHAN, *NHAN2;
 //--------------------------------------------------------------------//
 #INT_RDA

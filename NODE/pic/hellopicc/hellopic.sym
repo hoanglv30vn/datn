@@ -126,19 +126,19 @@ FFF     @INTERRUPT_AREA
 
 ROM Allocation:
 000031  NGAT
-00005E  strcmp
-0000B0  @delay_ms1
-0000C4  ADC_READ
-0000DF  @ITOF
-00010B  @DIVFF
-0001DC  @SFTOI
-000201  @DIVS3232
-000289  itoa
-0002A1  @MUL3232
-0003A1  @PSTRINGR_9600_62_63
-0003BA  MAIN
-0003BA  @cinit1
-0003DB  @cinit2
+00005F  strcmp
+0000B1  @delay_ms1
+0000C5  ADC_READ
+0000E0  @ITOF
+00010C  @DIVFF
+0001DD  @SFTOI
+000202  @DIVS3232
+00028A  itoa
+0002A2  @MUL3232
+0003A2  @PSTRINGR_9600_62_63
+0003BB  MAIN
+0003BB  @cinit1
+0003DC  @cinit2
 0136  StrtoulGO
 0136  StrtolGO
 
@@ -146,7 +146,7 @@ Project Directory:
     E:\DATN\NODE\pic\hellopicc\
 
 Project Files:
-    hellopic.c                                              [03-Oct-21 01:35  CRC=20ABF8FE]
+    hellopic.c                                              [03-Oct-21 01:42  CRC=5CCC6480]
     C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
     C:\Program Files (x86)\PICC\Drivers\STRING.H            [14-Jul-11 10:13  CRC=23EDEC8F]
     C:\Program Files (x86)\PICC\Drivers\stddef.h            [16-Jul-10 09:27  CRC=897CEC6C]
@@ -156,7 +156,7 @@ Project Files:
     C:\Program Files (x86)\PICC\Drivers\STDIO.H             [31-Jul-07 13:24  CRC=4E4534F4]
     C:\Program Files (x86)\PICC\Drivers\MATH.H              [28-Sep-12 11:35  CRC=546412C9]
 
-Source signature=8E492A8D
+Source signature=CA69960F
 
 Units:
     hellopic (main)
