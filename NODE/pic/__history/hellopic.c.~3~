@@ -1,0 +1,12 @@
+#include <16f887.h>
+use delay (clock=10mhz)
+void main(){
+   set_tris_D(0x0E);
+   output_low(pin_d0);
+   while(true){
+      if (!input(pin_d3))
+         output_low(pin_d0);
+      else 
+          output_high(pin_d0);
+   } 
+}

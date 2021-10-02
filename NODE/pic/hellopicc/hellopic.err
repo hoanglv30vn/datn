@@ -1,0 +1,4 @@
+>>> Warning 202 "hellopic.c" Line 20(6,10): Variable never used:   data
+      Memory usage:   ROM=12%      RAM=14% - 24%
+      0 Errors,  1 Warnings.
+Build Successful.

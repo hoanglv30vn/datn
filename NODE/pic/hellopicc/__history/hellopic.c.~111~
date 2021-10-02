@@ -1,0 +1,68 @@
+#INCLUDE <16F887.H>
+#DEVICE ADC=10
+#INCLUDE <STRING.H>
+#INCLUDE <STDLIB.H>
+/*
+int atoi(const char *s) : sting --> sô nguyên
+long atol(const char *s) : string --> sô nguyên dài
+float atof(const char *s) : string --> sô thuc
+*/
+#FUSES NOWDT, PUT, HS
+#USE DELAY(CLOCK=20M)
+#USE RS232(BAUD=9600,XMIT=PIN_E0,RCV=PIN_E1)
+
+UNSIGNED INT16 KQADC;
+UNSIGNED INT J,MATRAM;
+INT8 DATA=0;
+CHAR CHUOI[30]="chao moi nguoi";
+
+VOID ADC_READ(){
+   KQADC = 0;    
+   FOR (J=0; J<100; J++)
+   {
+      KQADC=KQADC+READ_ADC();
+      DELAY_MS(1);
+   }
+   KQADC = KQADC/(100*2.046);
+
+}
+
+VOID SS(){
+      IF (KQADC > 26){
+          OUTPUT_D(0xF0);
+          PUTC('O');
+          PUTC('N');
+          DELAY_MS(200);
+      }
+      ELSE{
+         OUTPUT_D(0x0F);
+         PRINTF(KQADC);
+         DELAY_MS(200);
+         }   
+
+}
+
+VOID MAIN(){
+   SET_TRIS_D(0X00);
+   SET_TRIS_C(0XF0);
+   SETUP_ADC(ADC_CLOCK_DIV_8);
+   SETUP_ADC_PORTS(sAN0);
+   SET_ADC_CHANNEL(0);     
+   OUTPUT_LOW(PIN_D0);
+   OUTPUT_D(0X00);
+   
+   
+   WHILE(TRUE){
+      ADC_READ();
+      DATA = KQADC;
+      ITOA(25, CHUOI, 10 );
+       PRINTF(CHUOI);
+        DELAY_MS(200);
+       PRINTF("HELLO");
+       DELAY_MS(200);
+      //SS();
+      
+     
+   } 
+}
+

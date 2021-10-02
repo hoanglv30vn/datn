@@ -1,0 +1,24 @@
+[PROJECT]
+Target=hellopic.hex
+Processor_Text=PIC16F887
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=hellopic.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[hellopic.c]
+Type=4
+[mru-list]
+1=hellopic.c
+[Opened Files]
+1=hellopic.c
+2=16f887.h
+3=C:\Program Files (x86)\PICC\Drivers\MATH.H
+4=C:\Program Files (x86)\PICC\Drivers\STDIO.H
+5=C:\Program Files (x86)\PICC\Drivers\STDLIB.H
+6=C:\Program Files (x86)\PICC\Drivers\STRING.H
+7=
+[Units]
+Count=1
+1=hellopic (main)
