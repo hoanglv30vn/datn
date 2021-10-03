@@ -76,7 +76,8 @@ VOID MAIN()
       IF (KQADC > 26)
       {
          ITOA (KQADC, 10, NHIETDO);    
-         PACKAGE[4]=NHIETDO;
+         
+         PRINTF (NHIETDO) ;
       }   
       for (int i=0; i<7; i++){
                PRINTF (PACKAGE[i]) ;

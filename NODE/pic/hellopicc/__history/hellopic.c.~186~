@@ -13,13 +13,11 @@ float atof(CONST char *s) : string --> sô thuc
 #FUSES NOWDT, PUT, HS
 #USE DELAY(CLOCK=20M)
 #USE RS232(BAUD=9600,XMIT=PIN_C6,RCV=PIN_C7)
-
 UNSIGNED INT16 KQADC;
 INT8 DATA=4;
-//CHAR *NHAN1[10], *NHAN[10], *NHAN2[10];
-CHAR *PACKAGE[]={"S","ID", "COMMAND" ,"LENGHT","DATA","CHECKSUM","STOP *"}   ;
-CHAR NHIETDO[]="27";
-   
+CHAR MANG[2]={"as","hihi"};
+CHAR NHIETDO[30]="220";
+CHAR *NHAN1, *NHAN, *NHAN2;
 //--------------------------------------------------------------------//
 #INT_RDA
 VOID NGAT()
@@ -27,7 +25,6 @@ VOID NGAT()
    DATA = 3;
    //NHAN = GETC ();
    //OUTPUT_TOGGLE (PIN_D0);
-   /*
    OUTPUT_TOGGLE (PIN_D1) ;
    NHAN1 = "hello";
    NHAN2 = "owe";
@@ -37,7 +34,6 @@ VOID NGAT()
    {
       OUTPUT_TOGGLE (PIN_D0);
    }
-   */
 }
 
 VOID ADC_READ()
@@ -52,7 +48,23 @@ VOID ADC_READ()
    KQADC = KQADC / (100 * 2.046);
 }
 
+VOID SS()
+{
+   IF (KQADC > 26)
+   {
+      OUTPUT_D (0xF0) ;
+      PUTC ('O') ;
+      PUTC ('N') ;
+      DELAY_MS (200) ;
+   }
 
+   ELSE
+   {
+      OUTPUT_D (0x0F) ;
+      PRINTF (KQADC) ;
+      DELAY_MS (200) ;
+   }
+}
 
 VOID MAIN()
 {
@@ -71,17 +83,13 @@ VOID MAIN()
    WHILE (TRUE)
    {
       //OUTPUT_TOGGLE (PIN_D1) ;
-      OUTPUT_D (0x0F) ;
       ADC_READ () ;
       IF (KQADC > 26)
       {
-         ITOA (KQADC, 10, NHIETDO);    
-         PACKAGE[4]=NHIETDO;
+         ITOA (KQADC, 10, NHIETDO);
+         PRINTF (NHIETDO) ;
+         DELAY_MS (200) ;
       }   
-      for (int i=0; i<7; i++){
-               PRINTF (PACKAGE[i]) ;
-               DELAY_MS (200) ;
-      }      
    }
 }
 

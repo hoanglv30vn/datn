@@ -18,7 +18,6 @@ UNSIGNED INT16 KQADC;
 INT8 DATA=4;
 //CHAR *NHAN1[10], *NHAN[10], *NHAN2[10];
 CHAR *PACKAGE[]={"S","ID", "COMMAND" ,"LENGHT","DATA","CHECKSUM","STOP *"}   ;
-CHAR NHIETDO[]="27";
    
 //--------------------------------------------------------------------//
 #INT_RDA
@@ -76,9 +75,9 @@ VOID MAIN()
       IF (KQADC > 26)
       {
          ITOA (KQADC, 10, NHIETDO);    
-         PACKAGE[4]=NHIETDO;
+         PRINTF (NHIETDO) ;
       }   
-      for (int i=0; i<7; i++){
+      for (int i=0; i<6; i++){
                PRINTF (PACKAGE[i]) ;
                DELAY_MS (200) ;
       }      

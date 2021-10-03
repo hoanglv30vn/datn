@@ -1,7 +1,7 @@
-D G "__PCM__" 0 0 ""5.015""
-D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""03-Oct-21""
-D G "__TIME__" 0 0 ""01:42:23"" "Standard Header file for the PIC16F887 device ////////////////"
+D G "__PCM__" 0 92 ""5.015""
+D G "__DEVICE__" 0 92 "887"
+D G "__DATE__" 0 92 ""03-Oct-21""
+D G "__TIME__" 0 92 ""21:46:37"" "Standard Header file for the PIC16F887 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 39 "int8" `54 
 f B "set_tris_a" 1 39 "void(int8 value)" `53 
@@ -1414,19 +1414,18 @@ C L "ldexp" 8 2 6 "FUNCTION"
 V L "value" 8 2209 "float" `1018 
 V L "exp" 8 2209 "sint8" `1019 
 F G "ldexp" 8 2210 "float(float value,sint8 exp)" `1017 
-V G "KQADC" 0 16 "int16" `1027 
-V G "data" 0 17 "int8" `1028 
-V G "NHIETDO" 0 18 "int8[30]" `1029 
-V G "NHAN1" 0 19 "*int8" `1030 
-V G "NHAN" 0 19 "*int8" `1031 
-V G "NHAN2" 0 19 "*int8" `1032  "--------------------------------------------------------------------//"
-F G "NGAT" 0 23 "void()" `1033 
-C L "NGAT" 0 8 2 "FUNCTION"
-F G "ADC_READ" 0 39 "void()" `1036 
-V L "i" 0 41 "int8" `1037 
-F G "SS" 0 51 "void()" `1038 
-F G "MAIN" 0 69 "void()" `1040 
+V G "KQADC" 0 17 "int16" `1027 
+V G "data" 0 18 "int8" `1028 
+V G "PACKAGE" 0 20 "*int8[1]" `1029 
+V G "NHIETDO" 0 21 "int8[1]" `1031 
+C L "NGAT" 0 8 1 "FUNCTION"
+F G "NGAT" 0 26 "void()" `1032 
+C L "NGAT" 0 8 9 "FUNCTION"
+F G "ADC_READ" 0 44 "void()" `1033 
+V L "i" 0 46 "int8" `1034 
+F G "MAIN" 0 58 "void()" `1035 
 C L "MAIN" 0 8 1 "FUNCTION"
+V L "i" 0 81 "int8" `1038 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep_ulpwu" 1 0
