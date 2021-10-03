@@ -37,7 +37,7 @@ CHAR RCV='A';
 VOID NGAT()
 {
    DATA = 3;
-   NHAN = "HEALLA";
+   //NHAN = "HELLA";
    
    //RCV = GETC();
    OUTPUT_TOGGLE (PIN_D0);

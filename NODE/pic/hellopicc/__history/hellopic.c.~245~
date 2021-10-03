@@ -37,11 +37,10 @@ CHAR RCV='A';
 VOID NGAT()
 {
    DATA = 3;
-   NHAN = "HEALLA";
-   
-   //RCV = GETC();
-   OUTPUT_TOGGLE (PIN_D0);
+   //NHAN = "HELLA";
    //GETS (NHAN) ;
+   RCV = GETC();
+   //OUTPUT_TOGGLE (PIN_D0);
    /*
    OUTPUT_TOGGLE (PIN_D1) ;
    NHAN1 = "hello";

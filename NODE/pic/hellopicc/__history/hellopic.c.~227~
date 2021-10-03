@@ -27,21 +27,17 @@ float atof(CONST char *s) : string --> sô thuc
 
 UNSIGNED INT16 KQADC;
 INT8 DATA=4;
-CHAR *NHAN1[], *NHAN[]="HELLO";
+//CHAR *NHAN1[10], *NHAN[10], *NHAN2[10];
 CHAR *PACKAGE[]={"S","ID", "COMMAND" ,"LENGHT","DATA","CHECKSUM","STOP *"}   ;
 CHAR NHIETDO[]="27";
-CHAR RCV='A';
    
 //--------------------------------------------------------------------//
 #INT_RDA
 VOID NGAT()
 {
    DATA = 3;
-   NHAN = "HEALLA";
-   
-   //RCV = GETC();
-   OUTPUT_TOGGLE (PIN_D0);
-   //GETS (NHAN) ;
+   //NHAN = GETC ();
+   //OUTPUT_TOGGLE (PIN_D0);
    /*
    OUTPUT_TOGGLE (PIN_D1) ;
    NHAN1 = "hello";
@@ -58,9 +54,9 @@ VOID NGAT()
 VOID XUATLCD()
 {
    LCD_GOTOXY(1,1);
-   DELAY_MS(10);
-   PRINTF(LCD_PUTC, NHAN);
-   DELAY_MS(10);
+   DELAY_MS(100);
+   PRINTF(LCD_PUTC, "DEMSP: sp" );
+   DELAY_MS(100);
 }
 
 
@@ -93,7 +89,6 @@ VOID MAIN()
    ENABLE_INTERRUPTS (INT_TIMER0) ;
    
      LCD_INIT(); // KHOI TAO LCD
-     NHAN="CHAO";
    WHILE (TRUE)
    {
       //OUTPUT_TOGGLE (PIN_D1) ;

@@ -37,11 +37,10 @@ CHAR RCV='A';
 VOID NGAT()
 {
    DATA = 3;
-   NHAN = "HEALLA";
-   
-   //RCV = GETC();
-   OUTPUT_TOGGLE (PIN_D0);
+   //NHAN = "HELLA";
    //GETS (NHAN) ;
+   RCV = GETC();
+   //OUTPUT_TOGGLE (PIN_D0);
    /*
    OUTPUT_TOGGLE (PIN_D1) ;
    NHAN1 = "hello";
@@ -59,7 +58,7 @@ VOID XUATLCD()
 {
    LCD_GOTOXY(1,1);
    DELAY_MS(10);
-   PRINTF(LCD_PUTC, NHAN);
+   PRINTF(LCD_PUTC, RCV);
    DELAY_MS(10);
 }
 

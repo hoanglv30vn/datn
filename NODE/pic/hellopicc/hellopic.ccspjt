@@ -13,9 +13,9 @@ Type=4
 1=hellopic.c
 [Opened Files]
 1=hellopic.c
-2=
-3=C:\Program Files (x86)\PICC\Drivers\MATH.H
-4=C:\Program Files (x86)\PICC\Drivers\STDIO.H
+2=LCD.C
+3=C:\Program Files (x86)\PICC\Devices\16F887.H
+4=
 5=C:\Program Files (x86)\PICC\Drivers\STDLIB.H
 6=C:\Program Files (x86)\PICC\Drivers\STRING.H
 7=

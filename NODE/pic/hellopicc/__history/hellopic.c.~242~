@@ -30,18 +30,16 @@ INT8 DATA=4;
 CHAR *NHAN1[], *NHAN[]="HELLO";
 CHAR *PACKAGE[]={"S","ID", "COMMAND" ,"LENGHT","DATA","CHECKSUM","STOP *"}   ;
 CHAR NHIETDO[]="27";
-CHAR RCV='A';
    
 //--------------------------------------------------------------------//
 #INT_RDA
 VOID NGAT()
 {
    DATA = 3;
-   NHAN = "HEALLA";
-   
-   //RCV = GETC();
-   OUTPUT_TOGGLE (PIN_D0);
+   //NHAN = "HELLA";
    //GETS (NHAN) ;
+   NHAN = GETC ();
+   //OUTPUT_TOGGLE (PIN_D0);
    /*
    OUTPUT_TOGGLE (PIN_D1) ;
    NHAN1 = "hello";

@@ -30,18 +30,16 @@ INT8 DATA=4;
 CHAR *NHAN1[], *NHAN[]="HELLO";
 CHAR *PACKAGE[]={"S","ID", "COMMAND" ,"LENGHT","DATA","CHECKSUM","STOP *"}   ;
 CHAR NHIETDO[]="27";
-CHAR RCV='A';
    
 //--------------------------------------------------------------------//
 #INT_RDA
 VOID NGAT()
 {
    DATA = 3;
-   NHAN = "HEALLA";
-   
-   //RCV = GETC();
-   OUTPUT_TOGGLE (PIN_D0);
-   //GETS (NHAN) ;
+   //NHAN = "HELLA";
+   GETS (NHAN) ;
+   //NHAN = GETC ();
+   //OUTPUT_TOGGLE (PIN_D0);
    /*
    OUTPUT_TOGGLE (PIN_D1) ;
    NHAN1 = "hello";
@@ -93,7 +91,7 @@ VOID MAIN()
    ENABLE_INTERRUPTS (INT_TIMER0) ;
    
      LCD_INIT(); // KHOI TAO LCD
-     NHAN="CHAO";
+     NHAN="CHAO"
    WHILE (TRUE)
    {
       //OUTPUT_TOGGLE (PIN_D1) ;

@@ -29,6 +29,7 @@ class Ui_MainWindow(object):
             data = data1.readline()
             data = data.decode('utf-8')
             print(data)   
+            data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
             self.lab_hoagle.setText("Nhiệt độ: " + data)
             # result = firebase.post('data', data)
             # result = firebase.put('phòng 1','nhiệt độ',data)
@@ -69,9 +70,9 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def senddata(self):   
-        helloz="hww3sdllo"     
+        helloz="c"     
         data1.write(helloz.encode())
-        print("HELLO")
+        print(helloz.encode())
 
     # def change__(self):
     #     tt = self.lab_hoagle.text()
