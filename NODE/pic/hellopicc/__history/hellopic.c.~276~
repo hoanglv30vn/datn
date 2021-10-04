@@ -8,6 +8,7 @@
 #INCLUDE <TV_LCD.C>
 
 /*
+
 int atoi(CONST char *s) : sting --> sô nguyên
 long atol(CONST char *s) : string --> sô nguyên dài
 float atof(CONST char *s) : string --> sô thuc
@@ -25,35 +26,34 @@ float atof(CONST char *s) : string --> sô thuc
 #INCLUDE <LCD.C>
 
 UNSIGNED INT16 KQADC,AN0;
-INT8 DATA=0;
+
+INT8 DATA=4;
 CHAR *NHAN1[], *NHAN[]="HELLO";
 CHAR *PACKAGE[]={"S","ID", "COMMAND" ,"LENGHT","DATA1", "DATA2","CHECKSUM","STOP *"}   ;
 CHAR NHIETDO[]="27";
-CHAR RCV[]="RECEIVED";
+CHAR RCV='A';
 UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;   
 //--------------------------------------------------------------------//
 #INT_RDA
 VOID NGAT()
 {
-   KYTU[VT] = GETC () ;
-
-   IF (KYTU[VT] == '.')
-   {
-      KYTU[VT] = '\0';
-      TTNHAN = 1;
-      VT = 0;
+   KYTU[VT]=GETC();
+   IF(KYTU[VT]=='.'){
+      KYTU[VT]='\0';
+      TTNHAN=1;
+      VT=0;
    }
-
    ELSE
-   VT++;
+      VT++;
+   
 }
 
 VOID XUATLCD()
 {
    LCD_GOTOXY (1, 1) ;
-   DELAY_MS (10);
+   DELAY_MS (10) ;
    PRINTF (LCD_PUTC, KYTU);
-   DELAY_MS (1);
+   DELAY_MS (1) ;
 }
 
 INT ADC_READ(INT kenh)
@@ -90,12 +90,12 @@ VOID MAIN()
    WHILE (TRUE)
    {
       //OUTPUT_TOGGLE (PIN_D1);
-      //OUTPUT_D (0x0F);
+      OUTPUT_D (0x0F);
       AN0 = ADC_READ (0) ;
 
       IF (AN0 > 26)
       {
-         //XUATLCD ();
+         //XUATLCD () ;
          ITOA (AN0, 10, NHIETDO);
          PACKAGE[4] = NHIETDO;
          for (INT i = 0; i < 7; i++)
@@ -103,41 +103,23 @@ VOID MAIN()
             PRINTF (PACKAGE[i]);
             DELAY_MS (1);
          }
-
          DELAY_MS (1000);
       }
-
-      IF (TTNHAN == 1)
-      {
+      IF(TTNHAN==1){
          
-         TTNHAN = 0;
-         XUATLCD () ;
+         TTNHAN=0;
+         XUATLCD();
          LCD_GOTOXY (2, 2) ;
-         
-         OUTPUT_TOGGLE (PIN_D0);
-         OUTPUT_TOGGLE (PIN_D1);
-         OUTPUT_TOGGLE (PIN_D2);
-         OUTPUT_TOGGLE (PIN_D3);
-         /*
-         FOR (INT J = 0; J < 8; J++)
-         {
-            IF (KYTU[J] == RCV[J])
-            {
+         FOR (INT J=0; J<20;J++){
+                    IF(KYTU[J] == 'R'){
+              //OUTPUT_TOGGLE (PIN_D1);
                
-               DATA = DATA + J;
-            }
-
+               DELAY_MS (10) ;
+               PRINTF (LCD_PUTC, "hello");
+               DELAY_MS (1) ;
+         } 
+         
          }
-
-         IF (DATA == 28)
-         {
-            DATA=0;
-            PRINTF (LCD_PUTC, "OK");
-            OUTPUT_TOGGLE (PIN_D0);
-            OUTPUT_TOGGLE (PIN_D1);
-            OUTPUT_TOGGLE (PIN_D2);
-            OUTPUT_TOGGLE (PIN_D3);
-         }*/
       }
    }
 }

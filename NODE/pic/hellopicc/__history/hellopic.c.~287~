@@ -113,12 +113,6 @@ VOID MAIN()
          TTNHAN = 0;
          XUATLCD () ;
          LCD_GOTOXY (2, 2) ;
-         
-         OUTPUT_TOGGLE (PIN_D0);
-         OUTPUT_TOGGLE (PIN_D1);
-         OUTPUT_TOGGLE (PIN_D2);
-         OUTPUT_TOGGLE (PIN_D3);
-         /*
          FOR (INT J = 0; J < 8; J++)
          {
             IF (KYTU[J] == RCV[J])
@@ -137,7 +131,7 @@ VOID MAIN()
             OUTPUT_TOGGLE (PIN_D1);
             OUTPUT_TOGGLE (PIN_D2);
             OUTPUT_TOGGLE (PIN_D3);
-         }*/
+         }
       }
    }
 }

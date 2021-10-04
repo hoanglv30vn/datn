@@ -30,9 +30,9 @@ class Ui_MainWindow(object):
             data = data.decode('utf-8')
             print(data)   
             data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
-            self.lab_hoagle.setText("Nhiệt độ: " + data)
+            self.lab_hoagle.setText("TEMP: " + data)
             # result = firebase.post('data', data)
-            # result = firebase.put('phòng 1','nhiệt độ',data)
+            result = firebase.put('phòng 1','nhiệt độ',data)
     def read_interval(self):
         self.timer = QtCore.QTimer()
         self.timer.setInterval(100)
@@ -70,9 +70,10 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def senddata(self):   
-        helloz="c"     
-        data1.write(helloz.encode())
-        print(helloz.encode())
+        hello=self.lab_hoagle.text() + '.'
+
+        data1.write(hello.encode())
+        print(hello.encode())
 
     # def change__(self):
     #     tt = self.lab_hoagle.text()
@@ -84,7 +85,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.lab_hoagle.setText(_translate("MainWindow", "Hoàng Lê"))
+        self.lab_hoagle.setText(_translate("MainWindow", "HoangLe"))
         self.butt_ok.setText(_translate("MainWindow", "OKAY"))
 
 

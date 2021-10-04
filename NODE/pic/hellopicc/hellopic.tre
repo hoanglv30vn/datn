@@ -1,7 +1,7 @@
 ÀÄhellopic
-   ÃÄMAIN  0/288  Ram=2
+   ÃÄMAIN  0/402  Ram=2
    ³  ÃÄ@cinit1  (Inline)  Ram=0
-   ³  ÃÄlcd_init  0/82  Ram=6
+   ³  ÃÄlcd_init  0/84  Ram=6
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄlcd_send_nibble  0/58  Ram=1
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
@@ -13,19 +13,26 @@
    ³  ³     ³  ÀÄlcd_read_nibble  0/51  Ram=2
    ³  ³     ÃÄlcd_send_nibble  0/58  Ram=1
    ³  ³     ÀÄlcd_send_nibble  0/58  Ram=1
-   ³  ÃÄ@const1086  0/9  Ram=0
-   ³  ÃÄADC_READ  0/321  Ram=0
+   ³  ÃÄ@const1090  0/9  Ram=0
+   ³  ÃÄADC_READ  0/340  Ram=1
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄ@ITOF  (Inline)  Ram=2
    ³  ³  ÃÄ@DIVFF  (Inline)  Ram=14
    ³  ³  ÀÄ@SFTOI  (Inline)  Ram=4
-   ³  ÃÄXUATLCD  0/97  Ram=0
+   ³  ÃÄitoa  0/302  Ram=27
+   ³  ³  ÃÄ@MUL3232  (Inline)  Ram=13
+   ³  ³  ÃÄ@DIVS3232  0/134  Ram=14
+   ³  ³  ÀÄ@DIVS3232  0/134  Ram=14
+   ³  ÃÄ@PSTRINGR_9600_62_63  0/32  Ram=2
+   ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄXUATLCD  0/50  Ram=0
    ³  ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³  ³  ÀÄlcd_send_byte  0/100  Ram=3
    ³  ³  ³     ÀÄ*
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄ@PSTRINGR_1056  (Inline)  Ram=2
-   ³  ³  ³  ÀÄlcd_putc  (Inline)  Ram=1
+   ³  ³  ³  ÀÄlcd_putc  0/58  Ram=1
    ³  ³  ³     ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³  ³     ³  ÀÄ*
    ³  ³  ³     ÃÄlcd_send_byte  0/100  Ram=3
@@ -38,12 +45,10 @@
    ³  ³  ³     ÀÄlcd_send_byte  0/100  Ram=3
    ³  ³  ³        ÀÄ*
    ³  ³  ÀÄ@delay_ms1  0/20  Ram=1
-   ³  ÃÄitoa  0/290  Ram=27
-   ³  ³  ÃÄ@MUL3232  (Inline)  Ram=13
-   ³  ³  ÃÄ@DIVS3232  0/124  Ram=14
-   ³  ³  ÀÄ@DIVS3232  0/124  Ram=14
-   ³  ÃÄ@PSTRINGR_9600_62_63  0/25  Ram=2
-   ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ÀÄ@delay_ms1  0/20  Ram=1
-   ÀÄNGAT  0/31  Ram=2
-      ÀÄ@const1078  0/11  Ram=0
+   ³  ÃÄlcd_gotoxy  0/20  Ram=4
+   ³  ³  ÀÄ*
+   ³  ÃÄlcd_putc  0/58  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÀÄlcd_putc  0/58  Ram=1
+   ³     ÀÄ*
+   ÀÄNGAT  0/30  Ram=2

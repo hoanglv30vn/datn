@@ -1,8 +1,7 @@
-d G "ADC_READ_ONLY" 1 501 "6"
-D G "__PCM__" 1 547 ""5.015""
-D G "__DEVICE__" 1 547 "887"
-D G "__DATE__" 1 547 ""04-Oct-21""
-D G "__TIME__" 1 547 ""00:28:56"" "Standard Header file for the PIC16F887 device ////////////////"
+D G "__PCM__" 0 140 ""5.015""
+D G "__DEVICE__" 0 140 "887"
+D G "__DATE__" 0 140 ""05-Oct-21""
+D G "__TIME__" 0 140 ""00:25:09"" "Standard Header file for the PIC16F887 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 39 "int8" `54 
 f B "set_tris_a" 1 39 "void(int8 value)" `53 
@@ -1432,13 +1431,13 @@ F G "LCD_COMMAND" 9 24 "void(int8 MDK)" `1020
 V L "MHT" 9 30 "int8" `1023  "RS = 1"
 F G "LCD_DATA" 9 31 "void(int8 MHT)" `1022 
 F G "LCD_SETUP" 9 38 "void()" `1024 
-D G "LCD_ENABLE_PIN" 0 19 "PIN_E0"
-D G "LCD_RS_PIN" 0 20 "PIN_E1"
-D G "LCD_RW_PIN" 0 21 "PIN_E2"
-D G "LCD_DATA4" 0 22 "PIN_D4"
-D G "LCD_DATA5" 0 23 "PIN_D5"
-D G "LCD_DATA6" 0 24 "PIN_D6"
-D G "LCD_DATA7" 0 25 "PIN_D7"
+D G "LCD_ENABLE_PIN" 0 18 "PIN_E0"
+D G "LCD_RS_PIN" 0 19 "PIN_E1"
+D G "LCD_RW_PIN" 0 20 "PIN_E2"
+D G "LCD_DATA4" 0 21 "PIN_D4"
+D G "LCD_DATA5" 0 22 "PIN_D5"
+D G "LCD_DATA6" 0 23 "PIN_D6"
+D G "LCD_DATA7" 0 24 "PIN_D7"
 D G "__LCD_C__" 10 76 ""
 T G "LCD_PIN_MAP" 10 90 "{int1 enable,int1 rs,int1 rw,int1 unused,int4 data}" `1038  "this is to improve compatability with previous LCD drivers that accepted"
 D G "lcd_output_enable" 10 112 "(x) output_bit(LCD_ENABLE_PIN, x)"
@@ -1488,24 +1487,30 @@ V L "on" 10 443 "int8" `1067
 F G "lcd_cursor_on" 10 444 "void(int8 on)" `1066 
 C L "lcd_cursor_on" 10 2 1 "FUNCTION"
 C L "lcd_cursor_on" 10 2 1 "FUNCTION"
-V G "KQADC" 0 28 "int16" `1068 
-V G "data" 0 29 "int8" `1069 
-V G "NHAN1" 0 30 "*int8[1]" `1070 
-V G "NHAN" 0 30 "*int8[1]" `1071 
-V G "PACKAGE" 0 31 "*int8[1]" `1073 
-V G "NHIETDO" 0 32 "int8[1]" `1075 
-V G "RCV" 0 33 "int8" `1076 
-C L "NGAT" 0 35 1 "FUNCTION"
-F G "NGAT" 0 38 "void()" `1077 
-C L "NGAT" 0 35 1 "FUNCTION"
-C L "NGAT" 0 35 8 "FUNCTION"
-F G "XUATLCD" 0 59 "void()" `1079 
-F G "ADC_READ" 0 68 "void()" `1081 
-V L "i" 0 70 "int8" `1082 
-F G "MAIN" 0 82 "void()" `1083 
-C L "MAIN" 0 35 1 "FUNCTION"
-C L "MAIN" 0 35 1 "FUNCTION"
-V L "i" 0 107 "int8" `1087 
+V G "KQADC" 0 27 "int16" `1068 
+V G "AN0" 0 27 "int16" `1069 
+V G "data" 0 28 "int8" `1070 
+V G "NHAN1" 0 29 "*int8[1]" `1071 
+V G "NHAN" 0 29 "*int8[1]" `1072 
+V G "PACKAGE" 0 30 "*int8[1]" `1074 
+V G "NHIETDO" 0 31 "int8[1]" `1076 
+V G "RCV" 0 32 "int8[1]" `1077 
+V G "KYTU" 0 33 "int8[30]" `1078 
+V G "VT" 0 33 "int8" `1079 
+V G "TTNHAN" 0 33 "int8" `1080 
+C L "NGAT" 0 34 1 "FUNCTION"
+F G "NGAT" 0 37 "void()" `1081 
+F G "XUATLCD" 0 52 "void()" `1082 
+V L "kenh" 0 59 "int8" `1085 
+F G "ADC_READ" 0 60 "int8(int8 kenh)" `1084 
+V L "i" 0 63 "int8" `1086 
+F G "MAIN" 0 74 "void()" `1087 
+C L "MAIN" 0 34 1 "FUNCTION"
+C L "MAIN" 0 34 1 "FUNCTION"
+C L "MAIN" 0 34 2 "FUNCTION"
+C L "MAIN" 0 34 1 "FUNCTION"
+V L "i" 0 101 "int8" `1091 
+V L "j" 0 116 "int8" `1093 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep_ulpwu" 1 0

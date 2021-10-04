@@ -90,7 +90,7 @@ VOID MAIN()
    WHILE (TRUE)
    {
       //OUTPUT_TOGGLE (PIN_D1);
-      //OUTPUT_D (0x0F);
+      OUTPUT_D (0x0F);
       AN0 = ADC_READ (0) ;
 
       IF (AN0 > 26)
@@ -113,12 +113,6 @@ VOID MAIN()
          TTNHAN = 0;
          XUATLCD () ;
          LCD_GOTOXY (2, 2) ;
-         
-         OUTPUT_TOGGLE (PIN_D0);
-         OUTPUT_TOGGLE (PIN_D1);
-         OUTPUT_TOGGLE (PIN_D2);
-         OUTPUT_TOGGLE (PIN_D3);
-         /*
          FOR (INT J = 0; J < 8; J++)
          {
             IF (KYTU[J] == RCV[J])
@@ -131,13 +125,12 @@ VOID MAIN()
 
          IF (DATA == 28)
          {
-            DATA=0;
             PRINTF (LCD_PUTC, "OK");
             OUTPUT_TOGGLE (PIN_D0);
             OUTPUT_TOGGLE (PIN_D1);
             OUTPUT_TOGGLE (PIN_D2);
             OUTPUT_TOGGLE (PIN_D3);
-         }*/
+         }
       }
    }
 }
