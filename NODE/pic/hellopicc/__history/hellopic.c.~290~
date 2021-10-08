@@ -24,12 +24,11 @@ float atof(CONST char *s) : string --> sô thuc
 #define LCD_DATA7       PIN_D7  
 #INCLUDE <LCD.C>
 
-UNSIGNED INT16 KQADC,AN0, AN1;
-INT8 DATA0,DATA1;
+UNSIGNED INT16 KQADC,AN0;
+INT8 DATA=0;
 CHAR *NHAN1[], *NHAN[]="HELLO";
 CHAR *PACKAGE[]={"S","ID", "COMMAND" ,"LENGHT","DATA1", "DATA2","CHECKSUM","#"}   ;
-CHAR NHIETDO1[]="27";
-CHAR NHIETDO2[]="27";
+CHAR NHIETDO[]="27";
 CHAR RCV[]="RECEIVED";
 UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;   
 //--------------------------------------------------------------------//
@@ -51,7 +50,6 @@ VOID NGAT()
 
 VOID XUATLCD()
 {
-
    LCD_GOTOXY (1, 1) ;
    DELAY_MS (10);
    PRINTF (LCD_PUTC, KYTU);
@@ -78,8 +76,8 @@ VOID MAIN()
    SET_TRIS_B (0);
    SET_TRIS_E (0);
    SETUP_ADC (ADC_CLOCK_DIV_8);
-   SETUP_ADC_PORTS (0x00011);   
-
+   SETUP_ADC_PORTS (sAN0);
+   SET_ADC_CHANNEL (0);
    OUTPUT_LOW (PIN_D0);
    // OUTPUT_D (0X00);
    ENABLE_INTERRUPTS (INT_RDA);
@@ -93,19 +91,13 @@ VOID MAIN()
    {
       //OUTPUT_TOGGLE (PIN_D1);
       //OUTPUT_D (0x0F);
-      AN1 = ADC_READ (1) ;      
       AN0 = ADC_READ (0) ;
-
 
       IF (AN0 > 26)
       {
          //XUATLCD ();
-         ITOA (AN0, 10, NHIETDO1);
-         PACKAGE[4] = NHIETDO1;         
-         ITOA (AN1, 10, NHIETDO2);
-         PACKAGE[5] = NHIETDO2;            
-
-      
+         ITOA (AN0, 10, NHIETDO);
+         PACKAGE[4] = NHIETDO;
          for (INT i = 0; i < 7; i++)
          {
             PRINTF (PACKAGE[i]);

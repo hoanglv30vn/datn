@@ -13,17 +13,50 @@ import sqlite3
 import threading
 import time
 import datetime
+import socket
 import sys
 import glob
 import serial
-from firebase import firebase
 from threading import Thread
 from PyQt5.QtCore import QDate, Qt
-
+import pyrebase
+# from firebase import firebase
 global serial__ 
 serial__=serial.Serial()
-firebase = firebase.FirebaseApplication('https://hellodatn-default-rtdb.asia-southeast1.firebasedatabase.app/',None)
+
+
+firebaseConfig = {
+  'apiKey': "AIzaSyAEqi81NFMPBJGxWRy7QtQv961efPzL9LA",
+  'authDomain': "hellodatn.firebaseapp.com",
+  'databaseURL': "https://hellodatn-default-rtdb.asia-southeast1.firebasedatabase.app",
+  'projectId': "hellodatn",
+  'storageBucket': "hellodatn.appspot.com",
+  'messagingSenderId': "559705579450",
+  'appId': "1:559705579450:web:3421e5377912259256c783",
+  'measurementId': "G-YK901S5FXQ"
+};
+# firebase = pyrebase.initialize_app(firebaseConfig)
+# db=firebase.database()
+# data={"name":"Hoàng", 'age':22, 'addr': 'Ha Tinh'}
+# db.push(data)
+# db.child('infor').set(data)
+# db.child('infor').set({'addr':'binh duong'})
+
+firebase = pyrebase.initialize_app(firebaseConfig)
+db = firebase.database()
+
 class Ui_MainWindow(object):
+
+    def stream_handler(self, message):
+        print(message["event"]) # put
+        print("a")
+        print(message["path"]) # /-K7yGTTEp7O549EzTYtI
+        print("b")
+        print(message["data"]) # {'title': 'Pyrebase', "body": "etc..."}
+        # a=message["data"]
+        # print (a['phongkhach']['nhietdo'] )
+        print('hihi')
+        self.senddata(message["data"])
     def serial_ports(self):
         """ Lists serial port names
 
@@ -70,16 +103,27 @@ class Ui_MainWindow(object):
             print(data)   
             data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
             self.lab_hoagle.setText("TEMP: " + data)
-            result = firebase.put('phòng 1','nhiệt độ',data)
+            db.child('nhacuahoang/phongkhach').update({'nhietdo':data})
+
     def read_interval(self):
         self.timer = QtCore.QTimer()
         self.timer.setInterval(100)
-        self.timer.timeout.connect(self.readData)
+        try:
+            self.timer.timeout.connect(self.readData)
+        except:
+            print("readData error")
         self.timer.start()
-    def senddata(self):   
-        hello=self.lab_hoagle.text() + '.'        
-        serial__.write(hello.encode())
+    def senddata(self, tt):   
+        if (tt==1):
+            hello= 'on' + '.'
+        else:
+            hello='off' + '.'
+        serial__.write(hello.encode())       
         print(hello.encode())
+        # print( firebase.get('phòng 1','nhiệt độ'))
+        # result = firebase.get('/phòng 1', None)
+        # print(result)
+
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -117,9 +161,9 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.lab_baud.setFont(font)
         self.lab_baud.setObjectName("lab_baud")
-        self.butt_setup = QtWidgets.QPushButton(self.centralwidget)
-        self.butt_setup.setGeometry(QtCore.QRect(440, 40, 75, 31))
-        self.butt_setup.setObjectName("butt_setup")
+        # self.butt_setup = QtWidgets.QPushButton(self.centralwidget)
+        # self.butt_setup.setGeometry(QtCore.QRect(440, 40, 75, 31))
+        # self.butt_setup.setObjectName("butt_setup")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 550, 21))
@@ -130,14 +174,14 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.add_com()
-        self.butt_setup.clicked.connect(self.add_com)
+        # self.butt_setup.clicked.connect(self.add_com)
         self.set_serial()
         self.box_com.currentIndexChanged.connect(self.set_serial)
         self.box_baud.currentIndexChanged.connect(self.set_serial)
         self.butt_ok.clicked.connect(self.senddata)
         t1 = Thread(target = self.read_interval())
         t1.start()
-
+        my_stream = db.child("nhacuahoang").child("phongkhach").child("den").stream(self.stream_handler) 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -148,7 +192,7 @@ class Ui_MainWindow(object):
         self.butt_ok.setText(_translate("MainWindow", "OKAY"))
         self.lab_com.setText(_translate("MainWindow", "CỔNG COM"))
         self.lab_baud.setText(_translate("MainWindow", "BAUDRATE"))
-        self.butt_setup.setText(_translate("MainWindow", "SETUP"))
+        # self.butt_setup.setText(_translate("MainWindow", "SETUP"))
 
 
 if __name__ == "__main__":
@@ -159,3 +203,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+

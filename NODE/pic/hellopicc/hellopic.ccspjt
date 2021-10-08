@@ -13,10 +13,10 @@ Type=4
 1=hellopic.c
 [Opened Files]
 1=hellopic.c
-2=LCD.C
+2=
 3=C:\Program Files (x86)\PICC\Devices\16F887.H
-4=
-5=C:\Program Files (x86)\PICC\Drivers\STDLIB.H
+4=TV_LCD.C
+5=
 6=C:\Program Files (x86)\PICC\Drivers\STRING.H
 7=
 [Units]
