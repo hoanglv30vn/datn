@@ -34,7 +34,7 @@ firebaseConfig = {
   'messagingSenderId': "559705579450",
   'appId': "1:559705579450:web:3421e5377912259256c783",
   'measurementId': "G-YK901S5FXQ"
-};
+}
 # firebase = pyrebase.initialize_app(firebaseConfig)
 # db=firebase.database()
 # data={"name":"Hoàng", 'age':22, 'addr': 'Ha Tinh'}

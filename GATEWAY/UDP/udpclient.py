@@ -9,30 +9,15 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from threading import Thread
-from PyQt5.QtCore import QDate, Qt
-import time
-import threading
 import socket
-
-
+HOST = 'localhost'    # Cấu hình address server
+PORT = 8000              # Cấu hình Port sử dụng
+d = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Cấu hình socket
 
 
 class Ui_MainWindow(object):
-    def udp_(self):
-        self.timer = QtCore.QTimer()
-        self.timer.setInterval(100)
-        try:
-            self.timer.timeout.connect(self.send_data)
-        except:
-            print("readData error")   
-        self.timer.start() 
-                
-    def send_data(self):
-        HOST = 'localhost'    # Cấu hình address server
-        PORT = 8000              # Cấu hình Port sử dụng
-        d = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Cấu hình socket
-        d.connect((HOST, PORT)) # tiến hành kết nối đến server        
+    def client(self):
+        d.connect((HOST, PORT)) # tiến hành kết nối đến server
         d.sendall(b'Chao hoang!') # Gửi dữ liệu lên server 
         data = d.recv(1024) # Đọc dữ liệu server trả về
         print('Server Respone: ', repr(data))
@@ -59,10 +44,9 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        self.pushButton.clicked.connect(self.send_data)
+        # self.client()
 
-        t1 = Thread(target = self.udp_())
-        t1.start()
+        self.pushButton.clicked.connect(self.client)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -71,7 +55,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
-        self.label.setText(_translate("MainWindow", "TextLabel"))
+        self.label.setText(_translate("MainWindow", "client"))
 
 
 if __name__ == "__main__":
@@ -82,5 +66,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
-    
