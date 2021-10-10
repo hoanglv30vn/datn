@@ -1,6 +1,8 @@
 import socket
 import select
-
+import threading
+import time
+import serial
 HEADER_LENGTH = 10
 
 IP = "127.0.0.1"
@@ -91,9 +93,14 @@ while True:
 
             # Add accepted socket to select.select() list
             sockets_list.append(client_socket)
+            # <socket.socket fd=432, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0,
+            #  laddr=('127.0.0.1', 1234), raddr=('127.0.0.1', 55520)>]
 
             # Also save username and username header
             clients[client_socket] = user
+            # {<socket.socket fd=432, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, 
+            # laddr=('127.0.0.1', 1234), raddr=('127.0.0.1', 55520)>: {'header': b'5         ', 'data': b'hoang'}}
+            # {'header': b'5         ', 'data': b'hoang'}
 
             print('Accepted new connection from {}:{}, username: {}'.format(*client_address, user['data'].decode('utf-8')))
 
@@ -125,7 +132,7 @@ while True:
 
                 # But don't sent it to sender
                 if client_socket != notified_socket:
-
+                    print(user['header']  + user['data'] + message['header'] + message['data'] )
                     # Send user and message (both with their headers)
                     # We are reusing here message header sent by sender, and saved username header send by user when he connected
                     client_socket.send(user['header'] + user['data'] + message['header'] + message['data'])
@@ -138,3 +145,6 @@ while True:
 
         # Remove from our list of users
         del clients[notified_socket]
+
+
+

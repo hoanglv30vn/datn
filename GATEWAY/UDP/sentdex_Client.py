@@ -1,6 +1,7 @@
 import socket
 import select
 import errno
+import sys
 
 HEADER_LENGTH = 10
 
@@ -28,15 +29,15 @@ client_socket.send(username_header + username)
 while True:
 
     # Wait for user to input a message
-    message = input(f'{my_username} > ')
+    # message = input(f'{my_username} > ')
 
     # If message is not empty - send it
-    if message:
+    # if message:
 
-        # Encode message to bytes, prepare header and convert to bytes, like for username above, then send
-        message = message.encode('utf-8')
-        message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
-        client_socket.send(message_header + message)
+    #     # Encode message to bytes, prepare header and convert to bytes, like for username above, then send
+    #     message = message.encode('utf-8')
+    #     message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
+    #     client_socket.send(message_header + message)
 
     try:
         # Now we want to loop over received messages (there might be more than one) and print them

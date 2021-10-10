@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes'?>
 <WORKSPACE>
  <FRAME activewindow="1">
-  <PLACEMENT>2c00000000000000010000000083ffff0083ffffffffffffffffffffa701000022000000be040000ec020000</PLACEMENT>
+  <PLACEMENT>2c00000000000000010000000083ffff0083ffffffffffffffffffff74020000180000008b050000e2020000</PLACEMENT>
   <WINDOW type="default" module="STARTUP"/>
   <WINDOW type="default" module="ISIS"/>
  </FRAME>
@@ -33,13 +33,13 @@
      <ITEM name="nItems">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="450" x="16" flags="00008023" y="70" h="250" pid="0" iid="36">
+   <POPUP w="450" x="50" flags="00008023" y="0" h="250" pid="0" iid="36">
     <PROPERTIES>
      <ITEM name="AutoEcho">0</ITEM>
      <ITEM name="HexMode">0</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="52" x="128" flags="00000008" y="189" h="13" pid="3" iid="1">
+   <POPUP w="380" x="128" flags="00000008" y="189" h="182" pid="3" iid="1">
     <PROPERTIES/>
    </POPUP>
    <POPUP w="8" x="148" flags="0000000a" y="209" h="32" pid="4" iid="1">
@@ -72,7 +72,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="14" x="208" flags="00000008" y="269" h="8" pid="7" iid="1">
+   <POPUP w="114" x="208" flags="00000008" y="269" h="127" pid="7" iid="1">
     <PROPERTIES/>
    </POPUP>
    <POPUP w="8" x="228" flags="00000002" y="289" h="8" pid="8" iid="1">

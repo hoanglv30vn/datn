@@ -2,9 +2,9 @@ import threading
 import time
 import socket
 import select
-
-
 import serial
+
+
 exitFlag = 0
 global flagsenduart 
 flagsenduart=0
@@ -13,7 +13,8 @@ global serial__
 global data
 data='hi'
 # serial__=serial.Serial()
-serial__=serial.Serial('COM7', baudrate=9600 ,timeout=0.1)
+serial_com = input("SELLECT COM: ")
+serial__=serial.Serial(serial_com, baudrate=9600 ,timeout=0.1)
 HEADER_LENGTH = 10
 
 IP = "127.0.0.1"
@@ -66,20 +67,31 @@ class chaylen (threading.Thread):
         else:
             hello='off' + '.'
         serial__.write(hello.encode())       
-        print(hello.encode())        
+        print(hello.encode())    
+        # read_sockets, _, exception_sockets = select.select(sockets_list, [], sockets_list)    
+        # for notified_socket in read_sockets:
+
+        
+       
+        # pass
+
        
     def readData(self):
-        while True:
+        while True: 
             # print("wait data")
             if serial__.in_waiting >0:
                 global data
                 data = serial__.readline()
                 data = data.decode('utf-8')
                 print(data)   
-                data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
-                print(data)     
-                global flagsenduart
-                flagsenduart = 1                       
+
+                userheader= f"{len('hoang'):<{HEADER_LENGTH}}".encode('utf-8')
+                userdata= 'hoang'.encode('utf-8')
+                messheader= f"{len(data):<{HEADER_LENGTH}}".encode('utf-8')
+                messdata= data.encode('utf-8')
+                for client_socket in clients:
+                    client_socket.send( userheader + userdata + messheader + messdata)                      
+                    
 class udp (threading.Thread):
     def __init__(self,  threadID, name):
         threading.Thread.__init__(self)
@@ -88,19 +100,16 @@ class udp (threading.Thread):
         # self.counter = counter
     def run(self):
         print ("Bat dau " + self.name)
-        self.print_time(self.receive_message)
+        self.udp_truyen_nhan(self.receive_message)
     def receive_message(self, client_socket):
         try:
             # Receive our "header" containing message length, it's size is defined and constant
             message_header = client_socket.recv(HEADER_LENGTH)
-
             # If we received no data, client gracefully closed a connection, for example using socket.close() or socket.shutdown(socket.SHUT_RDWR)
             if not len(message_header):
                 return False
-
             # Convert header to int value
             message_length = int(message_header.decode('utf-8').strip())
-
             # Return an object of message header and message data
             return {'header': message_header, 'data': client_socket.recv(message_length)}
 
@@ -112,7 +121,7 @@ class udp (threading.Thread):
             # and that's also a cause when we receive an empty message
             return False
 
-    def print_time(self,receive_message):
+    def udp_truyen_nhan(self,receive_message):
         while True:            
             # Calls Unix select() system call or Windows select() WinSock call with three parameters:
             #   - rlist - sockets to be monitored for incoming data
@@ -154,10 +163,8 @@ class udp (threading.Thread):
 
                 # Else existing socket is sending a message
                 else:
-
                     # Receive message
                     message = receive_message(notified_socket)
-
                     # If False, client disconnected, cleanup
                     if message is False:
                         print('Closed connection from: {}'.format(clients[notified_socket]['data'].decode('utf-8')))
@@ -174,24 +181,9 @@ class udp (threading.Thread):
                     user = clients[notified_socket]
 
                     print(f'Received message from {user["data"].decode("utf-8")}: {message["data"].decode("utf-8")}')
-
-
                     # khi nhan data from udp --> uart
-                    # hello= message["data"].decode("utf-8") + '.'
-                    # serial__.write(hello.encode())    
-                    
-
-                    # Iterate over connected clients and broadcast message
-                    for client_socket in clients:
-
-                        # But don't sent it to sender
-                        if client_socket != notified_socket:
-
-                            # Send user and message (both with their headers)
-                            # We are reusing here message header sent by sender, and saved username header send by user when he connected
-                            # data.encode('utf-8')
-                            client_socket.send(user['header'] + user['data'] + message['header'] + message['data'])
-
+                    hello= message["data"].decode("utf-8") + '.'
+                    serial__.write(hello.encode())    
             # It's not really necessary to have this, but will handle some socket exceptions just in case
             for notified_socket in exception_sockets:
 
