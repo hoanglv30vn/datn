@@ -1,10 +1,10 @@
-004-005 @WRITE_PROGRAM_MEMORY8.P1
-004-005 @READ_PROGRAM_MEMORY8.P2
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
 015     CCP_1_LOW
 015     CCP_1
 016     CCP_1_HIGH
-01B     CCP_2
 01B     CCP_2_LOW
+01B     CCP_2
 01C     CCP_2_HIGH
 020     @INTERRUPT_AREA
 021     @INTERRUPT_AREA
@@ -18,7 +18,7 @@
 02D-02E KQADC
 02F-030 AN0
 031-032 AN1
-033     DATA0
+033     id
 034     DATA1
 035-036 NHAN1
 037-038 NHAN
@@ -26,9 +26,10 @@
 03F-04E PACKAGE
 04F-051 NHIETDO1
 052-054 NHIETDO2
-055-05D RCV
-05E     VT
-05F     TTNHAN
+055-056 id_
+057-05F RCV
+060     VT
+061     TTNHAN
 077     @SCRATCH
 078     @SCRATCH
 078     _RETURN_
@@ -39,28 +40,28 @@
 0CB-0E8 KYTU
 0E9-0EC atan2.y
 0E9     MAIN.i
-0EA     lcd_init.i
-0EA-0ED itoa.num
 0EA     ADC_READ.kenh
+0EA-0ED itoa.num
+0EA     lcd_init.i
 0EA     @PSTRINGR_1056.@SCRATCH1
 0EA     MAIN.@SCRATCH1
-0EB     ADC_READ.i
 0EB-0EE lcd_init.LCD_INIT_STRING
+0EB     ADC_READ.i
 0EB     @PSTRINGR_1056.@SCRATCH2
 0EB     MAIN.@SCRATCH2
 0EC-0ED @ITOF.P1
-0EC-0EF @SFTOI.P2
 0EC     lcd_putc.c
-0EC-0EF @DIVFF.P1
+0EC-0EF @SFTOI.P1
+0EC-0EF @DIVFF.P2
 0EC     @PSTRINGR_9600_62_63.@SCRATCH1
-0ED.0   atan2.sign
 0ED     lcd_gotoxy.x
+0ED.0   atan2.sign
 0ED     @PSTRINGR_9600_62_63.@SCRATCH2
-0EE     atan2.quad
 0EE     itoa.base
 0EE     lcd_gotoxy.y
-0EF     @delay_ms1.P1
+0EE     atan2.quad
 0EF     itoa.i
+0EF     @delay_ms1.P1
 0EF     lcd_gotoxy.address
 0EF     lcd_init.@SCRATCH1
 0FF     @INTERRUPT_AREA
@@ -68,17 +69,17 @@
 108.6   C2OUT
 10D-10E @WRITE_PROGRAM_MEMORY8.P1
 10D-10E @READ_PROGRAM_MEMORY8.P2
-110-111 itoa.s
-110-113 atan2.x
 110-113 @DIVFF.P1
+110-113 atan2.x
+110-111 itoa.s
 110     lcd_gotoxy.@SCRATCH1
 111     lcd_send_byte.address
 112     lcd_send_byte.n
 112-115 itoa.temp
 113     lcd_read_byte.low
 113     lcd_send_byte.@SCRATCH1
-114     lcd_read_byte.high
 114     lcd_send_nibble.n
+114     lcd_read_byte.high
 114-117 atan2.z
 114     @DIVFF.@SCRATCH1
 115     lcd_read_nibble.n
@@ -153,7 +154,7 @@ F7F     @INTERRUPT_AREA
 FFF     @INTERRUPT_AREA
 
 ROM Allocation:
-000031  @const1093.call
+000031  @const1094.call
 00003A  NGAT
 000058  @delay_ms1
 00006C  lcd_send_nibble
@@ -165,17 +166,17 @@ ROM Allocation:
 0001DF  @ITOF
 00020D  @DIVFF
 000309  @SFTOI
-00032F  @DIVS3232
-0003AB  itoa
-0003D8  @MUL3232
-000533  @PSTRINGR_9600_62_63
-000553  lcd_gotoxy
-000569  XUATLCD
-000577  @PSTRINGR_1056
-000583  lcd_putc
-0005D5  MAIN
-0005D5  @cinit1
-0005F6  @cinit2
+000331  @DIVS3232
+0003AD  itoa
+0003DA  @MUL3232
+000535  lcd_gotoxy
+00054B  @PSTRINGR_1056
+000557  lcd_putc
+0005A3  @PSTRINGR_9600_62_63
+0005C3  XUATLCD
+0005DA  MAIN
+0005DA  @cinit1
+0005FF  @cinit2
 0136  StrtoulGO
 0136  StrtolGO
 
@@ -183,7 +184,7 @@ Project Directory:
     E:\DATN\NODE\pic\hellopicc\
 
 Project Files:
-    hellopic.c                                              [09-Oct-21 01:12  CRC=8C3E99E7]
+    hellopic.c                                              [11-Oct-21 19:52  CRC=19D75F44]
     C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
     C:\Program Files (x86)\PICC\Drivers\STRING.H            [14-Jul-11 10:13  CRC=23EDEC8F]
     C:\Program Files (x86)\PICC\Drivers\stddef.h            [16-Jul-10 09:27  CRC=897CEC6C]
@@ -195,7 +196,7 @@ Project Files:
     TV_LCD.C                                                [09-Oct-21 01:12  CRC=CCAE8D1A]
     C:\Program Files (x86)\PICC\Drivers\LCD.C               [19-Sep-13 15:38  CRC=D1A6378A]
 
-Source signature=1572B4DB
+Source signature=A30B7A38
 
 Units:
     hellopic (main)

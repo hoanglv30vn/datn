@@ -101,9 +101,14 @@ class Ui_MainWindow(object):
             data = serial__.readline()
             data = data.decode('utf-8')
             print(data)   
+            idnode = (data[1])
             data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
             self.lab_hoagle.setText("TEMP: " + data)
-            db.child('nhacuahoang/phongkhach').update({'nhietdo':data})
+            print(idnode)
+            if idnode == "1":
+                db.child('nhacuahoang/phongkhach').update({'nhietdo':data})
+            if idnode == "2":
+                db.child('nhacuahoang/phongbep').update({'nhietdo':data})
 
     def read_interval(self):
         self.timer = QtCore.QTimer()
@@ -131,7 +136,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.lab_hoagle = QtWidgets.QLabel(self.centralwidget)
-        self.lab_hoagle.setGeometry(QtCore.QRect(230, 140, 121, 41))
+        self.lab_hoagle.setGeometry(QtCore.QRect(140, 140, 240, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.lab_hoagle.setFont(font)
@@ -181,7 +186,7 @@ class Ui_MainWindow(object):
         self.butt_ok.clicked.connect(self.senddata)
         t1 = Thread(target = self.read_interval())
         t1.start()
-        my_stream = db.child("nhacuahoang").child("phongkhach").child("den").stream(self.stream_handler) 
+        db.child("nhacuahoang").child("phongkhach").child("den").stream(self.stream_handler) 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

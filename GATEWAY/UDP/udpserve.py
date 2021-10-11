@@ -15,7 +15,7 @@ data='hi'
 # serial__=serial.Serial()
 serial_com = input("SELLECT COM: ")
 serial__=serial.Serial(serial_com, baudrate=9600 ,timeout=0.1)
-HEADER_LENGTH = 10
+HEADER_LENGTH = 40
 
 IP = "127.0.0.1"
 PORT = 1234

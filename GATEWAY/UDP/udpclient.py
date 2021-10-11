@@ -16,7 +16,7 @@ data='hi'
 serial_com = input("SELLECT COM: ")
 serial__=serial.Serial(serial_com, baudrate=9600 ,timeout=0.1)
 
-HEADER_LENGTH = 10
+HEADER_LENGTH = 40
 
 IP = "127.0.0.1"
 PORT = 1234
@@ -81,8 +81,8 @@ class chaylen (threading.Thread):
                 global data
                 data = serial__.readline()
                 data = data.decode('utf-8')
-                print(data)   
-                data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
+                # print(data)   
+                # data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
                 print(data)    
                 message = data.encode('utf-8')
                 message_header = f"{len(data):<{HEADER_LENGTH}}".encode('utf-8')
@@ -123,6 +123,8 @@ class udp (threading.Thread):
                     message_length = int(message_header.decode('utf-8').strip())
                     message = client_socket.recv(message_length).decode('utf-8')
 
+                    serial__.write(message.encode())       
+                    print(message.encode())
                     # Print message
                     print("chao")
                     print(f'{message}')

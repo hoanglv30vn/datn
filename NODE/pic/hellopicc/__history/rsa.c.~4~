@@ -1,0 +1,145 @@
+#INCLUDE <16F887.H>
+#DEVICE ADC=10
+#INCLUDE <STRING.H>
+#INCLUDE <STDLIB.H>
+#INCLUDE <STDIO.H>
+#include <TIME.h>
+#INCLUDE <MATH.H>
+#INCLUDE <TV_LCD.C>
+#include <math.h>
+/*
+int atoi(CONST char *s) : sting --> sô nguyên
+long atol(CONST char *s) : string --> sô nguyên dài
+float atof(CONST char *s) : string --> sô thuc
+*/
+#FUSES NOWDT, PUT, HS
+#USE DELAY(CLOCK=20M)
+#USE RS232(BAUD=9600,XMIT=PIN_C6,RCV=PIN_C7)
+#define LCD_ENABLE_PIN  PIN_E0                                   
+#define LCD_RS_PIN      PIN_E1                                
+#define LCD_RW_PIN      PIN_E2                              
+#define LCD_DATA4       PIN_D4                               
+#define LCD_DATA5       PIN_D5                                 
+#define LCD_DATA6       PIN_D6                                   
+#define LCD_DATA7       PIN_D7  
+#INCLUDE <LCD.C>
+
+UNSIGNED INT16 KQADC,AN0, AN1;
+//INT8 DATA0,DATA1;
+CHAR *NHAN[]="HELLO";
+CHAR *PACKAGE[]={"S","ID", "COMMAND" ,"LENGHT","DATA1", "DATA2","CHECKSUM","#"}   ;
+CHAR NHIETDO1[]="27";
+CHAR NHIETDO2[]="27";
+CHAR *ENCODE_[]="CHAO HOANG";
+CHAR *DECODE_[]="";
+UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;
+INT16  E=43, N=4189; 
+//int p=59, q=71,
+//n = p*q 
+// WN=4060
+//d = 2927; // d: KEY GATEWAY
+//--> E=43, N=4189; from GW   
+//INT WN, SODU; WN = (P-1)(Q-1) = 4060 \\ M<N
+INT KEYM[] = {17, 89, 101, 151, 163, 691, 839, 1193, 2243, 3461, 3769};
+INT16 C, RM, VM;
+int8 m=89;
+//--------------------------------------------------------------------//
+#INT_RDA
+VOID NGAT()
+{
+   KYTU[VT] = GETC ();
+
+   IF (KYTU[VT] == '.')
+   {
+      KYTU[VT] = '\0';
+      TTNHAN = 1;
+      VT = 0;
+   }
+
+   ELSE
+   VT++;
+}
+
+VOID XUATLCD()
+{
+   LCD_GOTOXY (1, 1);
+   DELAY_MS (10);
+   PRINTF (LCD_PUTC, KYTU);
+   DELAY_MS (1);
+}
+
+INT ADC_READ(INT kenh)
+{
+   SET_ADC_CHANNEL (kenh);
+   KQADC = 0;
+   FOR (INT I = 0; I < 100; I++)
+   {
+      KQADC = KQADC + READ_ADC () ;
+      DELAY_MS (1);
+   }
+
+   KQADC = KQADC / (100 * 2.046);
+   RETURN KQADC;
+}
+ 
+ 
+
+
+int count_C(int16 m, int16 e, int16 n){
+   int32 so_mu = pow(m, e);
+   return so_mu % n;
+}
+
+CHAR ENCODE(CHAR *P[], int m){
+   CHAR *CHUOIMAHOA[]="";
+   FOR(int i=0; i < strlen(P); i++){
+      int16 somahoaascii = (i+1)*m - i + 5;
+      if (somahoaascii > 99)
+          somahoaascii = 100;
+      CHUOIMAHOA[i]=P[i]+somahoaascii;
+   }
+   RETURN CHUOIMAHOA;
+}
+
+/*INT DECODE(CHAR PACKDE[]){
+   for(int i = 0; i<PACKDE[i];i++){
+           vm = ((i+1)*m - i+5);
+           DEPACKAGE = (char)(PACKDE[i]-vm);
+       //    printf("%c ", ENPACKAGE);
+}
+   RETURN 0;
+}*/
+
+VOID MAIN()
+{
+   SET_TRIS_D (0XF0);
+   SET_TRIS_B (0xFF);
+   SET_TRIS_E (0);
+   SETUP_ADC (ADC_CLOCK_DIV_8);
+   SETUP_ADC_PORTS (0x00011);
+   OUTPUT_LOW (PIN_D0);
+   // OUTPUT_D (0X00);
+   ENABLE_INTERRUPTS (INT_RDA);
+   ENABLE_INTERRUPTS (GLOBAL);
+   ENABLE_INTERRUPTS (INT_TIMER0);
+   
+   LCD_INIT (); // KHOI TAO LCD
+   NHAN = "CHAO";
+   LCD_GOTOXY (1, 1);
+   DELAY_MS (10);
+   PRINTF (LCD_PUTC, 'H');
+   DELAY_MS (1000);
+   NHAN = ENCODE(ENCODE_,  );
+   LCD_GOTOXY (2, 1);
+   DELAY_MS (10);
+   PRINTF (LCD_PUTC, NHAN);
+   DELAY_MS (1000);
+   WHILE (TRUE)
+   {
+      
+   }
+   
+}
+
+
+

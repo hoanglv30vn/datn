@@ -1,21 +1,21 @@
 
-ROM used:   1872/8192 (23%)
-            1872/8192 (23%) including unused fragments
+ROM used:   1937/8192 (24%)
+            1937/8192 (24%) including unused fragments
 
             0.3 Average locations per line
-            2.0 Average locations per statement
+            2.1 Average locations per statement
 
-RAM used:   144/368 (39%) at main() level
-            186/368 (51%) worst case
+RAM used:   146/368 (40%) at main() level
+            188/368 (51%) worst case
 
-Stack used: 5 worst case (4 in main + 1 for interrupts)
+Stack used: 6 worst case (5 in main + 1 for interrupts)
 Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  153    54   6  hellopic.c
+  171    66   7  hellopic.c
   768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
-  423   125  14  C:\Program Files (x86)\PICC\Drivers\STRING.H
+  423   125  13  C:\Program Files (x86)\PICC\Drivers\STRING.H
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    28     0   0  C:\Program Files (x86)\PICC\Drivers\ctype.h
  1351   359  39  C:\Program Files (x86)\PICC\Drivers\STDLIB.H
@@ -25,17 +25,17 @@ Lines Stmts  %   Files
    48    21   2  TV_LCD.C
   456   100  11  C:\Program Files (x86)\PICC\Drivers\LCD.C
 ----- -----
- 5948   916 Total
+ 5966   928 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
  Inline         2             @ITOF
  Inline        14             @DIVFF
-0    392  21   27  1075 11.2  itoa
+0    392  20   27  1075 11.2  itoa
  Inline        13             @MUL3232
-0    124   7   14             @DIVS3232
- Inline         4             @SFTOI
-0     20   1    1             @delay_ms1
+0    124   6   14             @DIVS3232
+ Inline         4   180  4.5  @SFTOI
+0     20   1    1  1100  9.0  @delay_ms1
  Inline         3   760  4.5  lcd_read_byte
 0     59   3    2   262  3.7  lcd_read_nibble
 0     64   3    1   399  2.4  lcd_send_nibble
@@ -44,31 +44,31 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     22   1    4   208  6.3  lcd_gotoxy
  Inline         1   354  4.7  lcd_putc
 0     30   2    2   163  3.9  NGAT
-0    108   6    0    88  1.7  XUATLCD
- Inline         2             @PSTRINGR_1056
-0    383  20    1   251  5.0  ADC_READ
-0    379  20    2  1023  6.2  MAIN
-0      9   0    0             @const1093
-0     32   2    2             @PSTRINGR_9600_62_63
- Inline         0             @cinit1
+0     23   1    0    88  1.7  XUATLCD
+0     88   5    2   399  2.4  @PSTRINGR_1056
+0    385  20    1   251  5.0  ADC_READ
+0    439  23    2  1449  6.3  MAIN
+0      9   0    0   208  6.3  @const1094
+0     32   2    2   354  4.7  @PSTRINGR_9600_62_63
+ Inline         0   236  3.5  @cinit1
 
 Program metrics:
-    Functions               12
-    Statements              916
-    Comments                1028
-    Volume (V)              9232
-    Difficulty (D)          58.3
-    Effort to implement (E) 537975
-    Time to implement (T)   8 hours, 18 minutes
-    Est Delivered Bugs (B)  2
-    Cyclomatic Complexity   17
-    Maintainability (MI)    115
+    Functions               18
+    Statements              928
+    Comments                1029
+    Volume (V)              14616
+    Difficulty (D)          89.0
+    Effort to implement (E) 1300564
+    Time to implement (T)   20 hours, 4 minutes
+    Est Delivered Bugs (B)  4
+    Cyclomatic Complexity   35
+    Maintainability (MI)    34
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
 00004-00030    45  0  
-00031-007FF  1823  176  
+00031-007FF  1888  111  
 00800-00FFF     0  2048  
 01000-017FF     0  2048  
 01800-01FFF     0  2048  
