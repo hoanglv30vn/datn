@@ -57,6 +57,16 @@ class Ui_MainWindow(object):
         # print (a['phongkhach']['nhietdo'] )
         print('hihi')
         self.senddata(message["data"])
+    def stream_handler2(self, message):
+        print(message["event"]) # put
+        print("a")
+        print(message["path"]) # /-K7yGTTEp7O549EzTYtI
+        print("b")
+        print(message["data"]) # {'title': 'Pyrebase', "body": "etc..."}
+        # a=message["data"]
+        # print (a['phongkhach']['nhietdo'] )
+        print('hihi')
+        self.senddata2(message["data"])        
     def serial_ports(self):
         """ Lists serial port names
 
@@ -107,8 +117,14 @@ class Ui_MainWindow(object):
             print(idnode)
             if idnode == "1":
                 db.child('nhacuahoang/phongkhach').update({'nhietdo':data})
-            if idnode == "2":
+            elif idnode == "2":
                 db.child('nhacuahoang/phongbep').update({'nhietdo':data})
+            elif idnode == "3":
+                db.child('nhacuahoang/phongngu1').update({'nhietdo':data})
+            elif idnode == "4":
+                db.child('nhacuahoang/phongngu2').update({'nhietdo':data})     
+            else:
+                db.child('nhacuaduc/phongkhach').update({'nhietdo':data})           
 
     def read_interval(self):
         self.timer = QtCore.QTimer()
@@ -120,11 +136,18 @@ class Ui_MainWindow(object):
         self.timer.start()
     def senddata(self, tt):   
         if (tt==1):
-            hello= 'on' + '.'
+            hello= 'on1' + '.'
         else:
-            hello='off' + '.'
+            hello='off1' + '.'
         serial__.write(hello.encode())       
         print(hello.encode())
+    def senddata2(self, tt):   
+        if (tt==1):
+            hello= 'on2' + '.'
+        else:
+            hello='off2' + '.'
+        serial__.write(hello.encode())       
+        print(hello.encode())        
         # print( firebase.get('phòng 1','nhiệt độ'))
         # result = firebase.get('/phòng 1', None)
         # print(result)
@@ -187,6 +210,7 @@ class Ui_MainWindow(object):
         t1 = Thread(target = self.read_interval())
         t1.start()
         db.child("nhacuahoang").child("phongkhach").child("den").stream(self.stream_handler) 
+        db.child("nhacuahoang").child("phongbep").child("den").stream(self.stream_handler2) 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

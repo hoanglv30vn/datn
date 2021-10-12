@@ -16,8 +16,8 @@ Type=4
 2=rsa.c
 3=hellopic.c
 4=C:\Program Files (x86)\PICC\Devices\16F887.H
-5=
-6=C:\Program Files (x86)\PICC\Drivers\STRING.H
+5=C:\Program Files (x86)\PICC\Drivers\LCD.C
+6=
 7=
 [Units]
 Count=1

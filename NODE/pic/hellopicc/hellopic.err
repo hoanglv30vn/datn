@@ -1,6 +1,6 @@
->>> Warning 202 "hellopic.c" Line 28(13,18): Variable never used:   DATA1
->>> Warning 202 "hellopic.c" Line 29(7,12): Variable never used:   NHAN1
->>> Warning 202 "hellopic.c" Line 34(6,9): Variable never used:   RCV
+>>> Warning 202 "hellopic.c" Line 26(13,18): Variable never used:   DATA1
+>>> Warning 202 "hellopic.c" Line 27(7,12): Variable never used:   NHAN1
+>>> Warning 202 "hellopic.c" Line 32(6,9): Variable never used:   RCV
       Memory usage:   ROM=24%      RAM=40% - 51%
       0 Errors,  3 Warnings.
 Build Successful.

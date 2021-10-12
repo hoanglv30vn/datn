@@ -32,7 +32,7 @@ Lines Stmts  %   Files
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
-0     20   3    1   370  2.7  @delay_ms1
+0     20   3    1             @delay_ms1
  Inline         3   760  4.5  lcd_read_byte
 0     49   7    2   262  3.7  lcd_read_nibble
 0     48   7    1   399  2.4  lcd_send_nibble
@@ -41,23 +41,23 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     18   3    4   208  6.3  lcd_gotoxy
 0     44   7    1   354  4.7  lcd_putc
 0     75  11    5   227  4.6  ENCODE
- Inline         2   102  3.8  @PSTRINGR_1161
+ Inline         2             @PSTRINGR_1161
 0    146  22    4   370  2.7  MAIN
-0      3   0    0   237  4.1  @const1192
-0     88  13    4   370  2.7  @PSTRINGC7_1161
+0      3   0    0             @const1192
+0     88  13    4             @PSTRINGC7_1161
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               13
+    Functions               9
     Statements              1006
     Comments                1355
-    Volume (V)              8127
-    Difficulty (D)          51.4
-    Effort to implement (E) 417918
-    Time to implement (T)   6 hours, 27 minutes
-    Est Delivered Bugs (B)  2
-    Cyclomatic Complexity   10
-    Maintainability (MI)    61
+    Volume (V)              5957
+    Difficulty (D)          37.8
+    Effort to implement (E) 225289
+    Time to implement (T)   3 hours, 29 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   9
+    Maintainability (MI)    69
 
  Segment     Used  Free
 -----------  ----  ----

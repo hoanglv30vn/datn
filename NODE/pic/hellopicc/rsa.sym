@@ -78,7 +78,6 @@ ROM Allocation:
 000201  MAIN
 000201  @cinit1
 000220  @cinit2
-000294  @const1194.call
 0136  StrtoulGO
 0136  StrtolGO
 
@@ -86,7 +85,7 @@ Project Directory:
     E:\DATN\NODE\pic\hellopicc\
 
 Project Files:
-    rsa.c                                                   [11-Oct-21 20:19  CRC=9A82CB24]
+    rsa.c                                                   [11-Oct-21 20:27  CRC=9A82CB24]
     C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
     C:\Program Files (x86)\PICC\Drivers\STRING.H            [14-Jul-11 10:13  CRC=23EDEC8F]
     C:\Program Files (x86)\PICC\Drivers\stddef.h            [16-Jul-10 09:27  CRC=897CEC6C]

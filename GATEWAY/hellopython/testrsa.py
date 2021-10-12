@@ -1,27 +1,31 @@
 while True:
     print("Bên A(bên nhận):")
-    print("nhập 2 số nguyên tố:")
-    p=int(input("p:"))
-    q=int(input("q:"))
+    # print("nhập 2 số nguyên tố:")
+    # p=int(input("p:"))
+    # q=int(input("q:"))
+    p=59
+    q=73
     n=p*q
-    print("module của p và q là P x Q=" + f'{n}')
+    # print("module của p và q là P x Q=" + f'{n}')
     wn = (p-1)*(q-1)
 
-    print("Wn = (p-1)*(q-1) = " + f'{wn}')
+    # print("Wn = (p-1)*(q-1) = " + f'{wn}')
 
-    e= int(input("nhập số mũ công khai e: "))
-    print("hệ thống tính cho bạn 1 vài số D bạn có thể chọn (d là số bí mật):")
-    for i in range(200):
-        sodu=(i*wn+1)%e
-        if sodu == 0:
-            print((i*wn+1)/e) 
-    d= int(input("nhập số mũ D bí mật bạn chọn: ")) 
+    # e= int(input("nhập số mũ công khai e: "))
+    e=17
+    # print("hệ thống tính cho bạn 1 vài số D bạn có thể chọn (d là số bí mật):")
+    # for i in range(200):
+    #     sodu=(i*wn+1)%e
+    #     if sodu == 0:
+    #         print((i*wn+1)/e) 
+    # d= int(input("nhập số mũ D bí mật bạn chọn: ")) 
+    d=9089
 
     print("khóa công khai là: " + 'e=' + f'{e}' + 'n=' + f'{n}')
 
     print("Bên B(bên gửi):")
     chuoimahoa = input("nhập chuỗi: ")
-    m=int(input("nhập số nguyên tố M: "))
+    m=int(input("nhập số nguyên tố M (khóa bí mật): "))
     c= pow(m,e) % n
     print("c=" + f'{c}')
     print("mã hóa chuỗi:")
@@ -31,9 +35,9 @@ while True:
         # char to ascii
         j+=1
         somahoaascii = j*m - j + 3
-        if somahoaascii > 39:
-            somahoaascii = 40
-        kqmahoa +=chr(ord(i) + somahoaascii)
+        dauconghoactru = pow(-1,j%2+1)
+        somahoaascii = somahoaascii % 30 + 1
+        kqmahoa +=chr(ord(i) + dauconghoactru*somahoaascii)
 
     print("kết quả mã hóa: " + kqmahoa )
 
@@ -51,9 +55,9 @@ while True:
     for i in kqmahoa:
         j+=1
         somahoaascii = j*m - j + 3
-        if somahoaascii > 39:
-            somahoaascii = 40    
-        kqgiaima += chr(ord(i)-somahoaascii)
+        dauconghoactru = pow(-1,j%2+1)    
+        somahoaascii = somahoaascii % 30 + 1
+        kqgiaima += chr( ord(i)- dauconghoactru*somahoaascii)
     print("kết quả giải mã: " + kqgiaima)
 
     xxxx = input("hihi")
