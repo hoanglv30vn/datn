@@ -1,0 +1,14 @@
+BUỒN NGỦ RỒI, MAI LÀM TIẾP
+phát hiện ngắt butt oke.
+chờ 10s vào config --> đổi trạng thái biến TT_CONFIG (MAI NHỚ ĐỔI LẠI =0)
+TT_CONFIG = 1 --> BUTT_FUN: CHỌN LỆNH (SWITCH CASE)
+chờ ngắt butt oke < 10s gọi hàm butt_oke --> gán điều kiện thoát butt_fun
+thoát butt_fun gọi hàm config_node --> sw case gọi hàm chọn id
+chọn id và in ra lcd, ngắt butt_oke<10s --> gán id và thoát.
+
+
+
+
+OKE. đi ngủ
+
+

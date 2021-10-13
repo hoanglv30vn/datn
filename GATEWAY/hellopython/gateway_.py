@@ -24,6 +24,7 @@ import pyrebase
 global serial__ 
 serial__=serial.Serial()
 
+id_gw = input("nhập id gw:")
 
 firebaseConfig = {
   'apiKey': "AIzaSyAEqi81NFMPBJGxWRy7QtQv961efPzL9LA",
@@ -116,15 +117,15 @@ class Ui_MainWindow(object):
             self.lab_hoagle.setText("TEMP: " + data)
             print(idnode)
             if idnode == "1":
-                db.child('nhacuahoang/phongkhach').update({'nhietdo':data})
+                db.child(id_gw).child('phongngu1').update({'nhietdo':data})
             elif idnode == "2":
-                db.child('nhacuahoang/phongbep').update({'nhietdo':data})
+                db.child(id_gw).child('phongngu2').update({'nhietdo':data})
             elif idnode == "3":
-                db.child('nhacuahoang/phongngu1').update({'nhietdo':data})
+                db.child(id_gw).child('phongngu1').update({'nhietdo':data})
             elif idnode == "4":
-                db.child('nhacuahoang/phongngu2').update({'nhietdo':data})     
+                db.child(id_gw).child('phongngu2').update({'nhietdo':data})     
             else:
-                db.child('nhacuaduc/phongkhach').update({'nhietdo':data})           
+                db.child(id_gw).child('phongkhach').update({'nhietdo':data})           
 
     def read_interval(self):
         self.timer = QtCore.QTimer()
@@ -209,8 +210,8 @@ class Ui_MainWindow(object):
         self.butt_ok.clicked.connect(self.senddata)
         t1 = Thread(target = self.read_interval())
         t1.start()
-        db.child("nhacuahoang").child("phongkhach").child("den").stream(self.stream_handler) 
-        db.child("nhacuahoang").child("phongbep").child("den").stream(self.stream_handler2) 
+        db.child(id_gw).child("phongngu1").child("den").stream(self.stream_handler) 
+        db.child(id_gw).child("phongbep").child("den").stream(self.stream_handler2) 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

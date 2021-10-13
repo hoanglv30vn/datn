@@ -1,75 +1,85 @@
 
-ROM used:   1945/8192 (24%)
-            1945/8192 (24%) including unused fragments
+ROM used:   2859/8192 (35%)
+            2935/8192 (36%) including unused fragments
 
-            0.3 Average locations per line
-            2.1 Average locations per statement
+            0.5 Average locations per line
+            3.0 Average locations per statement
 
-RAM used:   146/368 (40%) at main() level
-            188/368 (51%) worst case
+RAM used:   157/368 (43%) at main() level
+            212/368 (58%) worst case
 
-Stack used: 6 worst case (5 in main + 1 for interrupts)
+Stack used: 8 worst case (4 in main + 4 for interrupts)
 Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  147    68   7  hellopic.c
+  306   128  13  hellopic.c
   768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
   423   125  13  C:\Program Files (x86)\PICC\Drivers\STRING.H
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
    28     0   0  C:\Program Files (x86)\PICC\Drivers\ctype.h
- 1351   359  39  C:\Program Files (x86)\PICC\Drivers\STDLIB.H
+ 1351   359  37  C:\Program Files (x86)\PICC\Drivers\STDLIB.H
   423     0   0  C:\Program Files (x86)\PICC\Drivers\string.h
    37     0   0  C:\Program Files (x86)\PICC\Drivers\STDIO.H
- 2229   257  28  C:\Program Files (x86)\PICC\Drivers\MATH.H
-   48    21   2  TV_LCD.C
-  456   100  11  C:\Program Files (x86)\PICC\Drivers\LCD.C
+ 2229   257  27  C:\Program Files (x86)\PICC\Drivers\MATH.H
+  456   100  10  C:\Program Files (x86)\PICC\Drivers\LCD.C
 ----- -----
- 5942   930 Total
+ 6053   969 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
  Inline         2             @ITOF
  Inline        14             @DIVFF
-0    392  20   27  1075 11.2  itoa
+0    628  22   27  1075 11.2  itoa
  Inline        13             @MUL3232
-0    124   6   14             @DIVS3232
- Inline         4   180  4.5  @SFTOI
-0     20   1    1  1100  9.0  @delay_ms1
+ Inline        14             @DIVS3232
+ Inline         4             @SFTOI
+0     20   1    1   125  1.3  @delay_ms1
  Inline         3   760  4.5  lcd_read_byte
-0     59   3    2   262  3.7  lcd_read_nibble
-0     64   3    1   399  2.4  lcd_send_nibble
-0    107   6    3   415  3.7  lcd_send_byte
-0     94   5    6   852  6.2  lcd_init
-0     22   1    4   208  6.3  lcd_gotoxy
- Inline         1   354  4.7  lcd_putc
-0     38   2    2   219  4.0  NGAT
-0     23   1    0    88  1.7  XUATLCD
-0     88   5    2   208  6.3  @PSTRINGR_1056
-0    385  20    1   251  5.0  ADC_READ
-0    439  23    2  1449  6.3  MAIN
-0      9   0    0   267  6.8  @const1094
-0     32   2    2    90  2.5  @PSTRINGR_9600_62_63
+ Inline         2   262  3.7  lcd_read_nibble
+0     72   3    1   399  2.4  lcd_send_nibble
+0    249   9    3   415  3.7  lcd_send_byte
+0    148   5    6   852  6.2  lcd_init
+ Inline         4   208  6.3  lcd_gotoxy
+0     90   3    1   354  4.7  lcd_putc
+0     40   1    2   243  4.1  NGAT
+ Inline         1   395  5.2  CHON_ID
+ Inline         2  1093  6.3  @PSTRINGR_1052
+ Inline         0    18  1.0  RESET_CONFIG
+ Inline         0    33  1.3  BUTT_OKE
+1    260   9    2   253  3.8  CONFIG_NODE
+0     10   0    0  1093  6.3  @const1094
+1      8   0    0  1093  6.3  @goto12336
+ Inline         1   320  4.6  BUTT_FUN
+ Inline         1   433  5.5  quet_phim
+0      4   0    0  1093  6.3  @const1100
+ Inline         4  1093  6.3  @PSTRINGC7_1052
+0    172   6    0    12  0.8  ngat_ngoai
+1     94   3    0    88  1.7  XUATLCD
+0    391  14    1   251  5.0  ADC_READ
+0     28   1    0   102  2.9  chuong_trinh_con
+1    525  18    2  1093  6.3  MAIN
+0     32   1    2             @PSTRINGR_9600_62_63
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               17
-    Statements              930
-    Comments                1009
-    Volume (V)              13457
-    Difficulty (D)          87.6
-    Effort to implement (E) 1178701
-    Time to implement (T)   18 hours, 11 minutes
-    Est Delivered Bugs (B)  4
-    Cyclomatic Complexity   33
-    Maintainability (MI)    42
+    Functions               26
+    Statements              969
+    Comments                1038
+    Volume (V)              22723
+    Difficulty (D)          119.3
+    Effort to implement (E) 2711767
+    Time to implement (T)   41 hours, 51 minutes
+    Est Delivered Bugs (B)  6
+    Cyclomatic Complexity   52
+    Maintainability (MI)    59
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
-00004-00030    45  0  
-00031-007FF  1896  103  
-00800-00FFF     0  2048  
+00004-00057    84  0  
+00058-007FF  1884  76  
+00800-00FFF   887  1161  
 01000-017FF     0  2048  
 01800-01FFF     0  2048  
 

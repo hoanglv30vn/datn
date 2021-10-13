@@ -192,7 +192,6 @@ VOID quet_phim()
             {
                //CONFIG NODE
                TT_CONFIG = ~TT_CONFIG;
-               PRINTF (LCD_PUTC, "config");
             }
          }
 

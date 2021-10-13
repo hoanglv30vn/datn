@@ -76,17 +76,16 @@ VOID CHON_ID()
          ID_NODE ++;
          IF (ID_NODE > 15) ID_NODE = 0;
          DELAY_MS (200) ;
-         ITOA (ID_NODE, 10, id_);
-         LCD_GOTOXY (1, 2) ;
-         DELAY_MS (10);
-         PRINTF (LCD_PUTC, id_);
-         DELAY_MS (1);
-         OUTPUT_TOGGLE (PIN_D0);         
       }
    }
 
    
-
+   ITOA (ID_NODE, 10, id_);
+   LCD_GOTOXY (1, 2) ;
+   DELAY_MS (10);
+   PRINTF (LCD_PUTC, id_);
+   DELAY_MS (1);
+   OUTPUT_TOGGLE (PIN_D0);
    PACKAGE[1] = id_;
 }
 
@@ -113,10 +112,6 @@ VOID CONFIG_NODE()
 
       CASE 1:
       //CONFIG_DEVICE () ;
-      NHAN="CASE1";
-      LCD_GOTOXY (10, 2) ;
-      DELAY_MS (10);
-      PRINTF (LCD_PUTC, NHAN);
       BREAK;
 
       CASE 2:
@@ -192,7 +187,6 @@ VOID quet_phim()
             {
                //CONFIG NODE
                TT_CONFIG = ~TT_CONFIG;
-               PRINTF (LCD_PUTC, "config");
             }
          }
 
