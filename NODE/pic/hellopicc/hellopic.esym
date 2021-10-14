@@ -1,8 +1,8 @@
 D G "LCD_LINE_LENGTH" 9 187 "20"
-D G "__PCM__" 0 350 ""5.015""
-D G "__DEVICE__" 0 350 "887"
-D G "__DATE__" 0 350 ""14-Oct-21""
-D G "__TIME__" 0 350 ""18:09:43"" "Standard Header file for the PIC16F887 device ////////////////"
+D G "__PCM__" 0 361 ""5.015""
+D G "__DEVICE__" 0 361 "887"
+D G "__DATE__" 0 361 ""15-Oct-21""
+D G "__TIME__" 0 361 ""01:46:00"" "Standard Header file for the PIC16F887 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 39 "int8" `54 
 f B "set_tris_a" 1 39 "void(int8 value)" `53 
@@ -1415,16 +1415,16 @@ C L "ldexp" 8 2 6 "FUNCTION"
 V L "value" 8 2209 "float" `1018 
 V L "exp" 8 2209 "sint8" `1019 
 F G "ldexp" 8 2210 "float(float value,sint8 exp)" `1017 
-D G "BT1_PIN" 0 17 "PIN_B1"
-D G "BT2_PIN" 0 18 "PIN_B2"
-D G "BT3_PIN" 0 19 "PIN_B3"
-D G "LCD_ENABLE_PIN" 0 20 "PIN_E0"
-D G "LCD_RS_PIN" 0 21 "PIN_E1"
-D G "LCD_RW_PIN" 0 22 "PIN_E2"
-D G "LCD_DATA4" 0 23 "PIN_C0"
-D G "LCD_DATA5" 0 24 "PIN_C1"
-D G "LCD_DATA6" 0 25 "PIN_C2"
-D G "LCD_DATA7" 0 26 "PIN_C3"
+D G "BT1_PIN" 0 18 "PIN_B1"
+D G "BT2_PIN" 0 19 "PIN_B2"
+D G "BT3_PIN" 0 20 "PIN_B3"
+D G "LCD_ENABLE_PIN" 0 21 "PIN_E0"
+D G "LCD_RS_PIN" 0 22 "PIN_E1"
+D G "LCD_RW_PIN" 0 23 "PIN_E2"
+D G "LCD_DATA4" 0 24 "PIN_C0"
+D G "LCD_DATA5" 0 25 "PIN_C1"
+D G "LCD_DATA6" 0 26 "PIN_C2"
+D G "LCD_DATA7" 0 27 "PIN_C3"
 D G "__LCD_C__" 9 76 ""
 T G "LCD_PIN_MAP" 9 90 "{int1 enable,int1 rs,int1 rw,int1 unused,int4 data}" `1033  "this is to improve compatability with previous LCD drivers that accepted"
 D G "lcd_output_enable" 9 112 "(x) output_bit(LCD_ENABLE_PIN, x)"
@@ -1474,69 +1474,69 @@ V L "on" 9 443 "int8" `1063
 F G "lcd_cursor_on" 9 444 "void(int8 on)" `1062 
 C L "lcd_cursor_on" 9 2 1 "FUNCTION"
 C L "lcd_cursor_on" 9 2 1 "FUNCTION"
-V G "KQADC" 0 28 "int16" `1064 
-V G "AN0" 0 28 "int16" `1065 
-V G "AN1" 0 28 "int16" `1066 
-V G "CONFIG_FUN" 0 29 "int8" `1067 
-V G "ID_NODE" 0 29 "int8" `1068 
-V G "STT_DEVICE" 0 29 "int8" `1069 
-V G "TT_CONFIG" 0 30 "int1" `1070 
-V G "TT_FUN" 0 30 "int1" `1071 
-V G "TT_STT" 0 30 "int1" `1072 
-V G "TT_DEVICE" 0 31 "int1[8]" `1073 
-V G "TT_SENSOR" 0 32 "int1[8]" `1074 
-V G "TT_DEVICE_CHAR" 0 33 "int8[1]" `1075 
-V G "PACKAGE" 0 36 "*int8[1]" `1076 
-V G "PACKAGE_CONFIG" 0 37 "*int8[1]" `1078 
-V G "NHIETDO1" 0 38 "int8[1]" `1080 
-V G "NHIETDO2" 0 39 "int8[1]" `1081 
-V G "ID_" 0 40 "int8[1]" `1082 
-V G "TEMP_CHAR" 0 41 "int8[1]" `1083 
-V G "KYTU" 0 42 "int8[30]" `1084 
-V G "VT" 0 42 "int8" `1085 
-V G "TTNHAN" 0 42 "int8" `1086 
+V G "KQADC" 0 30 "int16" `1064 
+V G "AN0" 0 30 "int16" `1065 
+V G "AN1" 0 30 "int16" `1066 
+V G "CONFIG_FUN" 0 32 "int8" `1067 
+V G "ID_NODE" 0 32 "int8" `1068 
+V G "STT_DEVICE" 0 32 "int8" `1069 
+V G "TT_CONFIG" 0 33 "int1" `1070 
+V G "TT_FUN" 0 33 "int1" `1071 
+V G "TT_STT" 0 33 "int1" `1072 
+V G "TT_DEVICE" 0 34 "int1[8]" `1073 
+V G "TT_DEVICE_CHAR" 0 36 "int8[1]" `1074 
+V G "PACKAGE" 0 38 "*int8[1]" `1075 
+V G "PACKAGE_CONFIG" 0 39 "*int8[1]" `1077 
+V G "NHIETDO1" 0 40 "int8[1]" `1079 
+V G "NHIETDO2" 0 41 "int8[1]" `1080 
+V G "ID_" 0 42 "int8[1]" `1081 
+V G "TEMP_CHAR" 0 43 "int8[1]" `1082 
+V G "KYTU" 0 44 "int8[30]" `1083 
+V G "VT" 0 44 "int8" `1084 
+V G "TTNHAN" 0 44 "int8" `1085 
 C L "NGAT" 0 35 1 "FUNCTION"
-F G "NGAT" 0 46 "void()" `1087 
-F G "CHON_ID" 0 66 "void()" `1088 
+F G "NGAT" 0 48 "void()" `1086 
+F G "CHON_ID" 0 64 "void()" `1087 
 C L "CHON_ID" 0 35 1 "FUNCTION"
-F G "CONFIG_DEVICE" 0 88 "void()" `1092 
+F G "CONFIG_DEVICE" 0 88 "void()" `1091 
 C L "CONFIG_DEVICE" 0 35 1 "FUNCTION"
-F G "RESET_CONFIG" 0 125 "void()" `1102 
+F G "RESET_CONFIG" 0 128 "void()" `1101 
 C L "RESET_CONFIG" 0 35 2 "FUNCTION"
-F G "BUTT_OKE" 0 132 "void()" `1103 
-F G "SELLECT_FUN" 0 138 "void()" `1104 
+F G "BUTT_OKE" 0 135 "void()" `1102 
+F G "SELLECT_FUN" 0 141 "void()" `1103 
 C L "SELLECT_FUN" 0 35 1 "FUNCTION"
 C L "SELLECT_FUN" 0 35 1 "FUNCTION"
-F G "BUTT_FUN" 0 163 "void()" `1107 
+F G "BUTT_FUN" 0 168 "void()" `1106 
 C L "BUTT_FUN" 0 35 1 "FUNCTION"
 C L "BUTT_FUN" 0 35 1 "FUNCTION"
 C L "BUTT_FUN" 0 35 1 "FUNCTION"
-F G "CONFIG_DONE" 0 189 "void()" `1109 
-V L "i" 0 193 "int8" `1111 
-V L "j" 0 206 "int8" `1113 
-F G "QUET_PHIM" 0 223 "void()" `1116 
+F G "CONFIG_DONE" 0 196 "void()" `1108 
+V L "i" 0 200 "int8" `1110 
+V L "j" 0 215 "int8" `1112 
+F G "QUET_PHIM" 0 233 "void()" `1115 
 C L "QUET_PHIM" 0 35 1 "FUNCTION"
-V L "i" 0 230 "int8" `1118 
-C L "QUET_PHIM" 0 35 1 "FUNCTION"
-C L "QUET_PHIM" 0 35 1 "FUNCTION"
+V L "i" 0 240 "int8" `1117 
 C L "QUET_PHIM" 0 35 1 "FUNCTION"
 C L "QUET_PHIM" 0 35 1 "FUNCTION"
 C L "QUET_PHIM" 0 35 1 "FUNCTION"
 C L "QUET_PHIM" 0 35 1 "FUNCTION"
-F G "NGAT_NGOAI" 0 255 "void()" `1120 
-F G "XUATLCD" 0 260 "void()" `1121 
-V L "KENH" 0 267 "int8" `1123 
-F G "ADC_READ" 0 268 "int8(int8 KENH)" `1122 
-V L "i" 0 271 "int8" `1124 
-F G "CHUONG_TRINH_CON" 0 282 "void()" `1125 
-V L "i" 0 283 "int8" `1126 
-F G "MAIN" 0 291 "void()" `1127 
+C L "QUET_PHIM" 0 35 1 "FUNCTION"
+C L "QUET_PHIM" 0 35 1 "FUNCTION"
+F G "NGAT_NGOAI" 0 266 "void()" `1119  "QUET_PHIM ();"
+V L "i" 0 268 "int8" `1120 
+F G "XUATLCD" 0 272 "void(int8 KENH)" `1121 
+V L "KENH" 0 279 "int8" `1123 
+F G "ADC_READ" 0 280 "int8(int8 KENH)" `1122 
+V L "i" 0 283 "int8" `1124 
+F G "CHUONG_TRINH_CON" 0 294 "void()" `1125 
+V L "i" 0 295 "int8" `1126 
+F G "MAIN" 0 303 "void()" `1127 
 C L "MAIN" 0 35 1 "FUNCTION"
 C L "MAIN" 0 35 1 "FUNCTION"
 C L "MAIN" 0 35 1 "FUNCTION"
 C L "MAIN" 0 35 1 "FUNCTION"
 C L "MAIN" 0 35 1 "FUNCTION"
-V L "i" 0 324 "int8" `1130 
+V L "i" 0 340 "int8" `1130 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep_ulpwu" 1 0

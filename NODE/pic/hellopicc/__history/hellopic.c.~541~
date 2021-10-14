@@ -45,7 +45,8 @@ UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;
 //--------------------------------------------------------------------//
 #INT_RDA
 VOID NGAT()
-{   
+{
+   OUTPUT_TOGGLE (PIN_D3);
    KYTU[VT] = GETC ();
 
    IF (KYTU[VT] == '.')
@@ -264,8 +265,7 @@ VOID QUET_PHIM()
 #INT_EXT
  VOID NGAT_NGOAI  ()
  {
-    //QUET_PHIM ();
-   INT I=0;
+    QUET_PHIM ();
  }
 
  VOID XUATLCD ()

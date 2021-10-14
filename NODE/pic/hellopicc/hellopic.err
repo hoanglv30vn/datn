@@ -1,11 +1,4 @@
->>> Warning 216 "hellopic.c" Line 346(2,3): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
->>> Warning 216 "hellopic.c" Line 346(2,3): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_nibble)
->>> Warning 216 "hellopic.c" Line 346(2,3): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_byte)
->>> Warning 216 "hellopic.c" Line 346(2,3): Interrupts disabled during call to prevent re-entrancy:  (lcd_gotoxy)
->>> Warning 216 "hellopic.c" Line 346(2,3): Interrupts disabled during call to prevent re-entrancy:  (itoa)
->>> Warning 216 "hellopic.c" Line 346(2,3): Interrupts disabled during call to prevent re-entrancy:  (@READBITA)
->>> Warning 216 "hellopic.c" Line 346(2,3): Interrupts disabled during call to prevent re-entrancy:  (@PSTRINGR_9600_62_63)
->>> Warning 202 "hellopic.c" Line 32(6,15): Variable never used:   TT_SENSOR
-      Memory usage:   ROM=65%      RAM=52% - 78%
-      0 Errors,  8 Warnings.
+>>> Warning 202 "hellopic.c" Line 268(8,9): Variable never used:   i
+      Memory usage:   ROM=30%      RAM=51% - 61%
+      0 Errors,  1 Warnings.
 Build Successful.

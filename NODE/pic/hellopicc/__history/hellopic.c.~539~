@@ -32,8 +32,8 @@ UNSIGNED INT16 KQADC,AN0, AN1;
 UNSIGNED INT8 CONFIG_FUN=0, ID_NODE = 0, STT_DEVICE=0;
 INT1 TT_CONFIG=0, TT_FUN=0, TT_STT=0;
 INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
-//INT1 TT_SENSOR[8]={0, 0, 0, 0, 0, 0, 0, 0};
-CHAR TT_DEVICE_CHAR[]=" ";
+INT1 TT_SENSOR[8]={0, 0, 0, 0, 0, 0, 0, 0};
+CHAR TT_DEVICE_CHAR[]="";
 //INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
 CHAR *PACKAGE[]={"S","ID", "S_S" ,"LENGHT","DATA1", "DATA2","CHECKSUM","#"};
 CHAR *PACKAGE_CONFIG[]={"S","ID", "C_F" ,"LENGHT","ID_", "DEVICE","SENSOR","#"};
@@ -45,7 +45,8 @@ UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;
 //--------------------------------------------------------------------//
 #INT_RDA
 VOID NGAT()
-{   
+{
+   OUTPUT_TOGGLE (PIN_D3);
    KYTU[VT] = GETC ();
 
    IF (KYTU[VT] == '.')
@@ -264,8 +265,7 @@ VOID QUET_PHIM()
 #INT_EXT
  VOID NGAT_NGOAI  ()
  {
-    //QUET_PHIM ();
-   INT I=0;
+    QUET_PHIM ();
  }
 
  VOID XUATLCD ()
@@ -341,9 +341,12 @@ VOID QUET_PHIM()
           {
              PRINTF (PACKAGE[I]);
              DELAY_MS (1);
-          }        
+          }
+
+          
           DELAY_MS (1000);
        }
+
        IF (TTNHAN == 1)
        {
           
@@ -357,3 +360,4 @@ VOID QUET_PHIM()
        }
     }
  }
+

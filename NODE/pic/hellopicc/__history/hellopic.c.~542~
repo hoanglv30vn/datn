@@ -264,8 +264,7 @@ VOID QUET_PHIM()
 #INT_EXT
  VOID NGAT_NGOAI  ()
  {
-    //QUET_PHIM ();
-   INT I=0;
+    QUET_PHIM ();
  }
 
  VOID XUATLCD ()

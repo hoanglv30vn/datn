@@ -20,12 +20,15 @@ import serial
 from threading import Thread
 from PyQt5.QtCore import QDate, Qt
 import pyrebase
-# from firebase import firebase
+
+# khởi tạo com
 global serial__ 
 serial__=serial.Serial()
 
+# sau này thêm cái check xem đã lưu id của gw ở sql chưa
 id_gw = input("nhập id gw:")
 
+# cấu hình firebase 
 firebaseConfig = {
   'apiKey': "AIzaSyAEqi81NFMPBJGxWRy7QtQv961efPzL9LA",
   'authDomain': "hellodatn.firebaseapp.com",
@@ -36,6 +39,7 @@ firebaseConfig = {
   'appId': "1:559705579450:web:3421e5377912259256c783",
   'measurementId': "G-YK901S5FXQ"
 }
+
 # firebase = pyrebase.initialize_app(firebaseConfig)
 # db=firebase.database()
 # data={"name":"Hoàng", 'age':22, 'addr': 'Ha Tinh'}
@@ -47,27 +51,35 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 db = firebase.database()
 
 class Ui_MainWindow(object):
-
     def stream_handler(self, message):
-        print(message["event"]) # put
-        print("a")
-        print(message["path"]) # /-K7yGTTEp7O549EzTYtI
-        print("b")
-        print(message["data"]) # {'title': 'Pyrebase', "body": "etc..."}
-        # a=message["data"]
-        # print (a['phongkhach']['nhietdo'] )
-        print('hihi')
-        self.senddata(message["data"])
-    def stream_handler2(self, message):
-        print(message["event"]) # put
-        print("a")
-        print(message["path"]) # /-K7yGTTEp7O549EzTYtI
-        print("b")
-        print(message["data"]) # {'title': 'Pyrebase', "body": "etc..."}
-        # a=message["data"]
-        # print (a['phongkhach']['nhietdo'] )
-        print('hihi')
-        self.senddata2(message["data"])        
+        # hàm lắng nghe sự kiện từ firebase
+        print('data thay doi tu firebase:')     
+        event_fb = message["event"] # put
+        print("event:" + event_fb)
+        path_fb = message["path"] # /-K7yGTTEp7O549EzTYtI
+        print("path:" + path_fb)      
+        mess_fb = message["data"] # {'title': 'Pyrebase', "body": "etc..."}   
+        # print(mess_fb['thietbi2'])
+        # self.senddata(message["data"]) 
+        # đường dẫn lever
+        # danh sách:
+        link = path_fb.count('/')
+        if link == 2:
+            id_node = path_fb[1:path_fb.find('/', 1)]
+            id_device = path_fb[path_fb.find('/thietbi')+8:len(path_fb)]
+            tt_device = mess_fb
+            print(id_node)
+            print(id_device)
+            print(tt_device)
+            hello= f'{id_node}{id_device}{tt_device}.'
+            serial__.write(hello.encode())       
+            print(hello.encode())            
+            
+
+            
+        
+
+         
     def serial_ports(self):
         """ Lists serial port names
 
@@ -76,6 +88,7 @@ class Ui_MainWindow(object):
             :returns:
                 A list of the serial ports available on the system
         """
+        # check đang dùng hệ điều hành nào
         if sys.platform.startswith('win'):
             ports = ['COM%s' % (i + 1) for i in range(256)]
         elif sys.platform.startswith('linux') or sys.platform.startswith('cygwin'):
@@ -88,49 +101,50 @@ class Ui_MainWindow(object):
 
         result = []
         for port in ports:
+            # kiểm tra các cổng com đang sẵn sàng
             try:
                 s = serial.Serial(port)
                 s.close()
                 result.append(port)
             except (OSError, serial.SerialException):
                 pass
+        # danh sách các cổng com
         return result
     def add_com(self):
+        # add danh sách cổng com vào box
         self.box_com.clear()
         self.box_com.addItems(self.serial_ports())
         
     def set_serial(self):
+        # chọn cổng com, tốc độ baud
         serial_com = self.box_com.currentText()
         serial_baud = int(self.box_baud.currentText())
-
         global serial__
         serial__.close()
         serial__=serial.Serial(serial_com, baudrate=serial_baud ,timeout=0.1)
 
     def readData(self):
+        # thread: lắng nghe uart
         if serial__.in_waiting >0:
             data = serial__.readline()
             data = data.decode('utf-8')
             print(data)   
+            #C_F == config.
             if data.find('C_F'):
                 self.thongtincauhinhnode(data)
-            # idnode = (data[1])
-            # data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
-            # self.lab_hoagle.setText("TEMP: " + data)
-
-            # print(idnode)
-            # if idnode == "1":
-            #     db.child(id_gw).child('phongngu1').update({'nhietdo':data})
-            # elif idnode == "2":
-            #     db.child(id_gw).child('phongngu2').update({'nhietdo':data})
-            # elif idnode == "3":
-            #     db.child(id_gw).child('phongngu1').update({'nhietdo':data})
-            # elif idnode == "4":
-            #     db.child(id_gw).child('phongngu2').update({'nhietdo':data})     
-            # else:
-            #     db.child(id_gw).child('phongkhach').update({'nhietdo':data})           
+            # S_S == dữ liệu cảm biến.
+            elif data.find('S_S'):
+                self.uploadDataSensor(data) 
+            # D_V == trạng thái thiết bị on off.
+            elif data.find('D_V'):
+                self.uploadDataSensor(data)                 
+            # R_Q yêu cầu request, đồng bộ dữ liệu từ firebase.                
+            elif data.find('R_Q'):             
+                pass  
+  
 
     def read_interval(self):
+        # thread
         self.timer = QtCore.QTimer()
         self.timer.setInterval(100)
         try:
@@ -152,14 +166,29 @@ class Ui_MainWindow(object):
             hello='off2' + '.'
         serial__.write(hello.encode())       
         print(hello.encode())        
-        # print( firebase.get('phòng 1','nhiệt độ'))
-        # result = firebase.get('/phòng 1', None)
-        # print(result)
+    def uploadDataSensor(self, data):
+        # idnode = (data[1])
+        # data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
+        # self.lab_hoagle.setText("TEMP: " + data)
 
+        # print(idnode)
+        # if idnode == "1":
+        #     db.child(id_gw).child('phongngu1').update({'nhietdo':data})
+        # elif idnode == "2":
+        #     db.child(id_gw).child('phongngu2').update({'nhietdo':data})
+        # elif idnode == "3":
+        #     db.child(id_gw).child('phongngu1').update({'nhietdo':data})
+        # elif idnode == "4":
+        #     db.child(id_gw).child('phongngu2').update({'nhietdo':data})     
+        # else:
+        #     db.child(id_gw).child('phongkhach').update({'nhietdo':data})                 
+        pass
     def thongtincauhinhnode(self,data):
+        # tách thông tin cấu hình node
+        # xử lý, update firebase
         idnode_moi = data[1:data.find('C_F')]
         devices = data[data.find('ID_')+3:data.find('*')]
-        print (idnode_moi + devices)
+        print (idnode_moi + ":" + devices)
         db.child(id_gw).child(idnode_moi).set({'node':idnode_moi})          
         for i in devices:
             db.child(id_gw).child(idnode_moi).update({f'thietbi{i}':0})            
@@ -220,8 +249,7 @@ class Ui_MainWindow(object):
         self.butt_ok.clicked.connect(self.senddata)
         t1 = Thread(target = self.read_interval())
         t1.start()
-        db.child(id_gw).child("phongngu1").child("den").stream(self.stream_handler) 
-        db.child(id_gw).child("phongbep").child("den").stream(self.stream_handler2) 
+        db.child(id_gw).stream(self.stream_handler) 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
