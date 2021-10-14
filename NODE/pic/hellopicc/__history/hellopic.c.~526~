@@ -176,9 +176,9 @@ VOID BUTT_FUN()
          
          //HIEN THI
          LCD_GOTOXY (7, 2) ;
-         ITOA (CONFIG_FUN, 10, TEMP_CHAR);
+         ITOA (CONFIG_FUN, 10, ID_);
          DELAY_MS (10);
-         PRINTF (LCD_PUTC, TEMP_CHAR);
+         PRINTF (LCD_PUTC, ID_);
       }
    }
 

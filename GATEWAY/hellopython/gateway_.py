@@ -112,20 +112,23 @@ class Ui_MainWindow(object):
             data = serial__.readline()
             data = data.decode('utf-8')
             print(data)   
-            idnode = (data[1])
-            data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
-            self.lab_hoagle.setText("TEMP: " + data)
-            print(idnode)
-            if idnode == "1":
-                db.child(id_gw).child('phongngu1').update({'nhietdo':data})
-            elif idnode == "2":
-                db.child(id_gw).child('phongngu2').update({'nhietdo':data})
-            elif idnode == "3":
-                db.child(id_gw).child('phongngu1').update({'nhietdo':data})
-            elif idnode == "4":
-                db.child(id_gw).child('phongngu2').update({'nhietdo':data})     
-            else:
-                db.child(id_gw).child('phongkhach').update({'nhietdo':data})           
+            if data.find('C_F'):
+                self.thongtincauhinhnode(data)
+            # idnode = (data[1])
+            # data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
+            # self.lab_hoagle.setText("TEMP: " + data)
+
+            # print(idnode)
+            # if idnode == "1":
+            #     db.child(id_gw).child('phongngu1').update({'nhietdo':data})
+            # elif idnode == "2":
+            #     db.child(id_gw).child('phongngu2').update({'nhietdo':data})
+            # elif idnode == "3":
+            #     db.child(id_gw).child('phongngu1').update({'nhietdo':data})
+            # elif idnode == "4":
+            #     db.child(id_gw).child('phongngu2').update({'nhietdo':data})     
+            # else:
+            #     db.child(id_gw).child('phongkhach').update({'nhietdo':data})           
 
     def read_interval(self):
         self.timer = QtCore.QTimer()
@@ -153,6 +156,13 @@ class Ui_MainWindow(object):
         # result = firebase.get('/phòng 1', None)
         # print(result)
 
+    def thongtincauhinhnode(self,data):
+        idnode_moi = data[1:data.find('C_F')]
+        devices = data[data.find('ID_')+3:data.find('*')]
+        print (idnode_moi + devices)
+        db.child(id_gw).child(idnode_moi).set({'node':idnode_moi})          
+        for i in devices:
+            db.child(id_gw).child(idnode_moi).update({f'thietbi{i}':0})            
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")

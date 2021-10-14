@@ -26,19 +26,16 @@ FLOAT ATOF(CONST CHAR *S) : STRING --> SÔ THUC
 #DEFINE LCD_DATA7       PIN_C3  
 #INCLUDE <LCD.C>
 UNSIGNED INT16 KQADC,AN0, AN1;
-UNSIGNED INT8 CONFIG_FUN=0, ID_NODE = 0, STT_DEVICE=0;
+UNSIGNED INT8 CONFIG_FUN=0, ID_NODE = 0;
 INT1 TT_CONFIG=0, TT_FUN=0, TT_STT=0;
 INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
 INT1 TT_SENSOR[8]={0, 0, 0, 0, 0, 0, 0, 0};
-CHAR TT_DEVICE_CHAR[]="";
-
 //INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
 CHAR *PACKAGE[]={"S","ID", "COMMAND" ,"LENGHT","DATA1", "DATA2","CHECKSUM","#"};
-CHAR *PACKAGE_CONFIG[]={"S","ID", "C_F" ,"LENGHT","ID_", "DEVICE","SENSOR","#"};
+CHAR *PACKAGE_CONFIG[]={"S","ID", "CF" ,"LENGHT","ID_", "DEVICE","SENSOR","#"};
 CHAR NHIETDO1[]="27";
 CHAR NHIETDO2[]="27";
 CHAR ID_[]="0";
-CHAR TEMP_CHAR[]="0";
 UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;   
 //--------------------------------------------------------------------//
 #INT_RDA
@@ -74,7 +71,7 @@ VOID CHON_ID()
       {
          ID_NODE ++;
          IF (ID_NODE > 15) ID_NODE = 0;
-         DELAY_MS (300);
+         DELAY_MS (200);
          ITOA (ID_NODE, 10, ID_);
          LCD_GOTOXY (7, 2) ;
          DELAY_MS (10);
@@ -84,43 +81,7 @@ VOID CHON_ID()
       }
    }
 }
-VOID CONFIG_DEVICE()
-{
-   TT_STT = 1;
-   LCD_GOTOXY (1, 1) ;
-   DELAY_MS (10);
-   PRINTF (LCD_PUTC, "CHON DEVICE:  ");
-   WHILE (TT_STT)
-   {
-      IF (!INPUT (BT2_PIN)) //NEU NUT BAM DUOC BAM
-      {
-         STT_DEVICE ++;
-         IF (STT_DEVICE > 7) STT_DEVICE = 0;
-         DELAY_MS (300);
-         ITOA (STT_DEVICE, 10, TEMP_CHAR);
-         LCD_GOTOXY (7, 2) ;
-         DELAY_MS (10);
-         PRINTF (LCD_PUTC, TEMP_CHAR);
-         DELAY_MS (1);
-         PRINTF (LCD_PUTC, " TT ");
-         DELAY_MS (1);
-         ITOA (TT_DEVICE[STT_DEVICE], 10, TEMP_CHAR);
-         PRINTF (LCD_PUTC, TEMP_CHAR);
-         DELAY_MS (1);         
-         OUTPUT_TOGGLE (PIN_D0);
-      }
-      ELSE IF (!INPUT (BT3_PIN))
-      {
-         TT_DEVICE[STT_DEVICE] =  ~TT_DEVICE[STT_DEVICE] ;
-         LCD_GOTOXY (12, 2) ;         
-         DELAY_MS (300);
-         ITOA (TT_DEVICE[STT_DEVICE], 10, TEMP_CHAR);
-         PRINTF (LCD_PUTC, TEMP_CHAR);
-      }
-      
-   }   
-   
-}
+
 VOID RESET_CONFIG()
 {
    ID_NODE = 0;
@@ -142,16 +103,14 @@ VOID SELLECT_FUN()
       CHON_ID ();
       BREAK;
       CASE 1:
-      // CONFIG DEVICE
-      CONFIG_DEVICE();
+      //CONFIG_DEVICE ();
 
-      BREAK;
-      CASE 2:
-      //CONFIG_SENSOR ();
-      
       LCD_GOTOXY (10, 2) ;
       DELAY_MS (10);
       PRINTF (LCD_PUTC, "CASE1");
+      BREAK;
+      CASE 2:
+      //CONFIG_SENSOR ();
       BREAK;
       CASE 3:
       RESET_CONFIG ();
@@ -172,13 +131,13 @@ VOID BUTT_FUN()
       {
          CONFIG_FUN ++;
          IF (CONFIG_FUN > 3) CONFIG_FUN = 0;
-         DELAY_MS (300);
+         DELAY_MS (200);
          
          //HIEN THI
          LCD_GOTOXY (7, 2) ;
-         ITOA (CONFIG_FUN, 10, TEMP_CHAR);
+         ITOA (CONFIG_FUN, 10, ID_);
          DELAY_MS (10);
-         PRINTF (LCD_PUTC, TEMP_CHAR);
+         PRINTF (LCD_PUTC, ID_);
       }
    }
 
@@ -189,32 +148,9 @@ VOID CONFIG_DONE()
 {
    IF ( ! TT_CONFIG)
    {
-      TT_DEVICE_CHAR="";
-      FOR (INT I = 0; I <8; I++)      
-      {
-         IF (TT_DEVICE[I]){
-            ITOA (I, 10, TEMP_CHAR);
-            STRCAT(TT_DEVICE_CHAR, TEMP_CHAR);
-         }
-      
-      }
-      TEMP_CHAR="*";
-      STRCAT(TT_DEVICE_CHAR, TEMP_CHAR );
-      PACKAGE_CONFIG[5]=TT_DEVICE_CHAR;
-      PACKAGE_CONFIG[1]=ID_;
-      
-      FOR (INT J = 0; J < 8; J++)
-      {
-        PRINTF (PACKAGE_CONFIG[J]);
-        DELAY_MS (1);
-      }
-      
       LCD_GOTOXY (1, 1) ;
       DELAY_MS (10);
       PRINTF (LCD_PUTC, "CONFIG DONE");
-      LCD_GOTOXY (1, 2) ;
-      DELAY_MS (10);
-      PRINTF (LCD_PUTC,TT_DEVICE_CHAR );      
       PACKAGE[1] = ID_;
    }
 }

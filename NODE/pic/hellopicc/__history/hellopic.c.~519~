@@ -176,9 +176,9 @@ VOID BUTT_FUN()
          
          //HIEN THI
          LCD_GOTOXY (7, 2) ;
-         ITOA (CONFIG_FUN, 10, TEMP_CHAR);
+         ITOA (CONFIG_FUN, 10, ID_);
          DELAY_MS (10);
-         PRINTF (LCD_PUTC, TEMP_CHAR);
+         PRINTF (LCD_PUTC, ID_);
       }
    }
 
@@ -198,14 +198,9 @@ VOID CONFIG_DONE()
          }
       
       }
-      TEMP_CHAR="*";
-      STRCAT(TT_DEVICE_CHAR, TEMP_CHAR );
-      PACKAGE_CONFIG[5]=TT_DEVICE_CHAR;
-      PACKAGE_CONFIG[1]=ID_;
-      
-      FOR (INT J = 0; J < 8; J++)
+      FOR (INT I = 0; I < 8; I++)
       {
-        PRINTF (PACKAGE_CONFIG[J]);
+        PRINTF (PACKAGE_CONFIG[I]);
         DELAY_MS (1);
       }
       
