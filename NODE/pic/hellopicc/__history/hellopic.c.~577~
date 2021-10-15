@@ -255,7 +255,36 @@ VOID QUET_PHIM()
    ELSE
    {
       BUTT_OKE (); //OKE
-   }  
+   }
+
+   
+   /*
+   IF (INPUT (BT1_PIN) == 0) //NEU NUT BAM DUOC BAM
+   {
+      FOR (INT I = 0; I < 5; I++) // SAU 5S VAN CON NHAN NUT
+      {
+         IF (INPUT (BT1_PIN) == 0)
+         {
+            //DELAY_MS (1000);
+
+            IF (I == 4)
+            {
+               //CONFIG NODE
+               TT_CONFIG = ~TT_CONFIG; // VAO TRANG THAI CONFIG
+               //CONFIG_DONE ();
+               TT_CONFIG_DONE = 1;
+            }
+         }
+
+         ELSE // NHAN NUT < 5S
+         {
+            BUTT_OKE (); //OKE
+            I = 10; // THOAT FOR
+         }
+      }
+   }
+
+   */
 }
 
 #INT_EXT

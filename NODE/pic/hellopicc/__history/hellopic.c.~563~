@@ -1,3 +1,4 @@
+
 #INCLUDE <16F887.H>
 #DEVICE ADC=10
 #INCLUDE <STRING.H>
@@ -5,6 +6,7 @@
 #INCLUDE <STDIO.H>
 #INCLUDE <MATH.H>
 //#INCLUDE <TV_LCD.C>
+
 /*
 INT ATOI(CONST CHAR *S) : STING --> SÔ NGUYÊN
 LONG ATOL(CONST CHAR *S) : STRING --> SÔ NGUYÊN DÀI
@@ -24,9 +26,9 @@ FLOAT ATOF(CONST CHAR *S) : STRING --> SÔ THUC
 #DEFINE LCD_DATA6       PIN_C2                                   
 #DEFINE LCD_DATA7       PIN_C3  
 #INCLUDE <LCD.C>
-#BIT TMR1IF = 0x0C.0 //bit thu 0 (TMR1IF) cua PIR1
 
 UNSIGNED INT16 KQADC,AN0, AN1;
+
 UNSIGNED INT8 CONFIG_FUN=0, ID_NODE = 0, STT_DEVICE=0;
 INT1 TT_CONFIG=0, TT_CONFIG_DONE=0, TT_FUN=0, TT_STT=0;
 INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
@@ -43,17 +45,15 @@ UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;
 //--------------------------------------------------------------------//
 #INT_RDA
 VOID NGAT()
-{
-   
+{   
    KYTU[VT] = GETC ();
 
    IF (KYTU[VT] == '.')
-   {
+   {      
       KYTU[VT] = '\0';
       VT = 0;
       TTNHAN = 1;
    }
-
    ELSE
    VT++;
 }
@@ -61,7 +61,7 @@ VOID NGAT()
 VOID CHON_ID()
 {
    // TT_CONFIG_DONE;
-   TT_CONFIG_DONE = 0;
+   TT_CONFIG_DONE =0;
    TT_STT = 1;
    LCD_GOTOXY (1, 2) ;
    DELAY_MS (10);
@@ -75,7 +75,7 @@ VOID CHON_ID()
          IF (ID_NODE > 15) ID_NODE = 0;
          DELAY_MS (300);
          ITOA (ID_NODE, 10, ID_);
-         LCD_GOTOXY (9, 2) ;
+         LCD_GOTOXY (7, 2) ;
          DELAY_MS (10);
          PRINTF (LCD_PUTC, ID_);
          DELAY_MS (1);
@@ -86,7 +86,7 @@ VOID CHON_ID()
 
 VOID CONFIG_DEVICE()
 {
-   TT_CONFIG_DONE = 0;
+   TT_CONFIG_DONE =0;
    TT_STT = 1;
    LCD_GOTOXY (1, 2) ;
    DELAY_MS (10);
@@ -100,11 +100,11 @@ VOID CONFIG_DEVICE()
          IF (STT_DEVICE > 7) STT_DEVICE = 0;
          DELAY_MS (300);
          ITOA (STT_DEVICE, 10, TEMP_CHAR);
-         LCD_GOTOXY (9, 2) ;
+         LCD_GOTOXY (7, 2) ;
          DELAY_MS (10);
          PRINTF (LCD_PUTC, TEMP_CHAR);
          DELAY_MS (1);
-         PRINTF (LCD_PUTC, ":");
+         PRINTF (LCD_PUTC, " TT ");
          DELAY_MS (1);
          ITOA (TT_DEVICE[STT_DEVICE], 10, TEMP_CHAR);
          PRINTF (LCD_PUTC, TEMP_CHAR);
@@ -120,12 +120,14 @@ VOID CONFIG_DEVICE()
          ITOA (TT_DEVICE[STT_DEVICE], 10, TEMP_CHAR);
          PRINTF (LCD_PUTC, TEMP_CHAR);
       }
+
    }
+
 }
 
 VOID RESET_CONFIG()
 {
-   TT_CONFIG_DONE = 0;
+   TT_CONFIG_DONE =0;
    ID_NODE = 0;
    //TT_SENSOR = {0, 0, 0, 0, 0, 0, 0, 0};
    //TT_DEVICE = {0, 0, 0, 0, 0, 0, 0, 0};
@@ -133,15 +135,14 @@ VOID RESET_CONFIG()
 
 VOID BUTT_OKE()
 {
-   TT_CONFIG_DONE = 0;
+   TT_CONFIG_DONE =0;
    TT_FUN = 0;
    TT_STT = 0;
 }
 
 VOID SELLECT_FUN()
 {
-   TT_CONFIG_DONE = 0;
-
+   TT_CONFIG_DONE =0;
    SWITCH (CONFIG_FUN)
    {
       CASE 0:
@@ -150,7 +151,7 @@ VOID SELLECT_FUN()
 
       CASE 1:
       // CONFIG DEVICE
-      CONFIG_DEVICE ();
+      CONFIG_DEVICE () ;
       BREAK;
 
       CASE 2:
@@ -171,9 +172,8 @@ VOID BUTT_FUN()
 {
    TT_FUN = 1;
    LCD_GOTOXY (1, 1) ;
-   DELAY_MS (10);
+   DELAY_MS (10);            
    PRINTF (LCD_PUTC, "CONFIG");
-
    // HIEN THI LCD
    LCD_GOTOXY (1, 2) ;
    DELAY_MS (10);
@@ -188,7 +188,7 @@ VOID BUTT_FUN()
          DELAY_MS (300);
          
          //HIEN THI
-         LCD_GOTOXY (9, 2) ;
+         LCD_GOTOXY (7, 2) ;
          ITOA (CONFIG_FUN, 10, TEMP_CHAR);
          DELAY_MS (10);
          PRINTF (LCD_PUTC, TEMP_CHAR);
@@ -200,71 +200,78 @@ VOID BUTT_FUN()
 
 VOID CONFIG_DONE()
 {
-   TT_DEVICE_CHAR = "";
-   FOR (INT I = 0; I < 8; I++)
-   {
-      IF (TT_DEVICE[I])
+      TT_DEVICE_CHAR = "";
+      FOR (INT I = 0; I < 8; I++)
       {
-         ITOA (I, 10, TEMP_CHAR);
-         STRCAT (TT_DEVICE_CHAR, TEMP_CHAR);
+         IF (TT_DEVICE[I])
+         {
+            ITOA (I, 10, TEMP_CHAR);
+            STRCAT (TT_DEVICE_CHAR, TEMP_CHAR);
+         }
+
       }
-   }
 
-   TEMP_CHAR = " * ";
-   STRCAT (TT_DEVICE_CHAR, TEMP_CHAR);
-   PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;
-   PACKAGE_CONFIG[1] = ID_;
-   
-   FOR (INT J = 0; J < 8; J++)
-   {
-      PRINTF (PACKAGE_CONFIG[J]);
-      DELAY_MS (1);
-   }
+      TEMP_CHAR = " * ";
+      STRCAT (TT_DEVICE_CHAR, TEMP_CHAR);
+      PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;
+      PACKAGE_CONFIG[1] = ID_;
+      
+      FOR (INT J = 0; J < 8; J++)
+      {
+         PRINTF (PACKAGE_CONFIG[J]);
+         DELAY_MS (1);
+      }
 
+      
+      LCD_GOTOXY (1, 1) ;
+      DELAY_MS (10);
+      PRINTF (LCD_PUTC, "CONFIG DONE");
+      LCD_GOTOXY (1, 2) ;
+      DELAY_MS (10);
+      PRINTF (LCD_PUTC, TT_DEVICE_CHAR);
+      PACKAGE[1] = ID_;
+      TT_CONFIG_DONE =0;
    
-   LCD_GOTOXY (1, 1) ;
-   DELAY_MS (10);
-   PRINTF (LCD_PUTC, "CONFIG DONE");
-   LCD_GOTOXY (1, 2) ;
-   DELAY_MS (10);
-   PRINTF (LCD_PUTC, TT_DEVICE_CHAR);
-   PACKAGE[1] = ID_;
-   TT_CONFIG_DONE = 0;
 }
 
 VOID QUET_PHIM()
 {
-   INT BDT = 0;
-
-   WHILE (!INPUT (BT1_PIN)) //NEU NUT BAM DUOC BAM
+   
+   IF (INPUT (BT1_PIN) == 0) //NEU NUT BAM DUOC BAM
    {
-      IF (TMR1IF)
+;
+      FOR (INT I = 0; I < 5; I++) // SAU 5S VAN CON NHAN NUT
       {
-         TMR1IF = 0; SET_TIMER1 (3036); BDT++;
+         IF (INPUT (BT1_PIN) == 0)
+         {
+            DELAY_MS (1000);
+
+            IF (I == 4)
+            {
+               //CONFIG NODE
+               TT_CONFIG = ~TT_CONFIG; // VAO TRANG THAI CONFIG               
+               //CONFIG_DONE ();
+               TT_CONFIG_DONE =1;
+            }
+         }
+
+         ELSE // NHAN NUT < 5S
+         {
+            BUTT_OKE (); //OKE
+            I = 10; // THOAT FOR
+         }
       }
    }
-
-   IF (BDT > 40)
-   {
-      //CONFIG NODE
-      TT_CONFIG = ~TT_CONFIG; // VAO TRANG THAI CONFIG
-      //CONFIG_DONE ();
-      TT_CONFIG_DONE = 1;
-   }
-
-   ELSE
-   {
-      BUTT_OKE (); //OKE
-   }  
 }
 
 #INT_EXT
- VOID NGAT_NGOAI ()
+ VOID NGAT_NGOAI  ()
  {
     QUET_PHIM ();
+
  }
 
- VOID XUATLCD  ()
+ VOID XUATLCD ()
  {
     LCD_GOTOXY (1, 1) ;
     DELAY_MS (10);
@@ -286,7 +293,7 @@ VOID QUET_PHIM()
     RETURN KQADC;
  }
 
- VOID CHUONG_TRINH_CON ()
+ VOID CHUONG_TRINH_CON  ()
  {
     FOR (INT I = 0; I <= 30; I++)
     {
@@ -295,7 +302,7 @@ VOID QUET_PHIM()
     }
  }
 
- VOID MAIN  ()
+ VOID MAIN ()
  {
     SET_TRIS_D (0X00);
     SET_TRIS_B (0XFF);
@@ -308,18 +315,13 @@ VOID QUET_PHIM()
     ENABLE_INTERRUPTS (INT_EXT_H2L); //NGAT XAY RA KHI CO XUNG TU CAO XUONG THAP
     ENABLE_INTERRUPTS (INT_RDA);
     ENABLE_INTERRUPTS (GLOBAL);
-    
-    SETUP_TIMER_1 (T1_INTERNAL|T1_DIV_BY_8) ;
-    //SET_TIMER1 (0) ;
-    SET_TIMER1 (3036) ;
-    TMR1IF = 0;
     LCD_INIT (); // KHOI TAO LCD
     ID_NODE = 0;
     TT_CONFIG = 0;
-    TT_CONFIG_DONE = 0;
-    OUTPUT_D (0X00);
+    TT_CONFIG_DONE =0;
+    OUTPUT_D (0X00) ;
     TTNHAN = 0;
-    
+
     WHILE (TRUE)
     {
        //AN1 = ADC_READ (1) ;
@@ -329,10 +331,8 @@ VOID QUET_PHIM()
        {
           BUTT_FUN (); // GOI HAM CHON LENH (SWITCH CASE)
        }
-
-       ELSE IF (TT_CONFIG_DONE)
-       {
-          CONFIG_DONE () ;
+       ELSE IF (TT_CONFIG_DONE ){
+         CONFIG_DONE();
        }
 
        CHUONG_TRINH_CON ();
@@ -348,11 +348,9 @@ VOID QUET_PHIM()
           {
              PRINTF (PACKAGE[I]);
              DELAY_MS (1);
-          }
-
+          }        
           DELAY_MS (1000);
        }
-
        IF (TTNHAN == 1)
        {
           
@@ -366,4 +364,3 @@ VOID QUET_PHIM()
        }
     }
  }
-
