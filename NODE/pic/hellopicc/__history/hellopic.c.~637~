@@ -360,14 +360,20 @@ VOID NGAT()
        {
           
           TTNHAN = 0;
-
-          ID_NODE_NHAN = KYTU[0]-48;
+          //XUATLCD ();
+          //ID_NODE_NHAN = ATOI(KYTU[0]);
+          //ID_DEVICE_NHAN = ATOI(KYTU[1]);
+          //TT_DEVICE_NHAN = ATOI(KYTU[2]);
+          //ITOA (ID_DEVICE_NHAN, 10, TEMP_CHAR);
+          ID_NODE_NHAN = KYTU[0]-48
           ID_DEVICE_NHAN =KYTU[1]-48 + 64;
           TT_DEVICE_NHAN = KYTU[2]-48;// -48 ASCII --> SÔ. +64 -->PORT_D (D0=64)
-          XUATLCD ();                      
+          XUATLCD ();            
+          OUTPUT_BIT (ID_DEVICE_NHAN, KYTU[2]-48); // -48 ASCII --> SÔ. +64 -->PORT_D (D0=64)
+          
           IF(ID_NODE_NHAN == ID_NODE)
           {
-               OUTPUT_BIT (ID_DEVICE_NHAN,TT_DEVICE_NHAN); 
+               OUTPUT_BIT (ID_DEVICE_NHAN, KYTU[2]-48); 
           }
 
        }

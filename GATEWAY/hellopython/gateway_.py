@@ -154,9 +154,9 @@ class Ui_MainWindow(object):
         self.timer.start()
     def senddata(self, tt):   
         if (tt==1):
-            hello= 'on1' + '.'
+            hello= 'on1123456789012345678901234567891' + '.'
         else:
-            hello='off1' + '.'
+            hello='off1234567890123456789012345678901' + '.'
         serial__.write(hello.encode())       
         print(hello.encode())
     def senddata2(self, tt):   

@@ -360,14 +360,31 @@ VOID NGAT()
        {
           
           TTNHAN = 0;
-
-          ID_NODE_NHAN = KYTU[0]-48;
-          ID_DEVICE_NHAN =KYTU[1]-48 + 64;
-          TT_DEVICE_NHAN = KYTU[2]-48;// -48 ASCII --> SÔ. +64 -->PORT_D (D0=64)
-          XUATLCD ();                      
+          //XUATLCD ();
+          //ID_NODE_NHAN = ATOI(KYTU[0]);
+          //ID_DEVICE_NHAN = ATOI(KYTU[1]);
+          //TT_DEVICE_NHAN = ATOI(KYTU[2]);
+          //ITOA (ID_DEVICE_NHAN, 10, TEMP_CHAR);
+            ID_DEVICE_NHAN =KYTU[1]-48 + 65;
+         //OUTPUT_BIT (PIN_D4, KYTU[3]-48); // -48 ASCII --> SÔ. +64 -->PORT_D (D0=64)
+             XUATLCD ();
+            LCD_GOTOXY (2, 2) ;
+            DELAY_MS (10);
+            ITOA (KYTU[1], 10, TEMP_CHAR);
+            PRINTF (LCD_PUTC, TEMP_CHAR); 
+            ITOA (ID_DEVICE_NHAN, 10, TEMP_CHAR);
+            PRINTF (LCD_PUTC, TEMP_CHAR); 
+            ITOA (KYTU[0]-48, 10, TEMP_CHAR);
+            PRINTF (LCD_PUTC, TEMP_CHAR); 
+            PRINTF (LCD_PUTC, "HIHI");  
+            OUTPUT_BIT (, KYTU[2]-48); // -48 ASCII --> SÔ. +64 -->PORT_D (D0=64)
+          
           IF(ID_NODE_NHAN == ID_NODE)
           {
-               OUTPUT_BIT (ID_DEVICE_NHAN,TT_DEVICE_NHAN); 
+            OUTPUT_TOGGLE (PIN_D0);
+            OUTPUT_TOGGLE (PIN_D1);
+            OUTPUT_TOGGLE (PIN_D2);
+            OUTPUT_TOGGLE (PIN_D3);
           }
 
        }

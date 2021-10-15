@@ -1,19 +1,19 @@
 
-ROM used:   2802/8192 (34%)
-            2813/8192 (34%) including unused fragments
+ROM used:   2834/8192 (35%)
+            2847/8192 (35%) including unused fragments
 
             0.5 Average locations per line
             2.7 Average locations per statement
 
-RAM used:   187/368 (51%) at main() level
-            227/368 (62%) worst case
+RAM used:   190/368 (52%) at main() level
+            230/368 (62%) worst case
 
 Stack used: 8 worst case (7 in main + 1 for interrupts)
 Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  400   196  19  hellopic.c
+  377   198  19  hellopic.c
   768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
   423   125  12  C:\Program Files (x86)\PICC\Drivers\STRING.H
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
@@ -24,7 +24,7 @@ Lines Stmts  %   Files
  2229   257  25  C:\Program Files (x86)\PICC\Drivers\MATH.H
   456   100  10  C:\Program Files (x86)\PICC\Drivers\LCD.C
 ----- -----
- 6147  1037 Total
+ 6124  1039 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -43,54 +43,54 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    102   4    6   852  6.2  lcd_init
 0     20   1    4   208  6.3  lcd_gotoxy
 0     58   2    1   354  4.7  lcd_putc
-0     30   1    2   163  3.9  NGAT
  Inline         1   490  4.6  CHON_ID
-0      3   0    0             @const1090
+0      3   0    0             @const1092
 0     80   3    4             @PSTRINGC7_1052
 0     29   1    2             @PSTRINGR_1052
  Inline         1  1021  6.2  CONFIG_DEVICE
-0      5   0    0             @const1094
+0      5   0    0             @const1096
 0     25   1    5             @READBITA
-0     36   1    6             @WRITEBITA
+0     34   1    6             @WRITEBITA
  Inline         0    33  1.3  RESET_CONFIG
  Inline         0    50  1.5  BUTT_OKE
-0    323  12    0   270  3.9  SELLECT_FUN
-0      3   0    0             @const1106
-0      8   0    0             @goto12376
+0    323  11    0   270  3.9  SELLECT_FUN
+0      3   0    0             @const1108
+0      8   0    0             @goto12365
 0     95   3    1   538  4.7  BUTT_FUN
-0      4   0    0             @const1109
-0      4   0    0  1249  6.8  @const1110
+0      4   0    0             @const1111
+0      4   0    0             @const1112
 1    191   7    2   790  4.8  CONFIG_DONE
-0      5   0    0             @const1112
-0      8   0    0             @const1114
+0      5   0    0             @const1114
+0      8   0    0             @const1116
 0     30   1    2             @PSTRINGR_9600_62_63
-0      6   0    0  1249  6.8  @const1117
+0      6   0    0             @const1119
  Inline         1   243  5.0  QUET_PHIM
 0     41   1    0    12  0.8  NGAT_NGOAI
+0     30   1    2   163  3.9  NGAT
 1     31   1    0    88  1.7  XUATLCD
 0    340  12    1   251  5.0  ADC_READ
 1     26   1    0   102  2.9  CHUONG_TRINH_CON
-1    451  16    2  1364  7.3  MAIN
+1    485  17    2  1547  8.3  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               25
-    Statements              1037
-    Comments                1054
-    Volume (V)              21534
-    Difficulty (D)          115.1
-    Effort to implement (E) 2477713
-    Time to implement (T)   38 hours, 14 minutes
-    Est Delivered Bugs (B)  6
-    Cyclomatic Complexity   47
-    Maintainability (MI)    45
+    Functions               23
+    Statements              1039
+    Comments                1028
+    Volume (V)              17488
+    Difficulty (D)          102.0
+    Effort to implement (E) 1783358
+    Time to implement (T)   27 hours, 31 minutes
+    Est Delivered Bugs (B)  5
+    Cyclomatic Complexity   38
+    Maintainability (MI)    34
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
 00004-00057    84  0  
-00058-007FF  1949  11  
-00800-00FFF   765  1283  
+00058-007FF  1947  13  
+00800-00FFF   799  1249  
 01000-017FF     0  2048  
 01800-01FFF     0  2048  
 

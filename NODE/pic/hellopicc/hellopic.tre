@@ -1,5 +1,5 @@
 ÀÄhellopic
-   ÃÄMAIN  1/451  Ram=2
+   ÃÄMAIN  1/485  Ram=2
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄlcd_init  0/102  Ram=6
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
@@ -55,7 +55,7 @@
    ³  ³  ³  ÀÄlcd_putc  0/58  Ram=1
    ³  ³  ³     ÀÄ*
    ³  ³  ÀÄSELLECT_FUN  0/323  Ram=0
-   ³  ³     ÃÄ@goto12376  0/8  Ram=0
+   ³  ³     ÃÄ@goto12365  0/8  Ram=0
    ³  ³     ÃÄCHON_ID  (Inline)  Ram=1
    ³  ³     ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³     ³  ³  ÀÄ*
@@ -96,7 +96,7 @@
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³     ³  ÃÄ@READBITA  0/25  Ram=5
-   ³  ³     ³  ÃÄ@WRITEBITA  0/36  Ram=6
+   ³  ³     ³  ÃÄ@WRITEBITA  0/34  Ram=6
    ³  ³     ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@delay_ms1  0/20  Ram=1
@@ -112,12 +112,12 @@
    ³  ³     ³  ÀÄ*
    ³  ³     ÀÄRESET_CONFIG  (Inline)  Ram=0
    ³  ÃÄCONFIG_DONE  1/191  Ram=2
-   ³  ³  ÃÄ@const1112  0/5  Ram=0
+   ³  ³  ÃÄ@const1114  0/5  Ram=0
    ³  ³  ÃÄ@READBITA  0/25  Ram=5
    ³  ³  ÃÄitoa  0/288  Ram=27
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄstrcat  1/66  Ram=9
-   ³  ³  ÃÄ@const1114  0/8  Ram=0
+   ³  ³  ÃÄ@const1116  0/8  Ram=0
    ³  ³  ÃÄstrcat  1/66  Ram=9
    ³  ³  ÃÄ@PSTRINGR_9600_62_63  0/30  Ram=2
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
@@ -140,14 +140,16 @@
    ³  ÃÄ@PSTRINGR_9600_62_63  0/30  Ram=2
    ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ÀÄXUATLCD  1/31  Ram=0
-   ³     ÃÄlcd_gotoxy  0/20  Ram=4
-   ³     ³  ÀÄ*
-   ³     ÃÄ@delay_ms1  0/20  Ram=1
-   ³     ÃÄ@PSTRINGR_1052  0/29  Ram=2
-   ³     ³  ÀÄ*
-   ³     ÀÄ@delay_ms1  0/20  Ram=1
-   ÃÄNGAT  0/30  Ram=2
-   ÀÄNGAT_NGOAI  0/41  Ram=0
-      ÀÄQUET_PHIM  (Inline)  Ram=1
-         ÀÄBUTT_OKE  (Inline)  Ram=0
+   ³  ÃÄXUATLCD  1/31  Ram=0
+   ³  ³  ÃÄlcd_gotoxy  0/20  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ³  ÃÄ@PSTRINGR_1052  0/29  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄ@WRITEBITA  0/34  Ram=6
+   ³  ÀÄ@WRITEBITA  0/34  Ram=6
+   ÃÄNGAT_NGOAI  0/41  Ram=0
+   ³  ÀÄQUET_PHIM  (Inline)  Ram=1
+   ³     ÀÄBUTT_OKE  (Inline)  Ram=0
+   ÀÄNGAT  0/30  Ram=2
