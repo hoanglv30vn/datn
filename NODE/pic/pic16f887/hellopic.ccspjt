@@ -12,13 +12,8 @@ Type=4
 [mru-list]
 1=hellopic.c
 [Opened Files]
-1=C:\Program Files (x86)\PICC\Drivers\LCD.C
-2=hellopic.c
-3=
-4=C:\Program Files (x86)\PICC\Drivers\STDLIB.H
-5=C:\Program Files (x86)\PICC\Drivers\LCD.C
-6=
-7=
+1=hellopic.c
+2=
 [Units]
 Count=1
 1=hellopic (main)

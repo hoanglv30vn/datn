@@ -6,9 +6,9 @@
 #INCLUDE <MATH.H>
 //#INCLUDE <TV_LCD.C>
 /*
-INT ATOI(CONST CHAR *S) : STING --> S? NGUY?N
-LONG ATOL(CONST CHAR *S) : STRING --> S? NGUY?N D?I
-FLOAT ATOF(CONST CHAR *S) : STRING --> S? THUC
+INT ATOI(CONST CHAR *S) : STING --> SÔ NGUYÊN
+LONG ATOL(CONST CHAR *S) : STRING --> SÔ NGUYÊN DÀI
+FLOAT ATOF(CONST CHAR *S) : STRING --> SÔ THUC
 */
 #FUSES NOWDT, PUT, HS
 #USE DELAY(CLOCK=20M)
@@ -27,24 +27,24 @@ FLOAT ATOF(CONST CHAR *S) : STRING --> S? THUC
 #BIT TMR1IF = 0x0C.0 //bit thu 0 (TMR1IF) cua PIR1
 
 UNSIGNED INT16 KQADC,AN0, AN1;
-UNSIGNED INT8 CONFIG_FUN=0, ID_NODE = 0, STT_DEVICE=0, STT_SENSOR=0;
+UNSIGNED INT8 CONFIG_FUN=0, ID_NODE = 0, STT_DEVICE=0;
 UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0; 
 UNSIGNED INT8 ID_NODE_NHAN, ID_DEVICE_NHAN, TT_DEVICE_NHAN;
-//UNSIGNED INT8 ID_SENSOR_NHAN, TT_SENSOR_NHAN;
+UNSIGNED INT8 VT_DK;
 
 INT1 TT_CONFIG=0, TT_CONFIG_DONE=0, TT_FUN=0, TT_STT=0;
 INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
-INT1 TT_SENSOR[8]={0, 0, 0, 0, 0, 0, 0, 0};
-CHAR TT_DEVICE_CHAR[]=" ";
-CHAR TT_SENSOR_CHAR[]=" ";
 
+
+//INT1 TT_SENSOR[8]={0, 0, 0, 0, 0, 0, 0, 0};
+CHAR TT_DEVICE_CHAR[]=" ";
+//INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
 CHAR *PACKAGE[]={"S","ID", "S_S" ,"LENGHT","DATA1", "DATA2","CHECKSUM","#"};
 CHAR *PACKAGE_CONFIG[]={"S","ID", "C_F" ,"LENGHT","ID_", "DEVICE","SENSOR","#"};
 CHAR NHIETDO1[]="27";
 CHAR NHIETDO2[]="27";
 CHAR ID_[]="0";
 CHAR TEMP_CHAR[]="0";
-CHAR TEMP_CHAR2[]="0";
   
 //--------------------------------------------------------------------//
 VOID CHON_ID()
@@ -93,7 +93,7 @@ VOID CONFIG_DEVICE()
          DELAY_MS (10);
          PRINTF (LCD_PUTC, TEMP_CHAR);
          DELAY_MS (1);
-         PRINTF (LCD_PUTC, ":  ");
+         PRINTF (LCD_PUTC, ":");
          DELAY_MS (1);
          ITOA (TT_DEVICE[STT_DEVICE], 10, TEMP_CHAR);
          PRINTF (LCD_PUTC, TEMP_CHAR);
@@ -111,45 +111,6 @@ VOID CONFIG_DEVICE()
       }
    }
 }
-
-VOID CONFIG_SENSOR ()
-{
-   TT_CONFIG_DONE = 0;
-   TT_STT = 1;
-   LCD_GOTOXY (1, 2) ;
-   DELAY_MS (10);
-   PRINTF (LCD_PUTC, "SENSOR: ");
-   WHILE (TT_STT)
-   {
-      IF (!INPUT (BT2_PIN)) //NEU NUT BAM DUOC BAM
-      {
-         STT_SENSOR ++;
-         IF (STT_SENSOR > 3) STT_SENSOR = 0;
-         DELAY_MS (300);
-         ITOA (STT_SENSOR, 10, TEMP_CHAR);
-         LCD_GOTOXY (9, 2) ;
-         DELAY_MS (10);
-         PRINTF (LCD_PUTC, TEMP_CHAR);
-         DELAY_MS (1);
-         PRINTF (LCD_PUTC, ":  ");
-         DELAY_MS (1);
-         ITOA (TT_SENSOR[STT_SENSOR], 10, TEMP_CHAR);
-         PRINTF (LCD_PUTC, TEMP_CHAR);
-         DELAY_MS (1);
-         OUTPUT_TOGGLE (PIN_D0);
-      }   
-      ELSE IF (!INPUT (BT3_PIN))
-      {
-         TT_SENSOR[STT_SENSOR] = ~TT_SENSOR[STT_SENSOR];
-         LCD_GOTOXY (12, 2) ;
-         DELAY_MS (300);
-         ITOA (TT_SENSOR[STT_SENSOR], 10, TEMP_CHAR);
-         PRINTF (LCD_PUTC, TEMP_CHAR);
-      }  
-      
-   }
-}
-
 
 VOID RESET_CONFIG()
 {
@@ -182,7 +143,11 @@ VOID SELLECT_FUN()
       BREAK;
 
       CASE 2:
-      CONFIG_SENSOR ();      
+      //CONFIG_SENSOR ();
+      
+      LCD_GOTOXY (10, 2) ;
+      DELAY_MS (10);
+      PRINTF (LCD_PUTC, "CASE1");
       BREAK;
 
       CASE 3:
@@ -218,7 +183,7 @@ VOID BUTT_FUN()
          PRINTF (LCD_PUTC, TEMP_CHAR);
       }
    }
-   //////
+
    SELLECT_FUN ();
 }
 
@@ -227,44 +192,18 @@ VOID CONFIG_DONE()
    TT_FUN = 0;
    TT_STT = 0;
    TT_DEVICE_CHAR = "";
-   TT_SENSOR_CHAR = "";  
-   
-   TEMP_CHAR = "";    
    FOR (INT I = 0; I < 8; I++)
    {
       IF (TT_DEVICE[I])
       {
          ITOA (I, 10, TEMP_CHAR);
-         DELAY_MS (1);         
          STRCAT (TT_DEVICE_CHAR, TEMP_CHAR);
       }
    }
 
-   TEMP_CHAR = "*";
+   TEMP_CHAR = " * ";
    STRCAT (TT_DEVICE_CHAR, TEMP_CHAR);
-   PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;   
-
-   
-   
- 
-   TEMP_CHAR2 = "";   
-   //SENSOR
-   FOR ( I = 0; I < 8; I++)
-   {
-      IF (TT_SENSOR[I])
-      {
-         ITOA (I, 10, TEMP_CHAR2);
-         DELAY_MS (1);         
-         STRCAT (TT_SENSOR_CHAR, TEMP_CHAR2);
-      }
-   }
-
-   TEMP_CHAR2 = "@";
-   STRCAT (TT_SENSOR_CHAR, TEMP_CHAR2);
-   PACKAGE_CONFIG[6] = TEMP_CHAR2;
-   
-   
-   //ID
+   PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;
    PACKAGE_CONFIG[1] = ID_;
    
    FOR (INT J = 0; J < 8; J++)
@@ -273,6 +212,10 @@ VOID CONFIG_DONE()
       DELAY_MS (1);
    }
 
+   
+   LCD_GOTOXY (1, 1) ;
+   DELAY_MS (10);
+   PRINTF (LCD_PUTC, "CONFIG DONE");
    LCD_GOTOXY (1, 2) ;
    DELAY_MS (10);
    PRINTF (LCD_PUTC, TT_DEVICE_CHAR);
@@ -293,13 +236,12 @@ VOID QUET_PHIM()
       }
    }
 
-   IF (BDT > 30)
+   IF (BDT > 40)
    {
       //CONFIG NODE
       TT_CONFIG = ~TT_CONFIG; // VAO TRANG THAI CONFIG
       //CONFIG_DONE ();
       TT_CONFIG_DONE = 1;
-      TT_FUN = 0;
    }
 
    ELSE
@@ -366,7 +308,7 @@ VOID NGAT()
     SET_TRIS_E (0);
     SET_TRIS_C (0X80);
     SETUP_ADC (ADC_CLOCK_DIV_8);
-    SETUP_ADC_PORTS (SAN0);
+    SETUP_ADC_PORTS (ALL_ANALOG);
     ENABLE_INTERRUPTS (INT_TIMER0);
     ENABLE_INTERRUPTS (INT_EXT); //CHO PHEP NGAT NGOAI
     ENABLE_INTERRUPTS (INT_EXT_H2L); //NGAT XAY RA KHI CO XUNG TU CAO XUONG THAP
@@ -388,7 +330,8 @@ VOID NGAT()
     WHILE (TRUE)
     {
        //AN1 = ADC_READ (1) ;
-       AN0 = ADC_READ (0) ;
+      AN0=ADC_READ (0) ;
+      AN1=ADC_READ (1) ;
 
        IF (TT_CONFIG)
        {
@@ -425,7 +368,7 @@ VOID NGAT()
           //TEMP_CHAR = 'K';
           ID_NODE_NHAN = KYTU[1]-48;
           ID_DEVICE_NHAN =KYTU[2]-48 + 64;
-          TT_DEVICE_NHAN = KYTU[3]-48;// -48 ASCII --> S?. +64 -->PORT_D (D0=64)
+          TT_DEVICE_NHAN = KYTU[3]-48;// -48 ASCII --> SÔ. +64 -->PORT_D (D0=64)
           XUATLCD ();                
           IF(ID_NODE_NHAN == ID_NODE)
           {

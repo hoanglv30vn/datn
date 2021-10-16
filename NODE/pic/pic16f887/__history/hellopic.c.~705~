@@ -227,7 +227,7 @@ VOID CONFIG_DONE()
    TT_FUN = 0;
    TT_STT = 0;
    TT_DEVICE_CHAR = "";
-   TT_SENSOR_CHAR = "";  
+   TT_SENSOR_CHAR = "";
    
    TEMP_CHAR = "";    
    FOR (INT I = 0; I < 8; I++)
@@ -242,11 +242,8 @@ VOID CONFIG_DONE()
 
    TEMP_CHAR = "*";
    STRCAT (TT_DEVICE_CHAR, TEMP_CHAR);
-   PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;   
-
+   PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;
    
-   
- 
    TEMP_CHAR2 = "";   
    //SENSOR
    FOR ( I = 0; I < 8; I++)
@@ -273,6 +270,10 @@ VOID CONFIG_DONE()
       DELAY_MS (1);
    }
 
+   
+   LCD_GOTOXY (1, 1) ;
+   DELAY_MS (10);
+   PRINTF (LCD_PUTC, TT_SENSOR_CHAR);
    LCD_GOTOXY (1, 2) ;
    DELAY_MS (10);
    PRINTF (LCD_PUTC, TT_DEVICE_CHAR);

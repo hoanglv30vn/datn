@@ -227,7 +227,7 @@ VOID CONFIG_DONE()
    TT_FUN = 0;
    TT_STT = 0;
    TT_DEVICE_CHAR = "";
-   TT_SENSOR_CHAR = "";  
+
    
    TEMP_CHAR = "";    
    FOR (INT I = 0; I < 8; I++)
@@ -246,7 +246,7 @@ VOID CONFIG_DONE()
 
    
    
- 
+   TT_SENSOR_CHAR = "";   
    TEMP_CHAR2 = "";   
    //SENSOR
    FOR ( I = 0; I < 8; I++)
