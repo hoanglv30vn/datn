@@ -28,9 +28,13 @@ FLOAT ATOF(CONST CHAR *S) : STRING --> SÔ THUC
 
 UNSIGNED INT16 KQADC,AN0, AN1;
 UNSIGNED INT8 CONFIG_FUN=0, ID_NODE = 0, STT_DEVICE=0;
+UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0; 
+UNSIGNED INT8 ID_NODE_NHAN, ID_DEVICE_NHAN, TT_DEVICE_NHAN;
+UNSIGNED INT8 VT_DK;
+
 INT1 TT_CONFIG=0, TT_CONFIG_DONE=0, TT_FUN=0, TT_STT=0;
 INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
-INT8 ID_NODE_NHAN, ID_DEVICE_NHAN, TT_DEVICE_NHAN;
+
 
 //INT1 TT_SENSOR[8]={0, 0, 0, 0, 0, 0, 0, 0};
 CHAR TT_DEVICE_CHAR[]=" ";
@@ -41,25 +45,8 @@ CHAR NHIETDO1[]="27";
 CHAR NHIETDO2[]="27";
 CHAR ID_[]="0";
 CHAR TEMP_CHAR[]="0";
-UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;   
+  
 //--------------------------------------------------------------------//
-#INT_RDA
-VOID NGAT()
-{
-   
-   KYTU[VT] = GETC ();
-
-   IF (KYTU[VT] == '.')
-   {
-      KYTU[VT] = '\0';
-      VT = 0;
-      TTNHAN = 1;
-   }
-
-   ELSE
-   VT++;
-}
-
 VOID CHON_ID()
 {
    // TT_CONFIG_DONE;
@@ -202,6 +189,8 @@ VOID BUTT_FUN()
 
 VOID CONFIG_DONE()
 {
+   TT_FUN = 0;
+   TT_STT = 0;
    TT_DEVICE_CHAR = "";
    FOR (INT I = 0; I < 8; I++)
    {
@@ -240,8 +229,9 @@ VOID QUET_PHIM()
 
    WHILE (!INPUT (BT1_PIN)) //NEU NUT BAM DUOC BAM
    {
-      IF (TMR1IF)
+      IF (TMR1IF)      
       {
+         OUTPUT_TOGGLE (PIN_D2);
          TMR1IF = 0; SET_TIMER1 (3036); BDT++;
       }
    }
@@ -266,6 +256,20 @@ VOID QUET_PHIM()
     QUET_PHIM ();
  }
 
+
+#INT_RDA
+VOID NGAT()
+{   
+   KYTU[VT] = GETCH ();
+   IF (KYTU[VT] == '.')
+   {
+      KYTU[VT] = '\0';
+      VT = 0;
+      TTNHAN = 1;
+   }
+   ELSE
+   VT++;
+}
  VOID XUATLCD  ()
  {
     LCD_GOTOXY (1, 1) ;
@@ -321,7 +325,8 @@ VOID QUET_PHIM()
     TT_CONFIG_DONE = 0;
     OUTPUT_D (0X00);
     TTNHAN = 0;
-    
+             
+               
     WHILE (TRUE)
     {
        //AN1 = ADC_READ (1) ;
@@ -359,25 +364,20 @@ VOID QUET_PHIM()
        {
           
           TTNHAN = 0;
-          XUATLCD ();
-          ID_NODE_NHAN = ATOI(KYTU[0]);
-          ID_DEVICE_NHAN = ATOI(KYTU[1]);
-          TT_DEVICE_NHAN = ATOI(KYTU[2]);
-          ITOA (ID_DEVICE_NHAN, 10, TEMP_CHAR);
-          LCD_GOTOXY (1, 2) ;
+          TEMP_CHAR = "DK";
+          VT_DK = STRSTR(KYTU,TEMP_CHAR);
+          ID_NODE_NHAN = KYTU[VT_DK+2]-48;
+          ID_DEVICE_NHAN =KYTU[VT_DK+2]-48 + 64;
+          TT_DEVICE_NHAN = KYTU[VT_DK+2]-48;// -48 ASCII --> SÔ. +64 -->PORT_D (D0=64)
+          XUATLCD ();       
+          LCD_GOTOXY (1,2) ;
           DELAY_MS (10);
-          PRINTF (LCD_PUTC, KYTU[0] ); 
-          FOR( INT K=0; K<10; K++)
-          PRINTF (LCD_PUTC, KYTU[K] );         
-          DELAY_MS (1);   
-          PRINTF (LCD_PUTC, KYTU[0] ); 
-          
+          PRINTF (LCD_PUTC, ID_NODE_NHAN);
+          PRINTF (LCD_PUTC, ID_NODE_NHAN);
+          DELAY_MS (1);          
           IF(ID_NODE_NHAN == ID_NODE)
           {
-            OUTPUT_TOGGLE (PIN_D0);
-            OUTPUT_TOGGLE (PIN_D1);
-            OUTPUT_TOGGLE (PIN_D2);
-            OUTPUT_TOGGLE (PIN_D3);
+               OUTPUT_BIT (ID_DEVICE_NHAN,TT_DEVICE_NHAN); 
           }
 
        }

@@ -1,3 +1,4 @@
-      Memory usage:   ROM=35%      RAM=52% - 62%
-      0 Errors,  0 Warnings.
+>>> Warning 202 "hellopic.c" Line 33(15,20): Variable never used:   VT_DK
+      Memory usage:   ROM=35%      RAM=52% - 63%
+      0 Errors,  1 Warnings.
 Build Successful.

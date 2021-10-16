@@ -85,8 +85,8 @@ class chaylen (threading.Thread):
                 data = data.decode('utf-8')
                 print(data)   
 
-                userheader= f"{len('hoang'):<{HEADER_LENGTH}}".encode('utf-8')
-                userdata= 'hoang'.encode('utf-8')
+                userheader= f"{len('H'):<{HEADER_LENGTH}}".encode('utf-8')
+                userdata= 'H'.encode('utf-8')
                 messheader= f"{len(data):<{HEADER_LENGTH}}".encode('utf-8')
                 messdata= data.encode('utf-8')
                 for client_socket in clients:

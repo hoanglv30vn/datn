@@ -1,5 +1,44 @@
 # -*- coding: utf-8 -*-
-
+#################################################################################### 
+##                                           ``..``                               ##    
+##                                         -ymNMNmds:`                            ##     
+##                                 `.:/+osyMMMNmNMMMMms:                          ##     
+##                             `:sdNMMMMMMMMMy.  .+hNMMMd/                        ##     
+##                           :yNMMMMNdyso+++-       `+mMMMd:                      ##     
+##                         /mMMMNy/.                   /NMMMo                     ##     
+##                       .hMMMd+`                       .hMMMo                    ##     
+##               -yyyyyyyNMMMMhyyyyyyyyyyyyyyyyyyyyyyyyyyhMMMM/                   ##     
+##               :NMMMMMMMMMMddMmdNm...mMMMMMMMMMMNdmMddMNNMMMm                   ##     
+##                .sdMMMMMNmdmmdmNmh   ydMMMMMMMNddNmdNNd/.yMMM:                  ##     
+##                 ``yNMMMdmMmdMmh-`   `.hmMMMMmdNNdmMhs`  +MMM+                  ##     
+##                   `NMMNssssss:         :sssssssssss`    /MMMo                  ##     
+##                   :MMMy     .+/`         ..             oMMM+                  ##     
+##                   /MMMo     :NMd/.   `.:ymd.            hMMM.                  ##     
+##                   -MMMh      -yNMmhyydmMNh/            :MMMh                   ##     
+##                    dMMN-       ./shddys/.            `oNMMm-                   ##     
+##                    :NMMm-                         `.omMMMh.                    ##     
+##                     /NMMNo.                  ``.:sdNMMNd/                      ##     
+##                      -hMMMNho/-.``````..-:+oyhmMMMMNms-                        ##     
+##                        :yNMMMMMN HOANGLE MMMMMMNds/-                           ##     
+##                           -+shdmNNMMMMmdhyso/:.                                ##     
+##                                  `MMMm                                         ##     
+##                                  /MMMo                                         ##     
+##           .`                     yMMM-                                         ##     
+##     .----oNm`                    mMMN                                          ##     
+##    -mNNNNMMMy.                  .MMMh                                          ##     
+##     .../MMMMMm+`              `/yMMMo                                          ##     
+##         :oydMMMm/           -smMMMMMo                                          ##     
+##            `+mMMNs`       .yNMMMMMMMNy.                                        ##     
+##              .hMMMh.     /mMMNh:dMMMMMm/                                       ##     
+##               `sMMMd.  `yMMMm/  mMMMdMMNs`                                     ##     
+##                 sMMMh`-dMMMh.   NMMN`yMMMh.                                    ##     
+##                 `yMMMhmMMMo`    NMMN  +NMMd-                                   ##     
+##                  `yMMMMMMy      NMMN   /NMMm-                                  ##     
+##                   `hMMMMM-      dMMM`   :NMMm.                                 ##     
+##                    `dMMMs       yMMM-    /MMMd`                                ##     
+##                     `/+:        oMMM+     oMMMs                                ##     
+##                                 -MMMh      dMMM:                               ##
+#################################################################################### 
 # Form implementation generated from reading ui file 'untitled.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
@@ -130,13 +169,13 @@ class Ui_MainWindow(object):
             data = data.decode('utf-8')
             print(data)   
             #C_F == config.
-            if data.find('C_F'):
+            if data.find('C_F') > 0:
                 self.thongtincauhinhnode(data)
             # S_S == dữ liệu cảm biến.
-            elif data.find('S_S'):
+            elif data.find('S_S') > 0:
                 self.uploadDataSensor(data) 
             # D_V == trạng thái thiết bị on off.
-            elif data.find('D_V'):
+            elif data.find('D_V') > 0:
                 self.uploadDataSensor(data)                 
             # R_Q yêu cầu request, đồng bộ dữ liệu từ firebase.                
             elif data.find('R_Q'):             
@@ -167,6 +206,8 @@ class Ui_MainWindow(object):
         serial__.write(hello.encode())       
         print(hello.encode())        
     def uploadDataSensor(self, data):
+        print("up load sensor")
+        print(data)
         # idnode = (data[1])
         # data = (data[data.find('LENGHT')+6:data.find('LENGHT')+8])
         # self.lab_hoagle.setText("TEMP: " + data)
@@ -182,10 +223,10 @@ class Ui_MainWindow(object):
         #     db.child(id_gw).child('phongngu2').update({'nhietdo':data})     
         # else:
         #     db.child(id_gw).child('phongkhach').update({'nhietdo':data})                 
-        pass
     def thongtincauhinhnode(self,data):
         # tách thông tin cấu hình node
         # xử lý, update firebase
+        print("xu ly node moi")
         idnode_moi = data[1:data.find('C_F')]
         devices = data[data.find('ID_')+3:data.find('*')]
         print (idnode_moi + ":" + devices)

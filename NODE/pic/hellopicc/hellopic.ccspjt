@@ -12,9 +12,9 @@ Type=4
 [mru-list]
 1=hellopic.c
 [Opened Files]
-1=hellopic.c
-2=C:\Program Files (x86)\PICC\Devices\16F887.H
-3=C:\Program Files (x86)\PICC\Drivers\STRING.H
+1=C:\Program Files (x86)\PICC\Drivers\LCD.C
+2=hellopic.c
+3=
 4=C:\Program Files (x86)\PICC\Drivers\STDLIB.H
 5=C:\Program Files (x86)\PICC\Drivers\LCD.C
 6=
