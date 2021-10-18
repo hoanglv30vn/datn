@@ -32,7 +32,7 @@ UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;
 UNSIGNED INT8 ID_NODE_NHAN, ID_DEVICE_NHAN, TT_DEVICE_NHAN;
 //UNSIGNED INT8 ID_SENSOR_NHAN, TT_SENSOR_NHAN;
 
-INT1 TT_CONFIG=0, TT_CONFIG_DONE=0, TT_SELECT_FUN=0, TT_FUN=0, TT_STT=0;
+INT1 TT_CONFIG=0, TT_CONFIG_DONE=0, TT_FUN=0, TT_STT=0;
 INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
 INT1 TT_SENSOR[8]={0, 0, 0, 0, 0, 0, 0, 0};
 CHAR *TT_DEVICE_CHAR[]=" ";
@@ -220,12 +220,27 @@ VOID BUTT_FUN()
       }
    }
    //////
-   IF (!TT_CONFIG_DONE){
    SELLECT_FUN ();
-   }
-   
 }
 
+VOID XULYDEVICES()
+{
+   TEMP_CHAR2 = " ";    
+   FOR (INT I = 0; I < 8; I++)
+   {
+      IF (TT_DEVICE[I])
+      {
+         ITOA (I, 10, TEMP_CHAR2);
+         DELAY_MS (1);         
+         STRCAT (TT_DEVICE_CHAR, TEMP_CHAR2);
+      }      
+   }
+   TEMP_CHAR2 = "*";
+   DELAY_MS (1);         
+   STRCAT (TT_DEVICE_CHAR, TEMP_CHAR2);
+   PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;       
+   //ID
+}
 VOID XULYDEVICES()
 {
    TEMP_CHAR2 = " ";    
@@ -387,11 +402,7 @@ VOID NGAT()
        {
           CONFIG_DONE () ;
        }
-       
-       ELSE 
-       {
-       
-       
+
        CHUONG_TRINH_CON ();
 
        IF (AN0 > 26)
@@ -425,11 +436,7 @@ VOID NGAT()
           }
 
        }
-   
-       
-       }
     }
  }
-
 
 

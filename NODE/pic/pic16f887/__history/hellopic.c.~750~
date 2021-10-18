@@ -220,10 +220,7 @@ VOID BUTT_FUN()
       }
    }
    //////
-   IF (!TT_CONFIG_DONE){
    SELLECT_FUN ();
-   }
-   
 }
 
 VOID XULYDEVICES()
