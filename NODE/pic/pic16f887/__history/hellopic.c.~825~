@@ -29,8 +29,8 @@ UNSIGNED INT8 KYTU[30], VT=0,TTNHAN=0;
 UNSIGNED INT8 ID_NODE_NHAN, ID_DEVICE_NHAN, TT_DEVICE_NHAN;
 //UNSIGNED INT8 ID_SENSOR_NHAN, TT_SENSOR_NHAN;
 INT1 TT_CONFIG=0, TT_CONFIG_DONE=0, TT_FUN=0, TT_STT=0;
-INT1 TT_DEVICE[8]={0, 1, 1, 1, 1, 0, 1, 1};
-INT1 TT_SENSOR[8]={1, 0, 1, 1, 0, 0, 0, 0};
+INT1 TT_DEVICE[8]={0, 0, 0, 0, 0, 0, 0, 0};
+INT1 TT_SENSOR[8]={0, 0, 0, 0, 0, 0, 0, 0};
 CHAR *TT_DEVICE_CHAR[]=" ";
 CHAR *TT_SENSOR_CHAR[]=" ";
 CHAR *PACKAGE_NHIETDO[]={"S","ID", "S_S" ,"LENGHT","NHIETDO","CHECKSUM","#"};
@@ -242,8 +242,8 @@ VOID BUTT_FUN()
 
 VOID XULYDEVICE_CF()
 {
-   *TEMP_CHAR2 = '\0';
-   *TT_DEVICE_CHAR = '\0';
+   TT_DEVICE_CHAR = "_";   
+   TEMP_CHAR2 = " ";
    FOR (INT I = 0; I < 8; I++)
    {
       IF (TT_DEVICE[I])
@@ -256,26 +256,53 @@ VOID XULYDEVICE_CF()
    TEMP_CHAR2 = "*";
    DELAY_MS (1);
    STRCAT (TT_DEVICE_CHAR, TEMP_CHAR2);
-   PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;     
+   PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;
+   
+   
+   LCD_GOTOXY (1, 1) ;
+   DELAY_MS (10);
+   //PRINTF (LCD_PUTC, TT_DEVICE_CHAR);   
+   LCD_GOTOXY (1, 2) ;
+   DELAY_MS (10);
+   //PRINTF (LCD_PUTC, PACKAGE_CONFIG[5]);     
+   DELAY_MS(1500);
+   
 }
 VOID XULYSENSOR_CF()
 {
    *TEMP_CHAR2 = '\0';
-   *TEMP_CHAR = '\0';  
+   TT_SENSOR_CHAR = '\0';
    FOR (INT J = 0; J < 8; J++)
    {
       IF (TT_SENSOR[J])
       {
          ITOA (J, 10, TEMP_CHAR2);
          DELAY_MS (1);
-         STRCAT (TEMP_CHAR, TEMP_CHAR2);        
+         STRCAT (TT_SENSOR_CHAR, TEMP_CHAR2);
+         
+         LCD_GOTOXY (1, 1) ;
+         DELAY_MS (700);
+         PRINTF (LCD_PUTC, TT_SENSOR_CHAR);       
+         LCD_GOTOXY (1, 2) ;
+         DELAY_MS (10);
+         PRINTF (LCD_PUTC, TT_DEVICE_CHAR);       
+         DELAY_MS (700);
       }
    }
-   
    TEMP_CHAR2 = "@";
    DELAY_MS (1);
-   STRCAT (TEMP_CHAR, TEMP_CHAR2);
-   PACKAGE_CONFIG[6] = TEMP_CHAR; 
+   STRCAT (TT_SENSOR_CHAR, TEMP_CHAR2);
+   //PACKAGE_CONFIG[6] = TT_SENSOR_CHAR;
+   
+   
+         
+   LCD_GOTOXY (1, 1) ;
+   DELAY_MS (300);
+   PRINTF (LCD_PUTC, TT_SENSOR_CHAR);     
+   LCD_GOTOXY (1, 2) ;
+   DELAY_MS (10);
+   PRINTF (LCD_PUTC, TT_DEVICE_CHAR);     
+   DELAY_MS(1500);   
 }
 
 
@@ -284,7 +311,8 @@ VOID CONFIG_DONE()
    TT_FUN = 0;
    TT_STT = 0;
    TT_DEVICE_CHAR = "";
-   TT_SENSOR_CHAR = "";   
+   TT_SENSOR_CHAR = "";
+   
    XULYDEVICE_CF();
    XULYSENSOR_CF();
    PACKAGE_CONFIG[1] = ID_;

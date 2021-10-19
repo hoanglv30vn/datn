@@ -13,7 +13,9 @@ Type=4
 1=hellopic.c
 [Opened Files]
 1=hellopic.c
-2=
+2=C:\Program Files (x86)\PICC\Drivers\STRING.H
+3=
+4=
 [Units]
 Count=1
 1=hellopic (main)

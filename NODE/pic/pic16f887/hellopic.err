@@ -1,5 +1,3 @@
->>> Warning 202 "hellopic.c" Line 34(37,50): Variable never used:   TT_SELECT_FUN
->>> Warning 202 "hellopic.c" Line 38(7,21): Variable never used:   TT_SENSOR_CHAR
-      Memory usage:   ROM=39%      RAM=55% - 66%
-      0 Errors,  2 Warnings.
+      Memory usage:   ROM=42%      RAM=56% - 67%
+      0 Errors,  0 Warnings.
 Build Successful.
