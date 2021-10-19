@@ -1,8 +1,7 @@
-D G "LCD_LINE_LENGTH" 8 187 "20"
-D G "__PCM__" 0 437 ""5.015""
-D G "__DEVICE__" 0 437 "887"
-D G "__DATE__" 0 437 ""19-Oct-21""
-D G "__TIME__" 0 437 ""01:08:39"" "Standard Header file for the PIC16F887 device ////////////////"
+D G "__PCM__" 0 0 ""5.015""
+D G "__DEVICE__" 0 0 ""
+D G "__DATE__" 0 0 ""19-Oct-21""
+D G "__TIME__" 0 0 ""20:47:46"" "Standard Header file for the PIC16F887 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 39 "int8" `54 
 f B "set_tris_a" 1 39 "void(int8 value)" `53 
@@ -1329,65 +1328,65 @@ V G "TTNHAN" 0 31 "int8" `943
 V G "ID_NODE_NHAN" 0 32 "int8" `944 
 V G "ID_DEVICE_NHAN" 0 32 "int8" `945 
 V G "TT_DEVICE_NHAN" 0 32 "int8" `946  "UNSIGNED INT8 ID_SENSOR_NHAN, TT_SENSOR_NHAN;"
-V G "TT_CONFIG" 0 35 "int1" `947 
-V G "TT_CONFIG_DONE" 0 35 "int1" `948 
-V G "TT_SELECT_FUN" 0 35 "int1" `949 
-V G "TT_FUN" 0 35 "int1" `950 
-V G "TT_STT" 0 35 "int1" `951 
-V G "TT_DEVICE" 0 36 "int1[8]" `952 
-V G "TT_SENSOR" 0 37 "int1[8]" `953 
-V G "TT_DEVICE_CHAR" 0 38 "*int8[1]" `954 
-V G "TT_SENSOR_CHAR" 0 39 "*int8[1]" `956 
-V G "PACKAGE" 0 41 "*int8[1]" `958 
-V G "PACKAGE_CONFIG" 0 42 "*int8[1]" `960 
-V G "NHIETDO1" 0 43 "int8[1]" `962 
-V G "NHIETDO2" 0 44 "int8[1]" `963 
-V G "ID_" 0 45 "int8[1]" `964 
-V G "TEMP_CHAR" 0 46 "int8[1]" `965 
-V G "TEMP_CHAR2" 0 47 "*int8[1]" `966 
+V G "TT_CONFIG" 0 34 "int1" `947 
+V G "TT_CONFIG_DONE" 0 34 "int1" `948 
+V G "TT_SELECT_FUN" 0 34 "int1" `949 
+V G "TT_FUN" 0 34 "int1" `950 
+V G "TT_STT" 0 34 "int1" `951 
+V G "TT_DEVICE" 0 35 "int1[8]" `952 
+V G "TT_SENSOR" 0 36 "int1[8]" `953 
+V G "TT_DEVICE_CHAR" 0 37 "*int8[1]" `954 
+V G "TT_SENSOR_CHAR" 0 38 "*int8[1]" `956 
+V G "PACKAGE" 0 39 "*int8[1]" `958 
+V G "PACKAGE_CONFIG" 0 40 "*int8[1]" `960 
+V G "NHIETDO1" 0 41 "int8[1]" `962 
+V G "NHIETDO2" 0 42 "int8[1]" `963 
+V G "ID_" 0 43 "int8[1]" `964 
+V G "TEMP_CHAR" 0 44 "int8[1]" `965 
+V G "TEMP_CHAR2" 0 45 "*int8[1]" `966 
 C L "CHON_ID" 0 27 1 "FUNCTION"
-F G "CHON_ID" 0 52 "void()" `968  "TT_CONFIG_DONE;"
+F G "CHON_ID" 0 49 "void()" `968  "TT_CONFIG_DONE;"
 C L "CHON_ID" 0 27 1 "FUNCTION"
-F G "CONFIG_DEVICE" 0 78 "void()" `972 
+F G "CONFIG_DEVICE" 0 75 "void()" `972 
 C L "CONFIG_DEVICE" 0 27 1 "FUNCTION"
-F G "CONFIG_SENSOR" 0 117 "void()" `982 
+F G "CONFIG_SENSOR" 0 114 "void()" `982 
 C L "CONFIG_SENSOR" 0 27 1 "FUNCTION"
-F G "RESET_CONFIG" 0 156 "void()" `985 
+F G "RESET_CONFIG" 0 154 "void()" `985 
 C L "RESET_CONFIG" 0 27 2 "FUNCTION"
-F G "BUTT_OKE" 0 164 "void()" `986 
-F G "SELLECT_FUN" 0 171 "void()" `987 
+F G "BUTT_OKE" 0 162 "void()" `986 
+F G "SELLECT_FUN" 0 169 "void()" `987 
 C L "SELLECT_FUN" 0 27 1 "FUNCTION"
-F G "BUTT_FUN" 0 196 "void()" `989 
+F G "BUTT_FUN" 0 194 "void()" `989 
 C L "BUTT_FUN" 0 27 1 "FUNCTION"
 C L "BUTT_FUN" 0 27 1 "FUNCTION"
 C L "BUTT_FUN" 0 27 1 "FUNCTION"
 F G "XULYDEVICES" 0 230 "void()" `992 
 V L "i" 0 232 "int8" `994 
 C L "XULYDEVICES" 0 27 1 "FUNCTION"
-F G "CONFIG_DONE" 0 249 "void()" `996 
-V L "j" 0 257 "int8" `998 
+F G "CONFIG_DONE" 0 251 "void()" `996 
+V L "j" 0 258 "int8" `998 
 F G "QUET_PHIM" 0 272 "void()" `1000 
 V L "BDT" 0 273 "int8" `1001 
 C L "QUET_PHIM" 0 27 1 "FUNCTION"
 C L "QUET_PHIM" 0 27 1 "FUNCTION"
 C L "QUET_PHIM" 0 27 2 "FUNCTION"
 C L "QUET_PHIM" 0 27 1 "FUNCTION"
-F G "NGAT_NGOAI" 0 301 "void()" `1002 
-F G "NGAT" 0 308 "void()" `1003 
-F G "XUATLCD" 0 320 "void()" `1004 
-V L "KENH" 0 327 "int8" `1006 
-F G "ADC_READ" 0 328 "int8(int8 KENH)" `1005 
-V L "i" 0 331 "int8" `1007 
-F G "CHUONG_TRINH_CON" 0 342 "void()" `1010 
-V L "i" 0 343 "int8" `1011 
-F G "MAIN" 0 351 "void()" `1012 
+F G "NGAT_NGOAI" 0 302 "void()" `1002 
+F G "NGAT" 0 309 "void()" `1003 
+F G "XUATLCD" 0 324 "void()" `1004 
+V L "KENH" 0 331 "int8" `1006 
+F G "ADC_READ" 0 332 "int8(int8 KENH)" `1005 
+V L "i" 0 335 "int8" `1007 
+F G "CHUONG_TRINH_CON" 0 346 "void()" `1010 
+V L "i" 0 347 "int8" `1011 
+F G "MAIN" 0 355 "void()" `1012 
 C L "MAIN" 0 27 1 "FUNCTION"
 C L "MAIN" 0 27 1 "FUNCTION"
 C L "MAIN" 0 27 1 "FUNCTION"
 C L "MAIN" 0 27 1 "FUNCTION"
 C L "MAIN" 0 27 1 "FUNCTION"
 C L "MAIN" 0 27 1 "FUNCTION"
-V L "i" 0 404 "int8" `1015 
+V L "i" 0 409 "int8" `1015 
 C L "MAIN" 0 27 1 "FUNCTION"
 C L "MAIN" 0 27 1 "FUNCTION"
 F B "reset_cpu" 0 0

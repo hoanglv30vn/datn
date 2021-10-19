@@ -57,9 +57,9 @@
 07A     @SCRATCH
 07B-07C @TEMP_CHAR2
 07F     @INTERRUPT_AREA
-0A0-0AF PACKAGE
-0B0-0D6 @PACKAGE
-0D7-0E6 PACKAGE_CONFIG
+0A0-0AD PACKAGE
+0AE-0D0 @PACKAGE
+0D1-0E0 PACKAGE_CONFIG
 0FF     @INTERRUPT_AREA
 107.6   C1OUT
 108.6   C2OUT
@@ -201,53 +201,51 @@ FFF     @INTERRUPT_AREA
 ROM Allocation:
 000058  @const993.call
 00005E  @const995.call
-000064  @const997.call
-000069  @const969.call
-00006C  @const973.call
-000071  @const974.call
-000074  @const983.call
-000079  @const984.call
-00007C  @const990.call
-000080  @const991.call
-000084  QUET_PHIM
-000084  NGAT_NGOAI
-0000AB  BUTT_OKE
-0000B3  NGAT
-0000D1  @delay_ms1
-0000E5  lcd_send_nibble
-00012D  lcd_read_nibble
-000170  lcd_send_byte
-000178  lcd_read_byte
-0001EB  lcd_init
-000251  ADC_READ
-000280  @ITOF
-0002AC  @DIVFF
-00037D  @SFTOI
-0003A5  lcd_gotoxy
-0003B9  lcd_putc
-0003F3  @PSTRINGC7_921
-000443  @DIVS3232
-0004BF  itoa
-0004D8  @MUL3232
-0005DF  @PSTRINGR_921
-0005FC  @READBITA
-000615  @WRITEBITA
-000637  BUTT_FUN
-00069A  strcat
-0006D8  @PSTRINGR_9600_62_63
-0006F6  CONFIG_DONE
-00070C  XULYDEVICES
-0007AD  CHUONG_TRINH_CON
-0007C5  XUATLCD
+000066  @const997.call
+00006B  @const969.call
+00006E  @const973.call
+000073  @const983.call
+000078  @const990.call
+00007C  @const991.call
+000080  QUET_PHIM
+000080  NGAT_NGOAI
+0000A7  BUTT_OKE
+0000AF  NGAT
+0000CD  @delay_ms1
+0000E1  lcd_send_nibble
+000129  lcd_read_nibble
+00016C  lcd_send_byte
+000174  lcd_read_byte
+0001E7  lcd_init
+00024D  ADC_READ
+00027C  @ITOF
+0002A8  @DIVFF
+000379  @SFTOI
+0003A1  lcd_gotoxy
+0003B5  lcd_putc
+0003EF  @PSTRINGC7_921
+00043F  @DIVS3232
+0004BB  itoa
+0004D4  @MUL3232
+0005DB  @PSTRINGR_921
+0005F8  @READBITA
+000611  @WRITEBITA
+000633  BUTT_FUN
+000696  strcat
+0006D4  @PSTRINGR_9600_62_63
+0006F2  CONFIG_DONE
+000708  XULYDEVICES
+0007A9  CHUONG_TRINH_CON
+0007C1  XUATLCD
 000800  SELLECT_FUN
 000807  CHON_ID
 00086E  CONFIG_DEVICE
-00096A  CONFIG_SENSOR
-000A66  RESET_CONFIG
-000A6B  @goto12000
-000A73  MAIN
-000A73  @cinit1
-000A9F  @cinit2
+00096F  CONFIG_SENSOR
+000A70  RESET_CONFIG
+000A75  @goto12000
+000A7D  @cinit1
+000A7D  MAIN
+000AA9  @cinit2
 0136  StrtoulGO
 0136  StrtolGO
 
@@ -255,7 +253,7 @@ Project Directory:
     E:\DATN\NODE\pic\pic16f887\
 
 Project Files:
-    hellopic.c                                              [19-Oct-21 01:08  CRC=EA399700]
+    hellopic.c                                              [19-Oct-21 15:20  CRC=0FEE59D8]
     C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
     C:\Program Files (x86)\PICC\Drivers\STRING.H            [14-Jul-11 10:13  CRC=23EDEC8F]
     C:\Program Files (x86)\PICC\Drivers\stddef.h            [16-Jul-10 09:27  CRC=897CEC6C]
@@ -265,7 +263,7 @@ Project Files:
     C:\Program Files (x86)\PICC\Drivers\STDIO.H             [31-Jul-07 13:24  CRC=4E4534F4]
     C:\Program Files (x86)\PICC\Drivers\LCD.C               [19-Sep-13 15:38  CRC=D1A6378A]
 
-Source signature=525B1211
+Source signature=780FD4E9
 
 Units:
     hellopic (main)
