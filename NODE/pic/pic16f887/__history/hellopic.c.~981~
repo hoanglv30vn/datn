@@ -329,18 +329,16 @@ VOID CONFIG_DONE()
    PACKAGE_CONFIG[6] = TT_DEVICE_CHAR;
    DELAY_MS (2);
    PACKAGE_CONFIG[7] = TEMP_CHAR3;
-   //TINH DO DAI -->
-   LEN_PACKAGES = 0;
-   PACKAGE_CONFIG[3] = "12"; //DO DAI CUA LENGHT Cг ад DAI = 2
    FOR (INT J = 0; J < 9; J++)
    {
-      LEN_PACKAGES += strlen(PACKAGE_CONFIG[J]);
+      PRINTF (PACKAGE_CONFIG[J]);
+      PRINTF ("@");
+      LEN_PACKAGES = strlen(PACKAGE_CONFIG[J]);
    }   
-   LEN_PACKAGES = LEN_PACKAGES+7; //7 @
-   ITOA (LEN_PACKAGES, 10, TEMP_CHAR);
-   PACKAGE_CONFIG[3] = TEMP_CHAR;
+
+
    
-   FOR ( J = 0; J < 9; J++)
+   FOR (INT J = 0; J < 9; J++)
    {
       PRINTF (PACKAGE_CONFIG[J]);
       PRINTF ("@");

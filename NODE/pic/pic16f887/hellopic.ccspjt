@@ -14,8 +14,9 @@ Type=4
 [Opened Files]
 1=hellopic.c
 2=C:\Program Files (x86)\PICC\Drivers\STRING.H
-3=
+3=C:\Program Files (x86)\PICC\Drivers\LCD.C
 4=
+5=
 [Units]
 Count=1
 1=hellopic (main)

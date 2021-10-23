@@ -33,16 +33,14 @@ CHAR *TT_DEVICE_CHAR[]=" ";
 CHAR *TT_SENSOR_CHAR[]=" ";
 CHAR *PACKAGE_NHIETDO[]={"*","ID", "S_S" ,"LENGHT","NHIETDO","#"};
 CHAR *PACKAGE_CONFIG[]={"*","ID_GW" ,"ID_NODE", "LENGHT","C_F","ID_CU", "DEVICE1234","SENSOR1234","#"};
+CHAR NHIETDO1[]="27";
+CHAR NHIETDO2[]="27";
 CHAR *ID_[]="0";
 CHAR *ID_GW[]= "0000";
 UNSIGNED INT8 ID_GATEWAY[4] = {0,0,0,0};
 CHAR *TEMP_CHAR[]="0";
 CHAR *TEMP_CHAR2[]="0"; 
 CHAR *TEMP_CHAR3[]="0"; 
-UNSIGNED INT8 LEN_PACKAGES = 0;
-
-CHAR NHIETDO1[]="27";
-CHAR NHIETDO2[]="27";
 //--------------------------------------------------------------------//
 VOID CHON_ID()
 {
@@ -329,31 +327,22 @@ VOID CONFIG_DONE()
    PACKAGE_CONFIG[6] = TT_DEVICE_CHAR;
    DELAY_MS (2);
    PACKAGE_CONFIG[7] = TEMP_CHAR3;
-   //TINH DO DAI -->
-   LEN_PACKAGES = 0;
-   PACKAGE_CONFIG[3] = "12"; //DO DAI CUA LENGHT Cг ад DAI = 2
-   FOR (INT J = 0; J < 9; J++)
-   {
-      LEN_PACKAGES += strlen(PACKAGE_CONFIG[J]);
-   }   
-   LEN_PACKAGES = LEN_PACKAGES+7; //7 @
-   ITOA (LEN_PACKAGES, 10, TEMP_CHAR);
-   PACKAGE_CONFIG[3] = TEMP_CHAR;
    
-   FOR ( J = 0; J < 9; J++)
+   
+   
+   FOR (INT J = 0; J < 9; J++)
    {
       PRINTF (PACKAGE_CONFIG[J]);
       PRINTF ("@");
    }
 
-   /*
+   
    LCD_GOTOXY (1, 1) ;
    DELAY_MS (10);
    FOR (J = 0; J < 9; J++)
    {
       PRINTF (LCD_PUTC, PACKAGE_CONFIG[J]);
    }
-   */
 
    LCD_GOTOXY (1, 1) ;
    DELAY_MS (10);

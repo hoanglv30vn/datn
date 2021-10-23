@@ -213,7 +213,7 @@ class Ui_MainWindow(object):
             data_recv = serial__.readline()
             data_recv = data_recv.decode('utf-8')
             print(data_recv)   
-            lenght_data = len(data_recv[data_recv.find('*'):data_recv.find('#')])
+            lenght_data = str(len(data_recv[data_recv.find('*'):data_recv.find('#')]))
             print(lenght_data)   
 
             data = data_recv.split("@")
