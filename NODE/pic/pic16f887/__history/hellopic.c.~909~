@@ -41,7 +41,6 @@ CHAR *ID_[]="0";
 CHAR *ID_GW[] = "0";
 CHAR *TEMP_CHAR[]="0";
 CHAR *TEMP_CHAR2[]="0"; 
-CHAR *TEMP_CHAR3[]="0"; 
 //--------------------------------------------------------------------//
 
 
@@ -269,12 +268,12 @@ VOID XULYDEVICE_CF()
          STRCAT (TT_DEVICE_CHAR, TEMP_CHAR2);
       }
    }
-//   PACKAGE_CONFIG[6] = TT_DEVICE_CHAR;     
+   PACKAGE_CONFIG[6] = TT_DEVICE_CHAR;     
 }
 VOID XULYSENSOR_CF()
 {
    *TEMP_CHAR2 = '\0';
-   *TEMP_CHAR3 = '\0';  
+   *TEMP_CHAR = '\0';  
  
    FOR (INT J = 0; J < 5; J++)
    {
@@ -282,10 +281,10 @@ VOID XULYSENSOR_CF()
       {
          ITOA (J, 10, TEMP_CHAR2);
          DELAY_MS (1);
-         STRCAT (TEMP_CHAR3, TEMP_CHAR2);        
+         STRCAT (TEMP_CHAR, TEMP_CHAR2);        
       }
    }  
-   //PACKAGE_CONFIG[7] = TEMP_CHAR3; 
+   PACKAGE_CONFIG[7] = TEMP_CHAR; 
 }
 
 
@@ -294,17 +293,13 @@ VOID CONFIG_DONE()
 
    TT_FUN = 0;
    TT_STT = 0;
-   PACKAGE_CONFIG[1] = ID_GW; 
-   DELAY_MS(2);
+   PACKAGE_CONFIG[1] = ID_GW;     
    PACKAGE_CONFIG[2] = ID_;   
-   DELAY_MS(2);
+   
    TT_DEVICE_CHAR = "";
    TT_SENSOR_CHAR = "";   
    XULYDEVICE_CF();
    XULYSENSOR_CF();
-   PACKAGE_CONFIG[6] = TT_DEVICE_CHAR;  
-   DELAY_MS(2);
-   PACKAGE_CONFIG[7] = TEMP_CHAR3; 
    
   
 
@@ -314,13 +309,6 @@ VOID CONFIG_DONE()
       PRINTF (PACKAGE_CONFIG[J]);
       PRINTF ("@");
    }
-   
-   LCD_GOTOXY (1, 1) ;
-   DELAY_MS (10);   
-   FOR ( J = 0; J < 9; J++)
-   {
-      PRINTF (LCD_PUTC, PACKAGE_CONFIG[J]);
-   }   
 
    LCD_GOTOXY (1, 1) ;
    DELAY_MS (10);

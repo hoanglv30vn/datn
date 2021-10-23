@@ -34,14 +34,15 @@ INT1 TT_SENSOR[8]={1, 1, 1, 1, 0, 0, 0, 0};
 CHAR *TT_DEVICE_CHAR[]=" ";
 CHAR *TT_SENSOR_CHAR[]=" ";
 CHAR *PACKAGE_NHIETDO[]={"*","ID", "S_S" ,"LENGHT","NHIETDO","#"};
-CHAR *PACKAGE_CONFIG[]={"*","ID_GW" ,"ID_NODE", "LENGHT","C_F","ID_CU", "DEVICE1234","SENSOR1234","#"};
+CHAR *PACKAGE_CONFIG[]={"*^","IDGW", "^" ,"ID_NODE", "^" , "LENGHT^","C_F^","ID_CU^", "DEVICE1234","SENSOR1234","#"};
 CHAR NHIETDO1[]="27";
 CHAR NHIETDO2[]="27";
 CHAR *ID_[]="0";
 CHAR *ID_GW[] = "0";
 CHAR *TEMP_CHAR[]="0";
-CHAR *TEMP_CHAR2[]="0"; 
-CHAR *TEMP_CHAR3[]="0"; 
+CHAR *TEMP_CHAR2[]="0";
+CHAR *TEMP_CHAR3[]="0";
+  
 //--------------------------------------------------------------------//
 
 
@@ -155,7 +156,7 @@ VOID NHAPID_GW()
    TT_STT = 1;
    LCD_GOTOXY (1, 2) ;
    DELAY_MS (10);
-   PRINTF (LCD_PUTC, "ID_GW:  1234    ");
+   PRINTF (LCD_PUTC, "ID_GW:           ");
    ID_GW = "1234";
    WHILE (TT_STT)
    {
@@ -269,12 +270,16 @@ VOID XULYDEVICE_CF()
          STRCAT (TT_DEVICE_CHAR, TEMP_CHAR2);
       }
    }
-//   PACKAGE_CONFIG[6] = TT_DEVICE_CHAR;     
+   TEMP_CHAR2 = "^";
+   DELAY_MS (1);
+   STRCAT (TT_DEVICE_CHAR, TEMP_CHAR2);
+   PACKAGE_CONFIG[6] = TT_DEVICE_CHAR;     
 }
 VOID XULYSENSOR_CF()
 {
    *TEMP_CHAR2 = '\0';
-   *TEMP_CHAR3 = '\0';  
+   *TEMP_CHAR = '\0';  
+   *TEMP_CHAR3 = '\0';
  
    FOR (INT J = 0; J < 5; J++)
    {
@@ -284,8 +289,12 @@ VOID XULYSENSOR_CF()
          DELAY_MS (1);
          STRCAT (TEMP_CHAR3, TEMP_CHAR2);        
       }
-   }  
-   //PACKAGE_CONFIG[7] = TEMP_CHAR3; 
+   }
+   
+   TEMP_CHAR2 = "^";
+   DELAY_MS (1);
+   STRCAT (TEMP_CHAR3, TEMP_CHAR2);
+   PACKAGE_CONFIG[7] = TEMP_CHAR3; 
 }
 
 
@@ -294,33 +303,28 @@ VOID CONFIG_DONE()
 
    TT_FUN = 0;
    TT_STT = 0;
-   PACKAGE_CONFIG[1] = ID_GW; 
-   DELAY_MS(2);
+   PACKAGE_CONFIG[1] = ID_GW;
+   
+  // *TEMP_CHAR3 = '\0'; 
+  // TEMP_CHAR3 = "^";
+  // DELAY_MS (1);
+  // STRCAT (ID_, TEMP_CHAR3);  
+   
    PACKAGE_CONFIG[2] = ID_;   
-   DELAY_MS(2);
+   
    TT_DEVICE_CHAR = "";
    TT_SENSOR_CHAR = "";   
    XULYDEVICE_CF();
    XULYSENSOR_CF();
-   PACKAGE_CONFIG[6] = TT_DEVICE_CHAR;  
-   DELAY_MS(2);
-   PACKAGE_CONFIG[7] = TEMP_CHAR3; 
    
   
 
    
-   FOR (INT J = 0; J < 9; J++)
+   FOR (INT J = 0; J < 11; J++)
    {
       PRINTF (PACKAGE_CONFIG[J]);
-      PRINTF ("@");
+      DELAY_MS (1);
    }
-   
-   LCD_GOTOXY (1, 1) ;
-   DELAY_MS (10);   
-   FOR ( J = 0; J < 9; J++)
-   {
-      PRINTF (LCD_PUTC, PACKAGE_CONFIG[J]);
-   }   
 
    LCD_GOTOXY (1, 1) ;
    DELAY_MS (10);

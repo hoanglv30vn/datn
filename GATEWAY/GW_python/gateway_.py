@@ -60,7 +60,7 @@ import pyrebase
 ############################# DATABASE SQL #########################################
 conn = sqlite3.connect('datasql.db')   #kết nối tới database
 curr = conn.cursor()    #con trỏ
-curr.execute('''CREATE TABLE IF NOT EXISTS CONFIG_GW(NAME char[30], THONGTIN char[20])''') 
+curr.execute('''CREATE TABLE IF NOT EXISTS CONFIG_GW(ATTRIBUTES char[30], THONGTIN char[20])''') 
 curr.execute('''CREATE TABLE IF NOT EXISTS DATA_NODE(ID_NODE char[20], NAME_ID_NODE char[20], PHANLOAI CHAR[20], ID_THIETBI CHAR[20], NAME_THIETBI CHAR[20])''') 
 conn.commit()
 
@@ -71,14 +71,26 @@ global serial__
 serial__=serial.Serial()
 
 # sau này thêm cái check xem đã lưu id của gw ở sql chưa <tích xanh :v>
-id_gw = 'gateway'
-curr.execute("SELECT * FROM CONFIG_GW WHERE NAME = 'ID_GW' ")
+name_gw = 'gateway'
+curr.execute("SELECT * FROM CONFIG_GW WHERE ATTRIBUTES = 'name_gw' ")
 if (len(curr.fetchall())>0): 
-    thongtin_cfig=curr.execute("SELECT * FROM CONFIG_GW WHERE NAME = 'ID_GW' ")
+    thongtin_cfig=curr.execute("SELECT * FROM CONFIG_GW WHERE ATTRIBUTES = 'name_gw' ")
+    name_gw = thongtin_cfig.fetchone()[1]
+else:
+    name_gw = input("nhập name gw:")
+    curr.execute("INSERT INTO CONFIG_GW VALUES (?,?)",["name_gw",name_gw])# name_gw  
+    conn.commit()    
+print (f'name cua gw là: {name_gw}')
+
+
+id_gw = 'gateway'
+curr.execute("SELECT * FROM CONFIG_GW WHERE ATTRIBUTES = 'id_gw' ")
+if (len(curr.fetchall())>0): 
+    thongtin_cfig=curr.execute("SELECT * FROM CONFIG_GW WHERE ATTRIBUTES = 'id_gw' ")
     id_gw = thongtin_cfig.fetchone()[1]
 else:
-    id_gw = input("nhập id gw:")
-    curr.execute("INSERT INTO CONFIG_GW VALUES (?,?)",["ID_GW",id_gw])# id_gw  
+    id_gw = input("nhập id gw - 4 số tự nhiên:")
+    curr.execute("INSERT INTO CONFIG_GW VALUES (?,?)",["id_gw",id_gw])# name_gw  
     conn.commit()    
 print (f'id cua gw là: {id_gw}')
 
@@ -93,7 +105,8 @@ firebaseConfig = {
   'appId': "1:559705579450:web:3421e5377912259256c783",
   'measurementId': "G-YK901S5FXQ"
 }
-
+firebase = pyrebase.initialize_app(firebaseConfig)
+db = firebase.database()
 # firebase = pyrebase.initialize_app(firebaseConfig)
 # db=firebase.database()
 # data={"name":"Hoàng", 'age':22, 'addr': 'Ha Tinh'}
@@ -101,8 +114,7 @@ firebaseConfig = {
 # db.child('infor').set(data)
 # db.child('infor').set({'addr':'binh duong'})
 
-firebase = pyrebase.initialize_app(firebaseConfig)
-db = firebase.database()
+
 #################################################################################### 
 class Ui_MainWindow(object):
     def stream_handler(self, message):
@@ -167,7 +179,7 @@ class Ui_MainWindow(object):
     def set_serial_change(self):   
         global serial__             
         serial_com = self.box_com.currentText()    
-        curr.execute("UPDATE CONFIG_GW SET THONGTIN = ? WHERE NAME = ?",[serial_com, "COM_PORT"])
+        curr.execute("UPDATE CONFIG_GW SET THONGTIN = ? WHERE ATTRIBUTES = ?",[serial_com, "COM_PORT"])
         conn.commit() 
         self.set_serial()
 
@@ -176,9 +188,9 @@ class Ui_MainWindow(object):
         # chọn cổng com, tốc độ baud                             
         serial_baud = int(self.box_baud.currentText())
         # Đọc từ SQL Để xem đã có cổng com chưa
-        curr.execute("SELECT * FROM CONFIG_GW WHERE NAME = 'COM_PORT' ")
+        curr.execute("SELECT * FROM CONFIG_GW WHERE ATTRIBUTES = 'COM_PORT' ")
         if (len(curr.fetchall())>0): 
-            thongtin_cfig=curr.execute("SELECT * FROM CONFIG_GW WHERE NAME = 'COM_PORT' ")
+            thongtin_cfig=curr.execute("SELECT * FROM CONFIG_GW WHERE ATTRIBUTES = 'COM_PORT' ")
             serial_com = thongtin_cfig.fetchone()[1]
         else:
             serial_com = self.box_com.currentText()    
@@ -190,7 +202,7 @@ class Ui_MainWindow(object):
             serial__=serial.Serial(serial_com, baudrate=serial_baud ,timeout=0.1)
         except:
             serial_com = self.box_com.currentText()    
-            curr.execute("UPDATE CONFIG_GW SET THONGTIN = ? WHERE NAME = ?",[serial_com, "COM_PORT"])
+            curr.execute("UPDATE CONFIG_GW SET THONGTIN = ? WHERE ATTRIBUTES = ?",[serial_com, "COM_PORT"])
             conn.commit()              
             serial__=serial.Serial(serial_com, baudrate=serial_baud ,timeout=0.1)
         print(serial__)
@@ -198,21 +210,33 @@ class Ui_MainWindow(object):
     def readData(self):
         # thread: lắng nghe uart
         if serial__.in_waiting >0:
-            data = serial__.readline()
-            data = data.decode('utf-8')
-            print(data)   
+            data_recv = serial__.readline()
+            data_recv = data_recv.decode('utf-8')
+            print(data_recv)   
+            lenght_data = len(data_recv[data_recv.find('*'):data_recv.find('#')])
+            print(lenght_data)   
+
+            data = data_recv.split("@")
+            print(data)
+            print(id_gw)
+            print(name_gw)
+            if data[3] == lenght_data:
+                print("đúng độ dài")
+            else:
+                print("sai.y/c gửi lại")
+
             #C_F == config.
-            if data.find('C_F') > 0:
-                self.thongtincauhinhnode(data)
-            # S_S == dữ liệu cảm biến.
-            elif data.find('S_S') > 0:
-                self.uploadDataSensor(data) 
-            # D_V == trạng thái thiết bị on off.
-            elif data.find('D_V') > 0:
-                self.uploadDataSensor(data)                 
-            # R_Q yêu cầu request, đồng bộ dữ liệu từ firebase.                
-            elif data.find('R_Q'):             
-                pass  
+            # if data.find('C_F') > 0:
+            #     self.thongtincauhinhnode(data)
+            # # S_S == dữ liệu cảm biến.
+            # elif data.find('S_S') > 0:
+            #     self.uploadDataSensor(data) 
+            # # D_V == trạng thái thiết bị on off.
+            # elif data.find('D_V') > 0:
+            #     self.uploadDataSensor(data)                 
+            # # R_Q yêu cầu request, đồng bộ dữ liệu từ firebase.                
+            # elif data.find('R_Q'):             
+            #     pass  
   
 
     def read_interval(self):
@@ -241,15 +265,15 @@ class Ui_MainWindow(object):
 
         # print(idnode)
         # if idnode == "1":
-        #     db.child(id_gw).child('phongngu1').update({'nhietdo':data})
+        #     db.child(name_gw).child('phongngu1').update({'nhietdo':data})
         # elif idnode == "2":
-        #     db.child(id_gw).child('phongngu2').update({'nhietdo':data})
+        #     db.child(name_gw).child('phongngu2').update({'nhietdo':data})
         # elif idnode == "3":
-        #     db.child(id_gw).child('phongngu1').update({'nhietdo':data})
+        #     db.child(name_gw).child('phongngu1').update({'nhietdo':data})
         # elif idnode == "4":
-        #     db.child(id_gw).child('phongngu2').update({'nhietdo':data})     
+        #     db.child(name_gw).child('phongngu2').update({'nhietdo':data})     
         # else:
-        #     db.child(id_gw).child('phongkhach').update({'nhietdo':data})                 
+        #     db.child(name_gw).child('phongkhach').update({'nhietdo':data})                 
     def thongtincauhinhnode(self,data):
         # tách thông tin cấu hình node
         # xử lý, update firebase
@@ -264,11 +288,11 @@ class Ui_MainWindow(object):
         curr.execute("SELECT * FROM DATA_NODE WHERE ID_NODE = ? ", [idnode_moi] )
         if (len(curr.fetchall())>0): 
             curr.execute("DELETE FROM DATA_NODE WHERE ID_NODE = ?",[idnode_moi])
-            # id_gw = thongtin_cfig.fetchone()[1]
+            # name_gw = thongtin_cfig.fetchone()[1]
         phanloai = "thietbi"
-        db.child(id_gw).child(idnode_moi).set({'node':idnode_moi})          
+        db.child(name_gw).child(idnode_moi).set({'node':idnode_moi})          
         for i in devices:
-            db.child(id_gw).child(idnode_moi).update({f'thietbi{i}':0}) 
+            db.child(name_gw).child(idnode_moi).update({f'thietbi{i}':0}) 
             curr.execute("INSERT INTO DATA_NODE VALUES (?,?,?,?,?)",[idnode_moi,idnode_moi,phanloai,i,i])  
         conn.commit() 
 
@@ -277,9 +301,14 @@ class Ui_MainWindow(object):
         print (idnode_moi + ":cambien:" + cambiens)
         phanloai = "cambien"       
         for i in cambiens:
-            db.child(id_gw).child(idnode_moi).update({f'cambien{i}':0}) 
+            db.child(name_gw).child(idnode_moi).update({f'cambien{i}':0}) 
             curr.execute("INSERT INTO DATA_NODE VALUES (?,?,?,?,?)",[idnode_moi,idnode_moi,phanloai,i,i])  
-        conn.commit()         
+        conn.commit()      
+
+
+        hello=f'{name_gw}C_F:DONE' + '.'
+        serial__.write(hello.encode())       
+        print(hello.encode())           
         # DATA_NODE(ID_NODE char[20], NAME_ID_NODE char[20], PHANLOAI CHAR[20], ID_THIETBI CHAR[20], NAME_THIETBI CHAR[20]                  
 
     def setupUi(self, MainWindow):
@@ -338,7 +367,7 @@ class Ui_MainWindow(object):
         self.butt_ok.clicked.connect(self.senddata)
         t1 = Thread(target = self.read_interval())
         t1.start()
-        db.child(id_gw).stream(self.stream_handler) 
+        db.child(name_gw).stream(self.stream_handler) 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
