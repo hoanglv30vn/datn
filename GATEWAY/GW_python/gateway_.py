@@ -269,7 +269,7 @@ class Ui_MainWindow(object):
         if (tt==1):
             hello= 'on11237891' + '.'
         else:
-            hello='_______ConfigkOK' + '.'
+            hello='CH_Conf_igk_OK' + '.'
         serial__.write(hello.encode())       
         print(hello.encode())
       
@@ -322,7 +322,7 @@ class Ui_MainWindow(object):
         conn.commit()      
 
 
-        hello=f'{id_gw}_{idnode_moi}@Config OK' + '.'
+        hello=f'{id_gw}_{idnode_moi}_Config OK' + '.'
         serial__.write(hello.encode())       
         print(hello.encode())           
         # DATA_NODE(ID_NODE char[20], NAME_ID_NODE char[20], PHANLOAI CHAR[20], ID_THIETBI CHAR[20], NAME_THIETBI CHAR[20]                  

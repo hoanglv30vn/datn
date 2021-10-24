@@ -162,24 +162,21 @@ VOID QUET_PHIM()
                 //TT_DEVICE_NHAN = KYTU[3] - 48; // - 48 ASCII -- > S?. + 64 -- > PORT_D (D0 = 64)
                 XUATLCD ();
 
-                           
-                  /* LAY TOKEN DAU TIEN */
-                  TEMP_CHAR3="_";
-                  CHAR* TOKEN;
-                  TOKEN = STRTOK(KYTUCHAR,TEMP_CHAR3 );
-                  
-                  /* DUYET QUA CAC TOKEN CON LAI */
-                  LCD_GOTOXY (1, 2) ;
-                  WHILE( TOKEN != NULL ) 
-                  {
-                  //PRINTF( " %S\N", TEMPCHAR );
-                      
-                     DELAY_MS (1000);
-                      PRINTF (LCD_PUTC, TOKEN);
-                      DELAY_MS (1);
-                      TOKEN = STRTOK(NULL, TEMP_CHAR3);
-                  }     
-                  
+               
+               /* lay token dau tien */
+               TEMP_CHAR3="_";
+               TEMP_CHAR = strtok(kytuchar,PHANTICH_DATA );
+               
+               /* duyet qua cac token con lai */
+               while( TEMP_CHAR != NULL ) 
+               {
+                  //printf( " %s\n", tempchar );
+                    LCD_GOTOXY (1, 2) ;
+    DELAY_MS (1000);
+    PRINTF (LCD_PUTC, TEMP_CHAR);
+    DELAY_MS (1);
+                  TEMP_CHAR = strtok(NULL, PHANTICH_DATA);
+               }                
                 
                 IF (ID_NODE_NHAN == ID_NODE)
                 {
