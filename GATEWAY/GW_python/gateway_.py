@@ -220,7 +220,7 @@ class Ui_MainWindow(object):
             print(data)
             print(id_gw)
             id_gw_nhan = data[1]
-            id_node_nhan = data[2]
+            # id_node_nhan = data[2]
             do_dai_chuoi_nhan = data[3]
             lenh_xu_ly = data [4]
             if do_dai_chuoi_nhan == lenght_data and id_gw_nhan == id_gw:
@@ -267,9 +267,9 @@ class Ui_MainWindow(object):
         self.timer.start()
     def senddata(self, tt):   
         if (tt==1):
-            hello= 'on1123456789012345678901234567891' + '.'
+            hello= 'on11237891' + '.'
         else:
-            hello='off1234567890123456789012345678901' + '.'
+            hello='_______ConfigkOK' + '.'
         serial__.write(hello.encode())       
         print(hello.encode())
       
@@ -322,7 +322,7 @@ class Ui_MainWindow(object):
         conn.commit()      
 
 
-        hello=f'{id_gw}@{idnode_moi}@C_F@OK' + '.'
+        hello=f'{id_gw}_{idnode_moi}@Config OK' + '.'
         serial__.write(hello.encode())       
         print(hello.encode())           
         # DATA_NODE(ID_NODE char[20], NAME_ID_NODE char[20], PHANLOAI CHAR[20], ID_THIETBI CHAR[20], NAME_THIETBI CHAR[20]                  

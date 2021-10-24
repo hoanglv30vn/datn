@@ -1,0 +1,26 @@
+VOID CHON_ID()
+{
+   // TT_CONFIG_DONE;
+   TT_CONFIG_DONE = 0;
+   TT_STT = 1;
+   LCD_GOTOXY (1, 2) ;
+   DELAY_MS (10);
+   PRINTF (LCD_PUTC, "ID:             ");
+
+   WHILE (TT_STT)
+   {
+      IF (INPUT (BT2_PIN) == 0) //NEU NUT BAM DUOC BAM
+      {
+         ID_NODE ++;
+         IF (ID_NODE > 15) ID_NODE = 0;
+         DELAY_MS (300);
+         ITOA (ID_NODE, 10, ID_);
+         LCD_GOTOXY (9, 2) ;
+         DELAY_MS (10);
+         PRINTF (LCD_PUTC, ID_);
+         DELAY_MS (1);
+         OUTPUT_TOGGLE (PIN_D0);
+      }
+   }
+}
+
