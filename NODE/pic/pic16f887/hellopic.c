@@ -472,7 +472,9 @@ VOID QUET_PHIM()
     TT_CONFIG = 0;
     TT_CONFIG_DONE = 0;
     OUTPUT_D (0X00);
-    TTNHAN = 0;    
+    TTNHAN = 0;
+    
+    
     
     WHILE (TRUE)
     {
@@ -533,4 +535,5 @@ VOID QUET_PHIM()
        }
     }
  }
+
 

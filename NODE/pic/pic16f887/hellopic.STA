@@ -13,7 +13,7 @@ Stack size: 8
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  537   300  34  hellopic.c
+  540   300  34  hellopic.c
   768     0   0  C:\Program Files (x86)\PICC\Devices\16F887.H
   423   125  14  C:\Program Files (x86)\PICC\Drivers\STRING.H
    32     0   0  C:\Program Files (x86)\PICC\Drivers\stddef.h
@@ -23,7 +23,7 @@ Lines Stmts  %   Files
    37     0   0  C:\Program Files (x86)\PICC\Drivers\STDIO.H
   456   100  11  C:\Program Files (x86)\PICC\Drivers\LCD.C
 ----- -----
- 4055   884 Total
+ 4058   884 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------

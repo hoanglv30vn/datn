@@ -1,4 +1,4 @@
-CCS PCM C Compiler, Version 5.015, 5967               24-Oct-21 16:52
+CCS PCM C Compiler, Version 5.015, 5967               24-Oct-21 17:04
 
                Filename:   E:\DATN\NODE\pic\pic16f887\hellopic.lst
 
@@ -7524,8 +7524,10 @@ CCS PCM C Compiler, Version 5.015, 5967               24-Oct-21 16:52
 0EC8:  CLRF   08
 0EC9:  BCF    03.5
 0ECA:  CLRF   08
-....................     TTNHAN = 0;     
+....................     TTNHAN = 0; 
 0ECB:  CLRF   5B
+....................      
+....................      
 ....................      
 ....................     WHILE (TRUE) 
 ....................     { 
@@ -7771,6 +7773,7 @@ CCS PCM C Compiler, Version 5.015, 5967               24-Oct-21 16:52
 ....................  } 
 ....................  
 0F83:  SLEEP
+....................  
 
 Configuration Fuses:
    Word  1: 2FE2   HS NOWDT PUT MCLR NOPROTECT NOCPD BROWNOUT IESO FCMEN NOLVP NODEBUG
