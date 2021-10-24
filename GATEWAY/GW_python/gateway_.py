@@ -219,12 +219,29 @@ class Ui_MainWindow(object):
             data = data_recv.split("@")
             print(data)
             print(id_gw)
-            print(name_gw)
-            if data[3] == lenght_data:
-                print("đúng độ dài")
+            id_gw_nhan = data[1]
+            id_node_nhan = data[2]
+            do_dai_chuoi_nhan = data[3]
+            lenh_xu_ly = data [4]
+            if do_dai_chuoi_nhan == lenght_data and id_gw_nhan == id_gw:
+                print("đúng độ dài - đúng id")
+                # phân tích lệnh, xử lý.
+                if lenh_xu_ly == 'C_F':
+                    self.thongtincauhinhnode(data)
+                # S_S == dữ liệu cảm biến.
+                elif lenh_xu_ly == 'S_S':
+                    self.uploadDataSensor(data) 
+                # D_V == trạng thái thiết bị on off.
+                # elif lenh_xu_ly > 0:
+                #     self.uploadDataSensor(data)                 
+                # # R_Q yêu cầu request, đồng bộ dữ liệu từ firebase.                
+                # elif lenh_xu_ly:             
+                #     pass                 
             else:
                 print("sai.y/c gửi lại")
 
+
+            # {"*","ID_GW" ,"ID_NODE", "LENGHT","C_F","ID_CU", "DEVICE1234","SENSOR1234","#"}
             #C_F == config.
             # if data.find('C_F') > 0:
             #     self.thongtincauhinhnode(data)
@@ -279,10 +296,9 @@ class Ui_MainWindow(object):
         # xử lý, update firebase
         print("xu ly node moi")
         print(f'data nhận được là :{data}')
-        idnode_moi = data[1:data.find('C_F')]
-
-        # THIẾT BỊ
-        devices = data[data.find('ID_')+3:data.find('*')]
+        idnode_moi = data[2]
+        # # THIẾT BỊ
+        devices = data[5]
         print (idnode_moi + ":thietbi:" + devices)
         # xem đã có node đấy chưa.
         curr.execute("SELECT * FROM DATA_NODE WHERE ID_NODE = ? ", [idnode_moi] )
@@ -290,23 +306,23 @@ class Ui_MainWindow(object):
             curr.execute("DELETE FROM DATA_NODE WHERE ID_NODE = ?",[idnode_moi])
             # name_gw = thongtin_cfig.fetchone()[1]
         phanloai = "thietbi"
-        db.child(name_gw).child(idnode_moi).set({'node':idnode_moi})          
+        db.child("ALL").child(name_gw).child(idnode_moi).set({'node':idnode_moi})          
         for i in devices:
-            db.child(name_gw).child(idnode_moi).update({f'thietbi{i}':0}) 
+            db.child("ALL").child(name_gw).child(idnode_moi).update({f'thietbi{i}':0}) 
             curr.execute("INSERT INTO DATA_NODE VALUES (?,?,?,?,?)",[idnode_moi,idnode_moi,phanloai,i,i])  
         conn.commit() 
 
         # CẢM BIẾN
-        cambiens = data[data.find('*')+1:data.find('@')]
+        cambiens = data[6]
         print (idnode_moi + ":cambien:" + cambiens)
         phanloai = "cambien"       
         for i in cambiens:
-            db.child(name_gw).child(idnode_moi).update({f'cambien{i}':0}) 
+            db.child("ALL").child(name_gw).child(idnode_moi).update({f'cambien{i}':0}) 
             curr.execute("INSERT INTO DATA_NODE VALUES (?,?,?,?,?)",[idnode_moi,idnode_moi,phanloai,i,i])  
         conn.commit()      
 
 
-        hello=f'{name_gw}C_F:DONE' + '.'
+        hello=f'{id_gw}@{idnode_moi}@C_F@OK' + '.'
         serial__.write(hello.encode())       
         print(hello.encode())           
         # DATA_NODE(ID_NODE char[20], NAME_ID_NODE char[20], PHANLOAI CHAR[20], ID_THIETBI CHAR[20], NAME_THIETBI CHAR[20]                  

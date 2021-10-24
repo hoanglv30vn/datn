@@ -1,12 +1,12 @@
 
-ROM used:   3892/8192 (48%)
-            3938/8192 (48%) including unused fragments
+ROM used:   3926/8192 (48%)
+            3972/8192 (48%) including unused fragments
 
             1.0 Average locations per line
             4.4 Average locations per statement
 
-RAM used:   228/368 (62%) at main() level
-            273/368 (74%) worst case
+RAM used:   236/368 (64%) at main() level
+            280/368 (76%) worst case
 
 Stack used: 8 worst case (7 in main + 1 for interrupts)
 Stack size: 8
@@ -43,12 +43,12 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     20   1    4   208  6.3  lcd_gotoxy
 0     58   1    1   354  4.7  lcd_putc
  Inline         1   490  4.6  CHON_ID
-0      9   0    0   125  1.3  @const976
+0      9   0    0             @const976
 0     80   2    4  1601  8.8  @PSTRINGC7_921
-0     29   1    2   490  4.6  @PSTRINGR_921
+0     29   1    2             @PSTRINGR_921
  Inline         1  1021  6.2  CONFIG_DEVICE
 0     10   0    0  1601  8.8  @const980
-0     25   1    5  1021  6.2  @READBITA
+0     25   1    5             @READBITA
 0     34   1    6             @WRITEBITA
  Inline         1  1021  6.2  CONFIG_SENSOR
 0      9   0    0             @const990
@@ -56,55 +56,55 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0      6   0    0  1601  8.8  @const994
 0      6   0    0  1601  8.8  @const995
 0      7   0    0  1601  8.8  @const996
-0      7   0    0    50  1.5  @const997
-0      5   0    0  1601  8.8  @const998
- Inline         3    50  1.5  @DIV88
+0      7   0    0  1601  8.8  @const997
+0      5   0    0             @const998
+ Inline         3  1601  8.8  @DIV88
  Inline         0    50  1.5  BUTT_OKE
 1    938  24    0   184  3.4  SELLECT_FUN
-1      8   0    0   896  7.1  @goto12045
+1      8   0    0             @goto12045
 0    134   3    1   896  7.1  BUTT_FUN
 0      8   0    0             @const1006
 0      8   0    0             @const1007
-0      8   0    0   254  5.0  @const1008
-0      8   0    0   254  5.0  @const1009
-0      8   0    0   254  5.0  @const1010
-0      8   0    0   254  5.0  @const1011
-0      8   0    0   254  5.0  @goto12080
+0      8   0    0             @const1008
+0      8   0    0             @const1009
+0      8   0    0             @const1010
+0      8   0    0             @const1011
+0      8   0    0             @goto12080
  Inline         2   254  5.0  XULYDEVICE_CF
  Inline         2   254  5.0  XULYSENSOR_CF
-1    388  10    4  1171  5.3  CONFIG_DONE
+1    394  10    4  1171  5.3  CONFIG_DONE
 0      5   0    0             @const1018
-0     30   1    2   292  5.0  @PSTRINGR_9600_62_63
-0     10   0    0   292  5.0  @const1024
-0     10   0    0   292  5.0  @const1025
+0     30   1    2             @PSTRINGR_9600_62_63
+0     10   0    0             @const1024
+0     10   0    0             @const1025
  Inline         1   292  5.0  QUET_PHIM
 0     55   1    0    12  0.8  NGAT_NGOAI
 0     30   1    2   163  3.9  NGAT
 0     23   1    0    88  1.7  XUATLCD
 0    340   9    1   251  5.0  ADC_READ
- Inline         4   102  2.9  @SFTOI
+ Inline         4             @SFTOI
 0     24   1    0   102  2.9  CHUONG_TRINH_CON
-1    556  14    2  1601  8.8  MAIN
+1    584  15    2  1601  8.8  MAIN
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               48
+    Functions               34
     Statements              884
     Comments                777
-    Volume (V)              51983
-    Difficulty (D)          253.6
-    Effort to implement (E) 13183433
-    Time to implement (T)   203 hours, 27 minutes
-    Est Delivered Bugs (B)  19
-    Cyclomatic Complexity   116
-    Maintainability (MI)    84
+    Volume (V)              43528
+    Difficulty (D)          193.8
+    Effort to implement (E) 8433572
+    Time to implement (T)   130 hours, 9 minutes
+    Est Delivered Bugs (B)  14
+    Cyclomatic Complexity   94
+    Maintainability (MI)    125
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00003     4  0  
 00004-00057    84  0  
 00058-007FF  1914  46  
-00800-00FFF  1890  158  
+00800-00FFF  1924  124  
 01000-017FF     0  2048  
 01800-01FFF     0  2048  
 

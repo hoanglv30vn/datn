@@ -31,8 +31,9 @@ INT1 TT_DEVICE[8]={0, 1, 1, 0, 1, 0, 1, 1};
 INT1 TT_SENSOR[8]={1, 1, 1, 1, 0, 0, 0, 0};
 CHAR *TT_DEVICE_CHAR[]=" ";
 CHAR *TT_SENSOR_CHAR[]=" ";
-CHAR *PACKAGE_NHIETDO[]={"*","ID", "S_S" ,"LENGHT","NHIETDO","#"};
-CHAR *PACKAGE_CONFIG[]={"*","ID_GW" ,"ID_NODE", "LENGHT","C_F","ID_CU", "DEVICE1234","SENSOR1234","#"};
+CHAR *PACKAGE_NHIETDO[]={"*","ID_GW", "ID_NODE","LENGHT", "S_S" ,"TT_cambien","#"};
+
+CHAR *PACKAGE_CONFIG[]={"*","ID_GW" ,"ID_NODE", "LENGHT","C_F", "DEVICE1234","SENSOR1234","#"};
 CHAR *ID_[]="0";
 CHAR *ID_GW[]= "0000";
 UNSIGNED INT8 ID_GATEWAY[4] = {0,0,0,0};
@@ -326,9 +327,9 @@ VOID CONFIG_DONE()
    TT_SENSOR_CHAR = "";
    XULYDEVICE_CF ();
    XULYSENSOR_CF ();
-   PACKAGE_CONFIG[6] = TT_DEVICE_CHAR;
+   PACKAGE_CONFIG[5] = TT_DEVICE_CHAR;
    DELAY_MS (2);
-   PACKAGE_CONFIG[7] = TEMP_CHAR3;
+   PACKAGE_CONFIG[6] = TEMP_CHAR3;
    //TINH DO DAI -->
    LEN_PACKAGES = 0;
    PACKAGE_CONFIG[3] = "12"; //DO DAI CUA LENGHT Cг ад DAI = 2
@@ -336,11 +337,11 @@ VOID CONFIG_DONE()
    {
       LEN_PACKAGES += strlen(PACKAGE_CONFIG[J]);
    }   
-   LEN_PACKAGES = LEN_PACKAGES+7; //7 @
+   LEN_PACKAGES = LEN_PACKAGES+6; //7 @
    ITOA (LEN_PACKAGES, 10, TEMP_CHAR);
    PACKAGE_CONFIG[3] = TEMP_CHAR;
    
-   FOR ( J = 0; J < 9; J++)
+   FOR ( J = 0; J < 8; J++)
    {
       PRINTF (PACKAGE_CONFIG[J]);
       PRINTF ("@");
@@ -471,9 +472,7 @@ VOID QUET_PHIM()
     TT_CONFIG = 0;
     TT_CONFIG_DONE = 0;
     OUTPUT_D (0X00);
-    TTNHAN = 0;
-    
-    
+    TTNHAN = 0;    
     
     WHILE (TRUE)
     {
@@ -493,6 +492,7 @@ VOID QUET_PHIM()
        
        ELSE
        {
+
           WHILE ( ! TT_CONFIG)
           {
              CHUONG_TRINH_CON ();
