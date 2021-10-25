@@ -1,5 +1,5 @@
-#INCLUDE <thuvien.c>
 
+#INCLUDE <thuvien.c>
 
 VOID QUET_PHIM()
 {
@@ -32,13 +32,13 @@ VOID QUET_PHIM()
 
 #INT_EXT
 
- VOID NGAT_NGOAI  ()
+ VOID NGAT_NGOAI ()
  {
     QUET_PHIM ();
  }
 
  #INT_RDA
- VOID NGAT  ()
+ VOID NGAT ()
  {
     KYTUCHAR[VT] = GETCH ();
 
@@ -53,7 +53,7 @@ VOID QUET_PHIM()
     VT++;
  }
 
- VOID XUATLCD ()
+ VOID XUATLCD  ()
  {
     LCD_GOTOXY (1, 1) ;
     DELAY_MS (10);
@@ -75,7 +75,7 @@ VOID QUET_PHIM()
     RETURN KQADC;
  }
 
- VOID CHUONG_TRINH_CON  ()
+ VOID CHUONG_TRINH_CON ()
  {
     FOR (INT I = 0; I <= 30; I++)
     {
@@ -84,7 +84,7 @@ VOID QUET_PHIM()
     }
  }
 
- VOID MAIN ()
+ VOID MAIN  ()
  {
     SET_TRIS_D (0X00);
     SET_TRIS_B (0XFF);
@@ -106,7 +106,7 @@ VOID QUET_PHIM()
     ID_NODE = 0;
     TT_CONFIG = 0;
     TT_CONFIG_DONE = 0;
-    TT_CONTROL=1;
+    TT_CONTROL = 1;
     OUTPUT_D (0X00);
     TTNHAN = 0;
     
@@ -115,7 +115,7 @@ VOID QUET_PHIM()
     WHILE (TRUE)
     {
        //AN1 = ADC_READ (1) ;
-       AN0 = ADC_READ (0) ;
+       //AN0 = ADC_READ (0) ;
 
        IF (TT_CONFIG)
        {
@@ -130,7 +130,6 @@ VOID QUET_PHIM()
        
        ELSE
        {
-
           WHILE (!TT_CONFIG)
           {
              CHUONG_TRINH_CON ();
@@ -156,31 +155,45 @@ VOID QUET_PHIM()
              IF (TTNHAN == 1)
              {
                 TTNHAN = 0;
+                KYTU = 0;
                 //TEMP_CHAR = 'K';
                 //ID_NODE_NHAN = KYTU[1] - 48;
                 //ID_DEVICE_NHAN = KYTU[2] - 48 + 64;
                 //TT_DEVICE_NHAN = KYTU[3] - 48; // - 48 ASCII -- > S?. + 64 -- > PORT_D (D0 = 64)
                 XUATLCD ();
-
-                           
-                  /* LAY TOKEN DAU TIEN */
-                  TEMP_CHAR3="_";
-                  CHAR* TOKEN;
-                  TOKEN = STRTOK(KYTUCHAR,TEMP_CHAR3 );
-                  
-                  /* DUYET QUA CAC TOKEN CON LAI */
-                  LCD_GOTOXY (1, 2) ;
-                  WHILE( TOKEN != NULL ) 
-                  {
-                  //PRINTF( " %S\N", TEMPCHAR );
-                      
-                     DELAY_MS (1000);
-                      PRINTF (LCD_PUTC, TOKEN);
-                      DELAY_MS (1);
-                      TOKEN = STRTOK(NULL, TEMP_CHAR3);
-                  }     
-                  
                 
+                /* LAY TOKEN DAU TIEN */
+                TEMP_CHAR = "_";
+                CHAR * TOKEN;
+                TOKEN = STRTOK (KYTUCHAR, TEMP_CHAR);
+                
+                /* DUYET QUA CAC TOKEN CON LAI */
+                
+                LCD_GOTOXY (1, 2) ;
+                WHILE (TOKEN != NULL)
+                {                
+                   SWITCH(KYTU)
+                   {
+                     CASE 0:
+                     ID_NODE_NHAN = ATOI(TOKEN);  
+                     BREAK;
+               
+                     CASE 1:
+                     ID_DEVICE_NHAN =  ATOI(TOKEN) + 64 ;
+                     BREAK;
+               
+                     CASE 2:
+                     TT_DEVICE_NHAN =  ATOI(TOKEN);                 
+                     BREAK;
+               
+                   
+                   }
+                  //PRINTF (LCD_PUTC, TOKEN);   
+                  DELAY_MS (1);                      
+                  TOKEN = STRTOK(NULL, TEMP_CHAR);
+                  KYTU++;     
+                
+                }
                 IF (ID_NODE_NHAN == ID_NODE)
                 {
                    OUTPUT_BIT (ID_DEVICE_NHAN, TT_DEVICE_NHAN);
@@ -190,5 +203,4 @@ VOID QUET_PHIM()
        }
     }
  }
-
 

@@ -13,14 +13,15 @@ Type=4
 1=hellopic.c
 [Opened Files]
 1=hellopic.c
-2=C:\Program Files (x86)\PICC\Drivers\LCD.C
-3=thuvien.c
-4=khaibaobien.c
+2=thuvien.c
+3=khaibaobien.c
+4=config_1.c
 5=TV_LCD.C
-6=CONFIG_NODE.C
+6=C:\Program Files (x86)\PICC\Drivers\LCD.C
 7=C:\Program Files (x86)\PICC\Drivers\STRING.H
 8=C:\Program Files (x86)\PICC\Drivers\STDLIB.H
-9=
+9=CONFIG_NODE.C
+10=
 [Units]
 Count=1
 1=hellopic (main)

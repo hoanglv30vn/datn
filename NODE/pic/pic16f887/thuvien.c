@@ -21,6 +21,7 @@
 
 #INCLUDE <khaibaobien.c> // VARIABLE.
 
-#INCLUDE <CONFIG_NODE.C> // CÂU HINH NODE.
+//#INCLUDE <CONFIG_NODE.C> // CÂU HINH NODE.
+#INCLUDE <config_1.C> // CÂU HINH NODE.
 
 

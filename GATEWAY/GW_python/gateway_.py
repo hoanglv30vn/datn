@@ -137,7 +137,7 @@ class Ui_MainWindow(object):
             print(id_node)
             print(id_device)
             print(tt_device)
-            hello= f'{id_node}{id_device}{tt_device}.'
+            hello= f'{id_node}_{id_device}_{tt_device}.'
             serial__.write(hello.encode())       
             print(hello.encode())            
                                  
@@ -220,7 +220,7 @@ class Ui_MainWindow(object):
             print(data)
             print(id_gw)
             id_gw_nhan = data[1]
-            # id_node_nhan = data[2]
+            id_node_nhan = data[2]
             do_dai_chuoi_nhan = data[3]
             lenh_xu_ly = data [4]
             if do_dai_chuoi_nhan == lenght_data and id_gw_nhan == id_gw:
@@ -239,6 +239,9 @@ class Ui_MainWindow(object):
                 #     pass                 
             else:
                 print("sai.y/c gửi lại")
+                hello=f'{id_gw}_{id_node_nhan}_Config error' + '.'
+                serial__.write(hello.encode())       
+                print(hello.encode())                  
 
 
             # {"*","ID_GW" ,"ID_NODE", "LENGHT","C_F","ID_CU", "DEVICE1234","SENSOR1234","#"}
@@ -269,7 +272,7 @@ class Ui_MainWindow(object):
         if (tt==1):
             hello= 'on11237891' + '.'
         else:
-            hello='CH_Conf_igk_OK' + '.'
+            hello='1234_CH_ConfigOK' + '.'
         serial__.write(hello.encode())       
         print(hello.encode())
       
@@ -383,7 +386,7 @@ class Ui_MainWindow(object):
         self.butt_ok.clicked.connect(self.senddata)
         t1 = Thread(target = self.read_interval())
         t1.start()
-        db.child(name_gw).stream(self.stream_handler) 
+        db.child("ALL").child(name_gw).stream(self.stream_handler) 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

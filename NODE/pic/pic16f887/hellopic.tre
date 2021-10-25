@@ -1,5 +1,5 @@
 ÀÄhellopic
-   ÃÄMAIN  2/752  Ram=2
+   ÃÄMAIN  2/715  Ram=2
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄlcd_init  0/102  Ram=6
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
@@ -9,16 +9,11 @@
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÀÄlcd_send_byte  0/123  Ram=3
    ³  ³     ÃÄlcd_read_byte  (Inline)  Ram=3
-   ³  ³     ³  ÃÄlcd_read_nibble  0/77  Ram=2
-   ³  ³     ³  ÀÄlcd_read_nibble  0/77  Ram=2
+   ³  ³     ³  ÃÄlcd_read_nibble  0/67  Ram=2
+   ³  ³     ³  ÀÄlcd_read_nibble  0/67  Ram=2
    ³  ³     ÃÄlcd_send_nibble  0/72  Ram=1
    ³  ³     ÀÄlcd_send_nibble  0/72  Ram=1
-   ³  ÃÄADC_READ  0/387  Ram=1
-   ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ³  ÃÄ@ITOF  (Inline)  Ram=2
-   ³  ³  ÃÄ@DIVFF  (Inline)  Ram=14
-   ³  ³  ÀÄ@SFTOI  (Inline)  Ram=4
-   ³  ÃÄBUTT_FUN  0/135  Ram=1
+   ³  ÃÄBUTT_FUN  0/134  Ram=1
    ³  ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³  ³  ÀÄlcd_send_byte  0/123  Ram=3
    ³  ³  ³     ÀÄ*
@@ -46,15 +41,15 @@
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³  ³  ÀÄ*
-   ³  ³  ÃÄitoa  0/342  Ram=27
+   ³  ³  ÃÄitoa  0/288  Ram=27
    ³  ³  ³  ÃÄ@MUL3232  (Inline)  Ram=13
-   ³  ³  ³  ÃÄ@DIVS3232  0/126  Ram=14
-   ³  ³  ³  ÀÄ@DIVS3232  0/126  Ram=14
+   ³  ³  ³  ÃÄ@DIVS3232  0/158  Ram=14
+   ³  ³  ³  ÀÄ@DIVS3232  0/158  Ram=14
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄ@PSTRINGR_921  0/29  Ram=2
    ³  ³  ³  ÀÄlcd_putc  0/58  Ram=1
    ³  ³  ³     ÀÄ*
-   ³  ³  ÃÄ@goto12082  0/8  Ram=0
+   ³  ³  ÃÄ@goto12068  0/8  Ram=0
    ³  ³  ÃÄ@PSTRINGC7_921  0/80  Ram=4
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄ@PSTRINGC7_921  0/80  Ram=4
@@ -63,8 +58,8 @@
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄ@PSTRINGC7_921  0/80  Ram=4
    ³  ³  ³  ÀÄ*
-   ³  ³  ÀÄSELLECT_FUN  1/949  Ram=0
-   ³  ³     ÃÄ@goto12047  1/8  Ram=0
+   ³  ³  ÀÄSELLECT_FUN  1/868  Ram=0
+   ³  ³     ÃÄ@goto12033  1/8  Ram=0
    ³  ³     ÃÄCHON_ID  (Inline)  Ram=1
    ³  ³     ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³     ³  ³  ÀÄ*
@@ -72,7 +67,7 @@
    ³  ³     ³  ÃÄ@PSTRINGC7_921  0/80  Ram=4
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ³     ³  ÃÄitoa  0/342  Ram=27
+   ³  ³     ³  ÃÄitoa  0/288  Ram=27
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³     ³  ³  ÀÄ*
@@ -87,7 +82,7 @@
    ³  ³     ³  ÃÄ@PSTRINGC7_921  0/80  Ram=4
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ³     ³  ÃÄitoa  0/342  Ram=27
+   ³  ³     ³  ÃÄitoa  0/288  Ram=27
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³     ³  ³  ÀÄ*
@@ -103,7 +98,7 @@
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³     ³  ÃÄ@READBITA  0/25  Ram=5
-   ³  ³     ³  ÃÄitoa  0/342  Ram=27
+   ³  ³     ³  ÃÄitoa  0/288  Ram=27
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@PSTRINGR_921  0/29  Ram=2
    ³  ³     ³  ³  ÀÄ*
@@ -114,7 +109,7 @@
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³     ³  ÃÄ@READBITA  0/25  Ram=5
-   ³  ³     ³  ÃÄitoa  0/342  Ram=27
+   ³  ³     ³  ÃÄitoa  0/288  Ram=27
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÀÄ@PSTRINGR_921  0/29  Ram=2
    ³  ³     ³     ÀÄ*
@@ -125,7 +120,7 @@
    ³  ³     ³  ÃÄ@PSTRINGC7_921  0/80  Ram=4
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ³     ³  ÃÄitoa  0/342  Ram=27
+   ³  ³     ³  ÃÄitoa  0/288  Ram=27
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³     ³  ³  ÀÄ*
@@ -141,7 +136,7 @@
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³     ³  ÃÄ@READBITA  0/25  Ram=5
-   ³  ³     ³  ÃÄitoa  0/342  Ram=27
+   ³  ³     ³  ÃÄitoa  0/288  Ram=27
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@PSTRINGR_921  0/29  Ram=2
    ³  ³     ³  ³  ÀÄ*
@@ -152,13 +147,12 @@
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³     ³  ÃÄ@READBITA  0/25  Ram=5
-   ³  ³     ³  ÃÄitoa  0/342  Ram=27
+   ³  ³     ³  ÃÄitoa  0/288  Ram=27
    ³  ³     ³  ³  ÀÄ*
    ³  ³     ³  ÀÄ@PSTRINGR_921  0/29  Ram=2
    ³  ³     ³     ÀÄ*
    ³  ³     ÀÄNHAPID_GW  (Inline)  Ram=4
-   ³  ³        ÃÄ@const999  0/6  Ram=0
-   ³  ³        ÃÄ@const1000  0/6  Ram=0
+   ³  ³        ÃÄ@const992  0/6  Ram=0
    ³  ³        ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³        ³  ÀÄ*
    ³  ³        ÃÄ@delay_ms1  0/20  Ram=1
@@ -174,38 +168,37 @@
    ³  ³        ³  ÀÄ*
    ³  ³        ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³        ÃÄ@DIV88  (Inline)  Ram=3
-   ³  ³        ÃÄitoa  0/342  Ram=27
+   ³  ³        ÃÄitoa  0/288  Ram=27
    ³  ³        ³  ÀÄ*
    ³  ³        ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³        ³  ÀÄ*
    ³  ³        ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³        ÃÄ@PSTRINGR_921  0/29  Ram=2
    ³  ³        ³  ÀÄ*
-   ³  ³        ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ³        ÃÄitoa  0/342  Ram=27
-   ³  ³        ³  ÀÄ*
-   ³  ³        ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ³        ÀÄstrcat  0/62  Ram=9
-   ³  ÃÄCONFIG_DONE  1/402  Ram=4
+   ³  ³        ÀÄ@delay_ms1  0/20  Ram=1
+   ³  ÃÄCONFIG_DONE  0/379  Ram=6
+   ³  ³  ÃÄitoa  0/288  Ram=27
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
+   ³  ³  ÃÄstrcat  0/62  Ram=9
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ³  ÃÄ@const1023  0/5  Ram=0
-   ³  ³  ÃÄ@const1023  0/5  Ram=0
+   ³  ³  ÃÄ@const1017  0/5  Ram=0
    ³  ³  ÃÄXULYDEVICE_CF  (Inline)  Ram=2
    ³  ³  ³  ÃÄ@READBITA  0/25  Ram=5
-   ³  ³  ³  ÃÄitoa  0/342  Ram=27
+   ³  ³  ³  ÃÄitoa  0/288  Ram=27
    ³  ³  ³  ³  ÀÄ*
    ³  ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ³  ÀÄstrcat  0/62  Ram=9
    ³  ³  ÃÄXULYSENSOR_CF  (Inline)  Ram=2
    ³  ³  ³  ÃÄ@READBITA  0/25  Ram=5
-   ³  ³  ³  ÃÄitoa  0/342  Ram=27
+   ³  ³  ³  ÃÄitoa  0/288  Ram=27
    ³  ³  ³  ³  ÀÄ*
    ³  ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ³  ÀÄstrcat  0/62  Ram=9
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄstrlen  (Inline)  Ram=5
-   ³  ³  ÃÄitoa  0/342  Ram=27
+   ³  ³  ÃÄitoa  0/288  Ram=27
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄ@PSTRINGR_9600_62_63  0/30  Ram=2
    ³  ³  ÃÄlcd_gotoxy  0/20  Ram=4
@@ -218,37 +211,40 @@
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÀÄ@PSTRINGC7_921  0/80  Ram=4
    ³  ³     ÀÄ*
-   ³  ÃÄCHUONG_TRINH_CON  1/26  Ram=0
+   ³  ÃÄCHUONG_TRINH_CON  0/24  Ram=0
    ³  ³  ÀÄ@delay_ms1  0/20  Ram=1
-   ³  ÃÄitoa  0/342  Ram=27
+   ³  ÃÄitoa  0/288  Ram=27
    ³  ³  ÀÄ*
-   ³  ÃÄitoa  0/342  Ram=27
+   ³  ÃÄitoa  0/288  Ram=27
    ³  ³  ÀÄ*
    ³  ÃÄ@PSTRINGR_9600_62_63  0/30  Ram=2
    ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ÃÄXUATLCD  1/31  Ram=0
+   ³  ÃÄXUATLCD  0/23  Ram=0
    ³  ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³  ³  ÀÄ*
    ³  ³  ÃÄ@delay_ms1  0/20  Ram=1
    ³  ³  ÃÄ@PSTRINGR_921  0/29  Ram=2
    ³  ³  ³  ÀÄ*
    ³  ³  ÀÄ@delay_ms1  0/20  Ram=1
-   ³  ÃÄ@const1047  0/6  Ram=0
-   ³  ÃÄstrtok  1/275  Ram=10
+   ³  ÃÄ@const1039  0/6  Ram=0
+   ³  ÃÄstrtok  1/241  Ram=10
    ³  ³  ÃÄstrspn  (Inline)  Ram=9
    ³  ³  ÀÄstrpbrk  (Inline)  Ram=9
    ³  ÃÄlcd_gotoxy  0/20  Ram=4
    ³  ³  ÀÄ*
-   ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ÃÄ@PSTRINGR_921  0/29  Ram=2
+   ³  ÃÄatoi  1/258  Ram=9
+   ³  ³  ÀÄ@MUL88  (Inline)  Ram=2
+   ³  ÃÄatoi  1/258  Ram=9
+   ³  ³  ÀÄ*
+   ³  ÃÄatoi  1/258  Ram=9
    ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  0/20  Ram=1
-   ³  ÃÄstrtok  1/275  Ram=10
+   ³  ÃÄstrtok  1/241  Ram=10
    ³  ³  ÀÄ*
    ³  ÃÄ@WRITEBITA  0/34  Ram=6
    ³  ÀÄ@WRITEBITA  0/34  Ram=6
-   ÃÄNGAT_NGOAI  0/53  Ram=0
+   ÃÄNGAT_NGOAI  0/57  Ram=0
    ³  ÀÄQUET_PHIM  (Inline)  Ram=1
    ³     ÀÄBUTT_OKE  (Inline)  Ram=0
-   ÀÄNGAT  0/30  Ram=2
+   ÀÄNGAT  0/29  Ram=2

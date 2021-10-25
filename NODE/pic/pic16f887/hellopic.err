@@ -1,5 +1,3 @@
->>> Warning 202 "E:\DATN\NODE\pic\pic16f887\khaibaobien.c" Line 7(7,20): Variable never used:   DATA_NHANDUOC
->>> Warning 202 "E:\DATN\NODE\pic\pic16f887\khaibaobien.c" Line 26(12,25): Variable never used:   PHANTICH_DATA
-      Memory usage:   ROM=55%      RAM=70% - 83%
-      0 Errors,  2 Warnings.
+      Memory usage:   ROM=50%      RAM=64% - 76%
+      0 Errors,  0 Warnings.
 Build Successful.
