@@ -6,118 +6,220 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
-    <height>315</height>
+    <width>819</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#centralwidget{
+	background-color:qlineargradient(spread:pad, x1:1, y1:0.25, x2:0.988636, y2:1, stop:0.0909091 rgba(29, 113, 133, 248), stop:1 rgba(255, 255, 255, 255));
+font-size:16px;
+}
+
+#line_idgw,#box_comport,#box_baudrate{
+font-size:24px;
+}
+
+QLabel{
+border-radius: 10%;
+font-size:20px;
+background-color:rgb(217, 232, 217);
+}
+#tab_config,#tab_hienthi{
+background-color:rgba(0, 124, 91, 206)
+}
+
+#butt_oke{
+border-radius: 30%;
+font-size:20px;
+background-color:rgb(223, 223, 167)
+}
+#table_danhsach{
+font-size:20px;
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="lab_hoagle">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>140</y>
-      <width>121</width>
-      <height>41</height>
+      <x>10</x>
+      <y>20</y>
+      <width>791</width>
+      <height>511</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
     </property>
     <property name="font">
      <font>
-      <pointsize>20</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
-    <property name="text">
-     <string>Hoàng Lê</string>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
-   </widget>
-   <widget class="QPushButton" name="butt_ok">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>210</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
+    <property name="currentIndex">
+     <number>1</number>
     </property>
-    <property name="text">
-     <string>OKAY</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="box_com">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>40</y>
-      <width>151</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="box_baud">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>40</y>
-      <width>151</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lab_com">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>0</y>
-      <width>151</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>CỔNG COM</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lab_baud">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>0</y>
-      <width>151</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>BAUDRATE</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="butt_setup">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>40</y>
-      <width>75</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>SETUP</string>
-    </property>
+    <widget class="QWidget" name="tab_hienthi">
+     <attribute name="title">
+      <string>LIST</string>
+     </attribute>
+     <widget class="QTableWidget" name="table_danhsach">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>761</width>
+        <height>281</height>
+       </rect>
+      </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>125</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>STT</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>ID NODE</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>NAME NODE</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>ID THIẾT BỊ</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>NAME THIẾT BỊ</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>PHÂN LOẠI</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QLabel" name="lab_name_gw">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>421</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>    NAME GATEWAY</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_config">
+     <attribute name="title">
+      <string>CONFIG</string>
+     </attribute>
+     <widget class="QPushButton" name="butt_oke">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>120</y>
+        <width>91</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="line_idgw">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>120</y>
+        <width>381</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>60</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>   ID GATEWAY </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lab_comport">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>260</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>       COM PORT</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lab_baudrate">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>260</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>       BAUD RATE</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="box_comport">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>340</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="box_baudrate">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>340</y>
+        <width>191</width>
+        <height>51</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -125,7 +227,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>550</width>
+     <width>819</width>
      <height>21</height>
     </rect>
    </property>
