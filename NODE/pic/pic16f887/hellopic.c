@@ -175,14 +175,16 @@ VOID QUET_PHIM()
                    SWITCH(KYTU)
                    {
                      CASE 0:
+                     BREAK;
+                     CASE 1:
                      ID_NODE_NHAN = ATOI(TOKEN);  
                      BREAK;
                
-                     CASE 1:
+                     CASE 2:
                      ID_DEVICE_NHAN =  ATOI(TOKEN) + 64 ;
                      BREAK;
                
-                     CASE 2:
+                     CASE 3:
                      TT_DEVICE_NHAN =  ATOI(TOKEN);                 
                      BREAK;
                

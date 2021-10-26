@@ -253,50 +253,51 @@ ROM Allocation:
 0000C0  @const1008.call
 0000C8  @const1021.call
 0000D2  @const1022.call
-0000DC  NGAT_NGOAI
 0000DC  QUET_PHIM
+0000DC  NGAT_NGOAI
 00010C  BUTT_OKE
 000115  NGAT
 000132  @delay_ms1
-000146  lcd_send_nibble
-00018E  lcd_read_nibble
-0001D1  lcd_send_byte
-0001D9  lcd_read_byte
-00024C  lcd_init
-0002B2  lcd_gotoxy
-0002C6  lcd_putc
-000300  @PSTRINGC7_921
-000350  @DIVS3232
-0003EE  itoa
-000407  @MUL3232
-00050E  @PSTRINGR_921
-00052B  @READBITA
-000544  @WRITEBITA
-000566  BUTT_FUN
-0005EC  @goto12068
-0005F4  strcat
-000632  @PSTRINGR_9600_62_63
-000650  CONFIG_DONE
-0006AF  XULYDEVICE_CF
-0006EA  XULYSENSOR_CF
-00074E  strlen
-0007CB  CHUONG_TRINH_CON
-0007E3  XUATLCD
+000146  lcd_send_byte
+00014E  lcd_read_byte
+0001AC  lcd_read_nibble
+0002C8  lcd_init
+000353  lcd_send_nibble
+0003B6  lcd_gotoxy
+0003CA  lcd_putc
+000404  @PSTRINGC7_921
+000454  itoa
+00046D  @MUL3232
+00057D  @DIVS3232
+0006A4  @READBITA
+0006BD  @WRITEBITA
+0006DF  BUTT_FUN
+000780  @goto12068
+000788  @PSTRINGR_9600_62_63
+0007A6  CHUONG_TRINH_CON
+0007BE  XUATLCD
+0007CC  @PSTRINGR_921
 000800  SELLECT_FUN
 000807  CHON_ID
-00086E  CONFIG_DEVICE
-000976  CONFIG_SENSOR
-000A7E  NHAPID_GW
-000B0A  @DIV88
-000B64  @goto12033
-000B6C  strtok
-000B85  strspn
-000BF8  strpbrk
-000C5D  atoi
-000CCC  @MUL88
-001000  MAIN
-001000  @cinit1
-00102E  @cinit2
+000889  CONFIG_DEVICE
+0009E2  CONFIG_SENSOR
+000B3B  NHAPID_GW
+000BC7  @DIV88
+000C3C  @goto12033
+000C44  CONFIG_DONE
+000CE5  XULYDEVICE_CF
+000D60  XULYSENSOR_CF
+000D9B  strcat
+000E06  strlen
+000E93  strtok
+000EAC  strspn
+000F1F  strpbrk
+001000  atoi
+00106F  @MUL88
+001102  MAIN
+001102  @cinit1
+001130  @cinit2
+0013C0  @goto12286
 0136  StrtoulGO
 0136  StrtolGO
 
@@ -304,7 +305,7 @@ Project Directory:
     E:\DATN\NODE\pic\pic16f887\
 
 Project Files:
-    hellopic.c                                              [25-Oct-21 22:00  CRC=8EFE6003]
+    hellopic.c                                              [26-Oct-21 14:13  CRC=D3766DF6]
     thuvien.c                                               [25-Oct-21 15:09  CRC=A98CB246]
     C:\Program Files (x86)\PICC\Devices\16F887.H            [12-Nov-13 14:35  CRC=6CB1A611]
     C:\Program Files (x86)\PICC\Drivers\STRING.H            [14-Jul-11 10:13  CRC=23EDEC8F]
@@ -314,10 +315,10 @@ Project Files:
     C:\Program Files (x86)\PICC\Drivers\string.h            [14-Jul-11 10:13  CRC=23EDEC8F]
     C:\Program Files (x86)\PICC\Drivers\STDIO.H             [31-Jul-07 13:24  CRC=4E4534F4]
     C:\Program Files (x86)\PICC\Drivers\LCD.C               [19-Sep-13 15:38  CRC=D1A6378A]
-    khaibaobien.c                                           [26-Oct-21 01:38  CRC=E0F4627C]
+    khaibaobien.c                                           [26-Oct-21 13:51  CRC=E0F4627C]
     config_1.C                                              [26-Oct-21 01:45  CRC=BBCD23FA]
 
-Source signature=27950040
+Source signature=6C0D0E33
 
 Units:
     hellopic (main)

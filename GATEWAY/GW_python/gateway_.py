@@ -137,7 +137,7 @@ class Ui_MainWindow(object):
             print(id_node)
             print(id_device)
             print(tt_device)
-            hello= f'{id_node}_{id_device}_{tt_device}.'
+            hello= f'a_{id_node}_{id_device}_{tt_device}.'
             serial__.write(hello.encode())       
             print(hello.encode())            
                                  

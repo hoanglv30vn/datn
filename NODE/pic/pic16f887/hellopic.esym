@@ -1,7 +1,8 @@
-D G "__PCM__" 0 0 ""5.015""
-D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""26-Oct-21""
-D G "__TIME__" 0 0 ""02:00:49"" "Standard Header file for the PIC16F887 device ////////////////"
+D G "lcd_rw_tris" 9 129 "()  output_drive(LCD_RW_PIN)"
+D G "__PCM__" 9 136 ""5.015""
+D G "__DEVICE__" 9 136 "887"
+D G "__DATE__" 9 136 ""26-Oct-21""
+D G "__TIME__" 9 136 ""14:13:30"" "Standard Header file for the PIC16F887 device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 v L "value" 2 39 "int8" `54 
 f B "set_tris_a" 2 39 "void(int8 value)" `53 
