@@ -113,6 +113,39 @@ db = firebase.database().child("ADMIN")
 
 
 class Ui_MainWindow(object):
+
+    def apply_span_to_sales_table(self, row, nrow):
+        if nrow <= 1:
+            return
+        for c in (0, 1):
+            self.table_danhsach.setSpan(row, c, nrow, 1)
+            for r in range(row + 1, row + nrow):
+                t = self.table_danhsach.takeItem(r, c)
+                del t
+    def ALL_DATA(self): 
+        result = conn.execute("SELECT * FROM DATA_NODE")        
+        self.table_danhsach.setRowCount(0)        
+        last_id = -1
+        start_row = 0        
+        for row_number, row_data in enumerate(result): 
+            self.table_danhsach.insertRow(row_number)  
+            current_id, *other_values = row_data
+            for colum_number, data in enumerate (row_data):
+                # đoạn này là in ra bảng
+                self.table_danhsach.setItem(row_number, colum_number,QtWidgets.QTableWidgetItem(str(data))) 
+
+            # đoạn này xuống dưới + hàm apply_span_to_sales_table là:
+            # so sánh gộp các hàng của cột 0, cột 1 nếu tên phòng và tên id giống nhau
+            if last_id != current_id and last_id != -1:
+                self.apply_span_to_sales_table(start_row, row_number - start_row)
+                start_row = row_number
+            last_id = current_id
+            if start_row != row_number:
+                # pass
+                self.apply_span_to_sales_table(start_row, self.table_danhsach.rowCount())        
+        conn.close()    
+
+
     def check_data_from_sql(self):
         pass
     def docIdGW_firebase(self):
@@ -234,7 +267,7 @@ class Ui_MainWindow(object):
         self.table_danhsach = QtWidgets.QTableWidget(self.tab_hienthi)
         self.table_danhsach.setGeometry(QtCore.QRect(10, 110, 761, 281))
         self.table_danhsach.setObjectName("table_danhsach")
-        self.table_danhsach.setColumnCount(6)
+        self.table_danhsach.setColumnCount(5)
         self.table_danhsach.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.table_danhsach.setHorizontalHeaderItem(0, item)
@@ -245,10 +278,8 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.table_danhsach.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
-        self.table_danhsach.setHorizontalHeaderItem(4, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.table_danhsach.setHorizontalHeaderItem(5, item)        
-        self.table_danhsach.horizontalHeader().setDefaultSectionSize(125)
+        self.table_danhsach.setHorizontalHeaderItem(4, item)      
+        self.table_danhsach.horizontalHeader().setDefaultSectionSize(150)
         self.lab_name_gw = QtWidgets.QLabel(self.tab_hienthi)
         self.lab_name_gw.setGeometry(QtCore.QRect(10, 40, 421, 41))
         self.lab_name_gw.setObjectName("lab_name_gw")
@@ -289,9 +320,9 @@ class Ui_MainWindow(object):
 #
 # ####################################################################
         self.check_data_from_sql()
+        self.ALL_DATA()
         # nhập id gw, nhấn nút thì đọc từ firebase.
         self.butt_oke.clicked.connect(self.docIdGW_firebase)
-
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -300,16 +331,14 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "GATEWAY"))
         item = self.table_danhsach.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "STT"))
-        item = self.table_danhsach.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "ID NODE"))  
-        item = self.table_danhsach.horizontalHeaderItem(2)
+        item = self.table_danhsach.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "NAME NODE"))                  
-        item = self.table_danhsach.horizontalHeaderItem(3)
+        item = self.table_danhsach.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "ID THIẾT BỊ"))
-        item = self.table_danhsach.horizontalHeaderItem(4)
+        item = self.table_danhsach.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "NAME THIẾT BỊ"))      
-        item = self.table_danhsach.horizontalHeaderItem(5)
+        item = self.table_danhsach.horizontalHeaderItem(4)
         item.setText(_translate("MainWindow", "PHÂN LOẠI"))
 
         self.lab_name_gw.setText(_translate("MainWindow", "    NAME GATEWAY"))
